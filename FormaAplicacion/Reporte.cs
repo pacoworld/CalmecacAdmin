@@ -60,9 +60,16 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-                object temp1 = reader[0];
-                int temp2 = Convert.ToInt32(temp1);
-                label5.Text = temp2.ToString("C");
+                    object temp1 = reader[0];
+                
+                try
+                {
+                    int temp2 = Convert.ToInt32(temp1);
+                    label5.Text = temp2.ToString("C");
+                }
+                catch {
+                    label5.Text = "0";
+                      }
             }
             cs.Close();
         }
