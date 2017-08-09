@@ -264,7 +264,7 @@ namespace FormaAplicacion
                     message.Body = "Comprobante de pago: \n\nNombre= " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
                     message.To.Add(EMailPago);
                     SmtpClient client = new SmtpClient();
-                    client.Credentials = new NetworkCredential("pacoworld@gmail.com", "Taladega82");
+                    client.Credentials = new NetworkCredential("pacoworld@gmail.com", "");
                     client.Host = "smtp.gmail.com";
                     client.Port = 587;
                     client.EnableSsl = true;
