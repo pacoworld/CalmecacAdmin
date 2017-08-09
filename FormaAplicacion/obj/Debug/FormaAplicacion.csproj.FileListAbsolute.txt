@@ -1,0 +1,38 @@
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.exe.config
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.exe
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.pdb
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csprojResolveAssemblyReference.cache
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Form1.resources
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Properties.Resources.resources
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.GenerateResource.Cache
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.exe
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.pdb
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.exe.config
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.exe
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.pdb
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.exe
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.pdb
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csprojResolveAssemblyReference.cache
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Form1.resources
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Properties.Resources.resources
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.GenerateResource.Cache
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Registro.resources
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Modificar.resources
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Control.resources
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Reporte.resources
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\Microsoft.SqlServer.Types.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.exe.manifest
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.application
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.exe.manifest
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.application

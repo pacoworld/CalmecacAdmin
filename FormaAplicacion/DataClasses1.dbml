@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DatabasePaco" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=DatabasePaco;Integrated Security=True" SettingsObjectName="FormaAplicacion.Properties.Settings" SettingsPropertyName="DatabasePacoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Empleados" Member="Empleados">
+    <Type Name="Empleado">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Puesto" Member="EMail" Storage="_Puesto" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Empleado_Telefono" Member="Telefonos" ThisKey="ID" OtherKey="IDEmpleados" Type="Telefono" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Telefonos" Member="Telefonos">
+    <Type Name="Telefono">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDEmpleados" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Member="Telefono1" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Empleado_Telefono" Member="Empleado" ThisKey="IDEmpleados" OtherKey="ID" Type="Empleado" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

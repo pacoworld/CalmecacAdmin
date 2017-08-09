@@ -1,0 +1,6 @@
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\TestPaco1\bin\Debug\TestPaco1.exe.config
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\TestPaco1\bin\Debug\TestPaco1.exe
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\TestPaco1\bin\Debug\TestPaco1.pdb
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\TestPaco1\obj\Debug\TestPaco1.csprojResolveAssemblyReference.cache
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\TestPaco1\obj\Debug\TestPaco1.exe
+C:\Users\Francisco\Program\Visual Studio\TestPaco1\TestPaco1\obj\Debug\TestPaco1.pdb
