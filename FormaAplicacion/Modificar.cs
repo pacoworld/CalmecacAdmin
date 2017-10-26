@@ -243,7 +243,7 @@ namespace FormaAplicacion
                     comboBox1.Text = "Activo";
                 }
                 else {
-                    comboBox1.Text = "Ausente";
+                    comboBox1.Text = "Inactivo";
                 }
             }
 

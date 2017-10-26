@@ -36,6 +36,8 @@ namespace FormaAplicacion
             {
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
+
+           // comboBox3.SelectedIndex = 0;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,45 +80,55 @@ namespace FormaAplicacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            bool SioNo = VerificaSiYaPago(comboBox1.SelectedItem.ToString(), comboBox2.Text);
-            bool LoEnvioSioNO = true;
-
-            if (SioNo == true)
+            if (comboBox1.SelectedItem == null)
             {
-               DialogResult dr = MessageBox.Show("Este usuario ya cuenta con un pago en este mes.  ¿Deseas sumarlo al saldo actual?", "Precaución", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (dr == DialogResult.Yes)
+                MessageBox.Show("Selecciona un usuario");
+            }
+
+            else
+            {
+
+                bool SioNo = VerificaSiYaPago(comboBox1.SelectedItem.ToString(), comboBox2.Text);
+                bool LoEnvioSioNO = true;
+
+                if (SioNo == true)
                 {
-                    SqlCommand crop;
-                    SqlDataReader reader, reader2;
-                    string token, token2, token3, saldo;
-                    float saldoInt, SaldoSumado, SaldoAnterior;
-                    SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-                    cs.Open();
-                    token = "select Abono from pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
-                    crop = new SqlCommand(token, cs);
-                    reader = crop.ExecuteReader();
-                    if (reader.Read())
+                    DialogResult dr = MessageBox.Show("Este usuario ya cuenta con un pago en este mes.  ¿Deseas sumarlo al saldo actual?", "Precaución", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dr == DialogResult.Yes)
                     {
-                        saldo = reader["Abono"].ToString();
-                        Single.TryParse(saldo, out saldoInt);
-                        Single.TryParse(textBox1.Text, out SaldoAnterior);
-                        SaldoSumado = saldoInt + SaldoAnterior;
-                        cs.Close();
-
+                        SqlCommand crop;
+                        SqlDataReader reader, reader2;
+                        string token, token2, token3, saldo;
+                        float saldoInt, SaldoSumado, SaldoAnterior;
+                        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                         cs.Open();
-                        token2 = "Delete from Pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
-                        crop = new SqlCommand(token2, cs);
+                        token = "select Abono from pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
+                        crop = new SqlCommand(token, cs);
                         reader = crop.ExecuteReader();
-                        cs.Close();
+                        if (reader.Read())
+                        {
+                            saldo = reader["Abono"].ToString();
+                            Single.TryParse(saldo, out saldoInt);
+                            Single.TryParse(textBox1.Text, out SaldoAnterior);
+                            SaldoSumado = saldoInt + SaldoAnterior;
+                            cs.Close();
 
-                        cs.Open();
-                        token3 = "Insert Into Pagos (ID, Fecha, Abono, Concepto, Mes, Año) VALUES ('" + comboBox1.SelectedItem + "' , '" + hoy.ToString() + "' , '" + SaldoSumado.ToString() + "' , '" + ' ' + "', '" + comboBox2.Text + "', '" + currentYear + "' )";
-                        crop = new SqlCommand(token3, cs);
-                        reader2 = crop.ExecuteReader();
-                        cs.Close();        
+                            cs.Open();
+                            token2 = "Delete from Pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
+                            crop = new SqlCommand(token2, cs);
+                            reader = crop.ExecuteReader();
+                            cs.Close();
+
+                            cs.Open();
+                            token3 = "Insert Into Pagos (ID, Fecha, Abono, Concepto, Mes, Año) VALUES ('" + comboBox1.SelectedItem + "' , '" + hoy.ToString() + "' , '" + SaldoSumado.ToString() + "' , '" + ' ' + "', '" + comboBox2.Text + "', '" + currentYear + "' )";
+                            crop = new SqlCommand(token3, cs);
+                            reader2 = crop.ExecuteReader();
+                            cs.Close();
                         }
                     }
-                } else {
+                }
+                else
+                {
 
                     SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                     SqlDataAdapter da = new SqlDataAdapter();
@@ -130,7 +142,7 @@ namespace FormaAplicacion
                     da.InsertCommand.Parameters.Add("@Mes", SqlDbType.VarChar).Value = comboBox2.Text;
                     da.InsertCommand.Parameters.Add("@Año", SqlDbType.VarChar).Value = currentYear;
                     da.InsertCommand.Parameters.Add("@Concepto", SqlDbType.VarChar).Value = textBox2.Text;
-                    temp = textBox1.Text;                   
+                    temp = textBox1.Text;
                     cs.Open();
 
                     if (checkBox1.Checked == false)
@@ -160,7 +172,7 @@ namespace FormaAplicacion
                                 {
                                     MessageBox.Show("Verifica el monto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     LoEnvioSioNO = false;
-                            }
+                                }
 
                                 textBox1.Clear();
                                 textBox2.Clear();
@@ -170,8 +182,8 @@ namespace FormaAplicacion
                     }
                     else
                     {
-                    LoEnvioSioNO = false;
-                    if (string.IsNullOrWhiteSpace(textBox2.Text))
+                        LoEnvioSioNO = false;
+                        if (string.IsNullOrWhiteSpace(textBox2.Text))
                         {
                             MessageBox.Show("Introduce el concepto a pagar");
                             cs.Close();
@@ -195,9 +207,11 @@ namespace FormaAplicacion
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
 
-                if (LoEnvioSioNO == true) {
-                 //   EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, temp);
-                    MessageBox.Show("Correo Electronico Enviado");
+                    if (LoEnvioSioNO == true)
+                    {
+                         //  EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, temp);
+                        //   MessageBox.Show("Correo Electronico Enviado");
+                    }
                 }
             }
         }
@@ -280,6 +294,15 @@ namespace FormaAplicacion
         private void button2_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona a un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                if (comboBox3.SelectedItem == null) {
+                MessageBox.Show("Selecciona el año a consultar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
             ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
         }
 

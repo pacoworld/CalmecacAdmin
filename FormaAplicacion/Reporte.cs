@@ -50,11 +50,11 @@ namespace FormaAplicacion
         }
 
         private void CalculaTotalMes(string Mes, string año) {
-            SqlCommand com;
-            SqlDataReader reader;
+            SqlCommand com, com1;
+            SqlDataReader reader, reader1;
             cs.Open();
             string QuertyTotal;
-            QuertyTotal = "select sum (Abono) from pagos where Mes='" + Mes + "' and Año='" +año + "'";
+            QuertyTotal = "select sum (Abono) from pagos where Mes='" + Mes + "' and Año='" + año + "'";
             com = new SqlCommand(QuertyTotal, cs);
             reader = com.ExecuteReader();
 
@@ -72,6 +72,26 @@ namespace FormaAplicacion
                       }
             }
             cs.Close();
+
+
+            cs.Open();
+            string QuertyTotal2;
+            QuertyTotal2 = "select COUNT (*) from (select Empleados.ID, Empleados.Nombre, Empleados.Apellido, Pagos.Abono, Pagos.Fecha from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes= '" + Mes + "' and Pagos.Año='" + año + "' ) myNewTable";
+            com1 = new SqlCommand(QuertyTotal2, cs);
+            reader1 = com1.ExecuteReader();
+
+            if (reader1.Read())
+            {
+                object temp1 = reader1[0];                
+                label8.Text = temp1.ToString();
+                
+            }
+            cs.Close();
+
+
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -81,5 +101,7 @@ namespace FormaAplicacion
             label2.Text = comboBox1.Text;
             label4.Text = comboBox2.Text;
         }
+
+        
     }
 }

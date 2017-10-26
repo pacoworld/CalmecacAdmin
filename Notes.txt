@@ -1,9 +1,3 @@
-select Empleados.ID, Empleados.Nombre, Empleados.Apellido, Pagos.Abono from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes='Junio' and Pagos.Año='2017';
+// Cuenta el numero de usuarios que han pagado
 
-
-
- for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
-                MessageBox.Show("Test");
-            }
+select COUNT (*) from (select Empleados.ID, Empleados.Nombre, Empleados.Apellido, Pagos.Abono, Pagos.Fecha from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes= 'Mayo' and Pagos.Año='2017' ) myNewTable

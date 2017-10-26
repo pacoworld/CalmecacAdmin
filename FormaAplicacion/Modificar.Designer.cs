@@ -42,8 +42,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,7 +153,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Activo",
-            "Ausente"});
+            "Inactivo"});
             this.comboBox1.Location = new System.Drawing.Point(56, 167);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -181,6 +181,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificación de Datos";
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(56, 137);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(150, 20);
+            this.textBox5.TabIndex = 16;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -189,13 +196,6 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 15;
             this.label1.Text = "Teléfono";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(56, 137);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(150, 20);
-            this.textBox5.TabIndex = 16;
             // 
             // Modificar
             // 

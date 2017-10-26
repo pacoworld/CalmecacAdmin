@@ -72,6 +72,7 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.DropDownStyleChanged += new System.EventHandler(this.Control_Load);
             // 
             // label1
             // 
@@ -337,7 +338,8 @@
             "2017",
             "2018",
             "2019",
-            "2020"});
+            "2020",
+            "2021"});
             this.comboBox3.Location = new System.Drawing.Point(25, 322);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(56, 21);
