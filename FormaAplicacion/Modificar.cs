@@ -13,6 +13,7 @@ namespace FormaAplicacion
 {
     public partial class Modificar : Form
     {
+       // string MiembroDesde;
         public Modificar()
         {
 
@@ -242,11 +243,24 @@ namespace FormaAplicacion
                 {
                     comboBox1.Text = "Activo";
                 }
-                else {
+                else
+                {
                     comboBox1.Text = "Inactivo";
                 }
             }
 
+            cs.Close();
+
+
+            cs.Open();
+            str = "select MiembroDesde from empleados where id = '" + comboBox2.SelectedItem + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                label9.Text = reader["MiembroDesde"].ToString();          
+            }
             cs.Close();
 
         }

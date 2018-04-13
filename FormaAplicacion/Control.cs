@@ -17,6 +17,7 @@ namespace FormaAplicacion
     {
         DateTime hoy = DateTime.Today;
         string currentYear = DateTime.Now.Year.ToString();
+        string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
         public Control()
         {
@@ -31,13 +32,10 @@ namespace FormaAplicacion
             DataTable dt = new DataTable();
 
             da.Fill(dt);
-
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
-
-           // comboBox3.SelectedIndex = 0;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,7 +44,6 @@ namespace FormaAplicacion
             SqlCommand com;
             SqlDataReader reader;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-            dataGridView1.Rows.Clear();
             string ElAño = DateTime.Now.ToString("yyyy");
 
             cs.Open();
@@ -87,8 +84,7 @@ namespace FormaAplicacion
 
             else
             {
-
-                bool SioNo = VerificaSiYaPago(comboBox1.SelectedItem.ToString(), comboBox2.Text);
+                bool SioNo = VerificaSiYaPago(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear);
                 bool LoEnvioSioNO = true;
 
                 if (SioNo == true)
@@ -125,6 +121,7 @@ namespace FormaAplicacion
                             reader2 = crop.ExecuteReader();
                             cs.Close();
                         }
+                        ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
                     }
                 }
                 else
@@ -210,7 +207,7 @@ namespace FormaAplicacion
                     if (LoEnvioSioNO == true)
                     {
                          //  EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, temp);
-                        //   MessageBox.Show("Correo Electronico Enviado");
+                         //  MessageBox.Show("Correo Electronico Enviado");
                     }
                 }
             }
@@ -233,28 +230,42 @@ namespace FormaAplicacion
 
         private void ImprimePagosMensuales(string identif, string Año) {
 
-            string str;
-            SqlCommand com;
-            SqlDataReader reader;
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            /*  string str;
+              SqlCommand com;
+              SqlDataReader reader;
+              SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+              label8.Text = Año;
+
+              String[] QueMes = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+
+              for (int i = 0; i < 12; i++)
+              {
+                  cs.Open();
+                  str = "Select mes from Pagos where Mes = '" + QueMes[i] + "' and ID = '" + identif + "' and Año = '"+ Año +"'";
+                  com = new SqlCommand(str, cs);
+                  reader = com.ExecuteReader();
+
+                  if (reader.Read())
+                   {
+                       dataGridView1.Rows[0].Cells[i].Value = "Pagado";
+                   }
+                  cs.Close();
+              }
+              label8.Text = Año;
+
+      */
+            //Nueva grid
             label8.Text = Año;
+            DataSet ds = new DataSet();
+            SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            SqlDataAdapter da = new SqlDataAdapter();
 
-            String[] QueMes = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+            da.SelectCommand = new SqlCommand("SELECT mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs1);
+            ds.Clear();
+            da.Fill(ds);
+            dataGridView2.DataSource = ds.Tables[0];
+            dataGridView2.Columns[1].DefaultCellStyle.Format = "C";
 
-            for (int i = 0; i < 12; i++)
-            {
-                cs.Open();
-                str = "Select mes from Pagos where Mes = '" + QueMes[i] + "' and ID = '" + identif + "' and Año = '"+ Año +"'";
-                com = new SqlCommand(str, cs);
-                reader = com.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    dataGridView1.Rows[0].Cells[i].Value = "Pagado";
-                }
-                cs.Close();
-            }
-            label8.Text = Año;
         }
 
         private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago) {
@@ -293,7 +304,6 @@ namespace FormaAplicacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
             if (comboBox1.SelectedItem == null)
             {
                 MessageBox.Show("Selecciona a un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -306,14 +316,14 @@ namespace FormaAplicacion
             ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
         }
 
-        private bool VerificaSiYaPago(string ElID, string ElMes) {
+        private bool VerificaSiYaPago(string ElID, string ElMes, string Elaño) {
             bool tiene;
             string str;
             SqlCommand com;
             SqlDataReader reader;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             cs.Open();
-            str = "Select Abono from Pagos where id = '" + ElID + "' and Mes = '" + ElMes + "' ";
+            str = "Select Abono from Pagos where id = '" + ElID + "' and Mes = '" + ElMes + "' and Año = '" + Elaño + "' ";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
 
@@ -333,10 +343,6 @@ namespace FormaAplicacion
             cs.Close();
             return tiene;
         }
-
-
-
-
     }
 }
 
