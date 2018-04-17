@@ -68,7 +68,7 @@
             // 
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.Location = new System.Drawing.Point(1027, 352);
+            this.button2.Location = new System.Drawing.Point(1106, 454);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 95);
             this.button2.TabIndex = 4;
@@ -82,7 +82,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(125, 46);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(875, 503);
+            this.dataGridView1.Size = new System.Drawing.Size(975, 503);
             this.dataGridView1.TabIndex = 5;
             // 
             // button3
@@ -126,7 +126,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(1027, 328);
+            this.checkBox1.Location = new System.Drawing.Point(1106, 430);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(56, 17);
             this.checkBox1.TabIndex = 9;

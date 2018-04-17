@@ -38,8 +38,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,6 +126,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBox1);
@@ -142,6 +146,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registro de Clientes";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(84, 113);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(200, 20);
+            this.textBox4.TabIndex = 12;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -151,12 +162,27 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Teléfono";
             // 
-            // textBox4
+            // label6
             // 
-            this.textBox4.Location = new System.Drawing.Point(84, 113);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(200, 20);
-            this.textBox4.TabIndex = 12;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 174);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Membresía";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Crossfit",
+            "Power Athletes",
+            "Power Kids"});
+            this.comboBox2.Location = new System.Drawing.Point(84, 166);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 14;
             // 
             // Registro
             // 
@@ -185,5 +211,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label6;
     }
 }

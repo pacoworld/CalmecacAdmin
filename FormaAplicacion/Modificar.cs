@@ -99,7 +99,7 @@ namespace FormaAplicacion
                 reader = crop.ExecuteReader();
                 if (reader.Read())
                 {
-                    if (reader["Sexo"].ToString() == textBox4.Text)
+                    if (reader["Sexo"].ToString() == comboBox4.Text)
                     {
 
                     }
@@ -108,7 +108,7 @@ namespace FormaAplicacion
                         SqlCommand crop1 = cs.CreateCommand();
                         SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Sexo =  '" + textBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                        crop1.CommandText = "update Empleados set Sexo =  '" + comboBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
                         crop1.ExecuteNonQuery();
                         MessageBox.Show("Sexo Actualizado" , "Correcto", MessageBoxButtons.OK);
@@ -140,7 +140,6 @@ namespace FormaAplicacion
 
 
 
-
                 token = "select Estatus from empleados where id = '" + comboBox2.SelectedItem + "' ";
                 crop = new SqlCommand(token, cs);
                 reader.Close();
@@ -156,15 +155,39 @@ namespace FormaAplicacion
                         SqlCommand crop1 = cs.CreateCommand();
                         SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Estatus =  '"+comboBox1.Text +"' where id = '" + comboBox2.SelectedItem + " '";
+                        crop1.CommandText = "update Empleados set Estatus =  '"+ comboBox1.Text +"' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
                         crop1.ExecuteNonQuery();
                         MessageBox.Show("Estatus Actualizado", "Correcto", MessageBoxButtons.OK);
                     }
                 }
-            }
 
-            
+
+                token = "select Membresia from empleados where id = '" + comboBox2.SelectedItem + "' ";
+                crop = new SqlCommand(token, cs);
+                reader.Close();
+                reader = crop.ExecuteReader();
+                if (reader.Read())
+                {
+                    if (reader["Membresia"].ToString() == comboBox3.Text)
+                    {
+
+                    }
+                    else
+                    {
+                        SqlCommand crop1 = cs.CreateCommand();
+                        SqlDataAdapter da = new SqlDataAdapter();
+                        crop1.CommandType = CommandType.Text;
+                        crop1.CommandText = "update Empleados set Membresia =  '" + comboBox3.Text + "' where id = '" + comboBox2.SelectedItem + " '";
+                        reader.Close();
+                        crop1.ExecuteNonQuery();
+                        MessageBox.Show("Membresia Actualizado", "Correcto", MessageBoxButtons.OK);
+                    }
+                }
+
+
+
+            }            
           cs.Close();
         }
 
@@ -186,6 +209,7 @@ namespace FormaAplicacion
             }
             cs.Close();
 
+
             cs.Open();
             str = "select apellido from empleados where id = '" + comboBox2.SelectedItem + "'";
             com = new SqlCommand(str, cs);
@@ -196,6 +220,7 @@ namespace FormaAplicacion
                 textBox2.Text = reader["Apellido"].ToString();
             }
             cs.Close();
+
 
             cs.Open();
             str = "select email from empleados where id = '" + comboBox2.SelectedItem + "'";
@@ -208,14 +233,15 @@ namespace FormaAplicacion
             }
             cs.Close();
 
+
             cs.Open();
-            str = "select sexo from empleados where id = '" + comboBox2.SelectedItem + "'";
+            str = "select Sexo from empleados where id = '" + comboBox2.SelectedItem + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
 
             if (reader.Read())
             {
-                textBox4.Text = reader["Sexo"].ToString();
+                comboBox4.Text = reader["Sexo"].ToString();
             }
             cs.Close();
 
@@ -239,17 +265,22 @@ namespace FormaAplicacion
             
             if (reader.Read())
             {
-                if (reader["Estatus"].ToString() == "Activo")
-                {
-                    comboBox1.Text = "Activo";
-                }
-                else
-                {
-                    comboBox1.Text = "Inactivo";
-                }
+                comboBox1.Text = reader["Estatus"].ToString();
             }
-
             cs.Close();
+
+
+               cs.Open();
+               str = "select Membresia from empleados where id = '" + comboBox2.SelectedItem + "'";
+               com = new SqlCommand(str, cs);
+               reader = com.ExecuteReader();
+
+               if (reader.Read())
+               {
+                 comboBox3.Text = reader["Membresia"].ToString();
+               }
+               cs.Close();
+           
 
 
             cs.Open();
