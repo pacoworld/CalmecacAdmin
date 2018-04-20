@@ -30,6 +30,7 @@ namespace FormaAplicacion
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
+            comboBox4.SelectedIndex = 1;
 
             da.Fill(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -137,7 +138,7 @@ namespace FormaAplicacion
                     da.InsertCommand.Parameters.Add("@Fecha", SqlDbType.VarChar).Value = hoy.ToString();
                     da.InsertCommand.Parameters.Add("@Abono", SqlDbType.VarChar).Value = textBox1.Text;
                     da.InsertCommand.Parameters.Add("@Mes", SqlDbType.VarChar).Value = comboBox2.Text;
-                    da.InsertCommand.Parameters.Add("@Año", SqlDbType.VarChar).Value = currentYear;
+                    da.InsertCommand.Parameters.Add("@Año", SqlDbType.VarChar).Value = comboBox4.Text;
                     da.InsertCommand.Parameters.Add("@Concepto", SqlDbType.VarChar).Value = textBox2.Text;
                     temp = textBox1.Text;
                     cs.Open();
@@ -230,31 +231,7 @@ namespace FormaAplicacion
 
         private void ImprimePagosMensuales(string identif, string Año) {
 
-            /*  string str;
-              SqlCommand com;
-              SqlDataReader reader;
-              SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-              label8.Text = Año;
-
-              String[] QueMes = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-
-              for (int i = 0; i < 12; i++)
-              {
-                  cs.Open();
-                  str = "Select mes from Pagos where Mes = '" + QueMes[i] + "' and ID = '" + identif + "' and Año = '"+ Año +"'";
-                  com = new SqlCommand(str, cs);
-                  reader = com.ExecuteReader();
-
-                  if (reader.Read())
-                   {
-                       dataGridView1.Rows[0].Cells[i].Value = "Pagado";
-                   }
-                  cs.Close();
-              }
-              label8.Text = Año;
-
-      */
-            //Nueva grid
+            
             label8.Text = Año;
             DataSet ds = new DataSet();
             SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
@@ -265,6 +242,7 @@ namespace FormaAplicacion
             da.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
             dataGridView2.Columns[1].DefaultCellStyle.Format = "C";
+            dataGridView2.Columns[2].DefaultCellStyle.Format = "dd/MMM/yyyy";
 
         }
 

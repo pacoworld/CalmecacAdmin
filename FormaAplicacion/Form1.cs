@@ -76,7 +76,8 @@ namespace FormaAplicacion
             da.SelectCommand = new SqlCommand("SELECT * FROM Empleados where Estatus = 'Activo'", cs);
             ds.Clear();
             da.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];            
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void ImprimeTodos()
@@ -85,6 +86,7 @@ namespace FormaAplicacion
             ds.Clear();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void button5_Click(object sender, EventArgs e)
