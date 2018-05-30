@@ -276,7 +276,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(479, 0);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(470, 333);
+            this.dataGridView2.Size = new System.Drawing.Size(457, 333);
             this.dataGridView2.TabIndex = 21;
             // 
             // groupBox2
@@ -286,7 +286,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(955, 233);
+            this.groupBox2.Location = new System.Drawing.Point(942, 233);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
             this.groupBox2.TabIndex = 22;
@@ -298,7 +298,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1167, 399);
+            this.ClientSize = new System.Drawing.Size(1151, 399);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox1);

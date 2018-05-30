@@ -207,8 +207,8 @@ namespace FormaAplicacion
 
                     if (LoEnvioSioNO == true)
                     {
-                          // EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
-                         //  MessageBox.Show("Correo Electronico Enviado");
+                          EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                          MessageBox.Show("Correo Electronico Enviado");
                     }
                 }
             }
@@ -247,21 +247,23 @@ namespace FormaAplicacion
         }
 
         private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago) {
-            string str, EMailPago;
+            string str, strfolio, EMailPago;
             SqlCommand com;
             SqlDataReader reader;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-
-
-
-
-
-
 
             cs.Open();
             str = "select email from empleados where id = '" + IDPago + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
+            
+
+               /*cs.Open();
+               strfolio = "select folio from pagos where id = '" + IDPago + "' and fecha = '" + hoy.ToString() + "'";
+               com = new SqlCommand(strfolio, cs);
+               reader = com.ExecuteReader();
+               cs.Close();  */
+                
             try
             {
                 if (reader.Read())
