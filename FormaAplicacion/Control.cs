@@ -132,7 +132,7 @@ namespace FormaAplicacion
                     SqlDataAdapter da = new SqlDataAdapter();
                     SqlDataAdapter da2 = new SqlDataAdapter();
                     DateTime hoy = DateTime.Today;
-                    string temp;
+                    string tempMonto;
                     da.InsertCommand = new SqlCommand("INSERT INTO Pagos VALUES (@ID, @Fecha, @Abono, @Concepto, @Mes, @Año)", cs);
                     da.InsertCommand.Parameters.Add("@ID", SqlDbType.VarChar).Value = comboBox1.SelectedItem;
                     da.InsertCommand.Parameters.Add("@Fecha", SqlDbType.VarChar).Value = hoy.ToString();
@@ -140,7 +140,7 @@ namespace FormaAplicacion
                     da.InsertCommand.Parameters.Add("@Mes", SqlDbType.VarChar).Value = comboBox2.Text;
                     da.InsertCommand.Parameters.Add("@Año", SqlDbType.VarChar).Value = comboBox4.Text;
                     da.InsertCommand.Parameters.Add("@Concepto", SqlDbType.VarChar).Value = textBox2.Text;
-                    temp = textBox1.Text;
+                    tempMonto = textBox1.Text;
                     cs.Open();
 
                     if (checkBox1.Checked == false)
@@ -207,7 +207,7 @@ namespace FormaAplicacion
 
                     if (LoEnvioSioNO == true)
                     {
-                         //  EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, temp);
+                          // EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
                          //  MessageBox.Show("Correo Electronico Enviado");
                     }
                 }
@@ -237,12 +237,12 @@ namespace FormaAplicacion
             SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();
 
-            da.SelectCommand = new SqlCommand("SELECT mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs1);
+            da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs1);
             ds.Clear();
             da.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
-            dataGridView2.Columns[1].DefaultCellStyle.Format = "C";
-            dataGridView2.Columns[2].DefaultCellStyle.Format = "dd/MMM/yyyy";
+            dataGridView2.Columns[2].DefaultCellStyle.Format = "C";
+            dataGridView2.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
 
         }
 
@@ -251,6 +251,13 @@ namespace FormaAplicacion
             SqlCommand com;
             SqlDataReader reader;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+
+
+
+
+
+
+
             cs.Open();
             str = "select email from empleados where id = '" + IDPago + "'";
             com = new SqlCommand(str, cs);
@@ -262,12 +269,12 @@ namespace FormaAplicacion
                     EMailPago = reader["EMail"].ToString();
 
                     MailMessage message = new MailMessage();
-                    message.From = new MailAddress("pacoworld@gmail.com");
+                    message.From = new MailAddress("calmecacfitness@gmail.com");
                     message.Subject = "Calmecac Gym - Recibo de Pago de " + MesPago + " del " + AñoPago + " ";
-                    message.Body = "Comprobante de pago: \n\nNombre= " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
+                    message.Body = "Comprobante de pago: \n\nNombre: " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
                     message.To.Add(EMailPago);
                     SmtpClient client = new SmtpClient();
-                    client.Credentials = new NetworkCredential("pacoworld@gmail.com", "Taladega82");
+                    client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
                     client.Host = "smtp.gmail.com";
                     client.Port = 587;
                     client.EnableSsl = true;

@@ -14,30 +14,7 @@ Status
 Precio Unitario
 Fecha de adquisición
 
+select * from pagos where not exists (select * from empleados where pagos.Mes = 'abril' and pagos.Año = 2018)
 
-private void ImprimePagosMensuales(string identif, string Año) {
 
-            string str;
-            SqlCommand com;
-            SqlDataReader reader;
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-            label8.Text = Año;
-
-            String[] QueMes = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-
-            for (int i = 0; i < 12; i++)
-            {
-                cs.Open();
-                str = "Select mes from Pagos where Mes = '" + QueMes[i] + "' and ID = '" + identif + "' and Año = '"+ Año +"'";
-                com = new SqlCommand(str, cs);
-                reader = com.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    dataGridView1.Rows[0].Cells[i].Value = "Pagado";
-                    
-                }
-                cs.Close();
-            }
-            label8.Text = Año;
-        }
+	    
