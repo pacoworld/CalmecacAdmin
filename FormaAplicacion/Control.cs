@@ -247,10 +247,22 @@ namespace FormaAplicacion
         }
 
         private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago) {
-            string str, strfolio, EMailPago;
+            string str, strfolio, EMailPago, FolioEmail;
             SqlCommand com;
             SqlDataReader reader;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+
+            cs.Open();
+            strfolio = "select folio from pagos where id = '" + IDPago + "' and fecha = '" + hoy.ToString() + "'";
+            com = new SqlCommand(strfolio, cs);
+            reader = com.ExecuteReader();
+            if (reader.Read())
+            {
+                strfolio = reader["Folio"].ToString();
+            }
+            cs.Close();  
+
+
 
             cs.Open();
             str = "select email from empleados where id = '" + IDPago + "'";
@@ -258,11 +270,7 @@ namespace FormaAplicacion
             reader = com.ExecuteReader();
             
 
-               /*cs.Open();
-               strfolio = "select folio from pagos where id = '" + IDPago + "' and fecha = '" + hoy.ToString() + "'";
-               com = new SqlCommand(strfolio, cs);
-               reader = com.ExecuteReader();
-               cs.Close();  */
+               
                 
             try
             {
@@ -273,7 +281,7 @@ namespace FormaAplicacion
                     MailMessage message = new MailMessage();
                     message.From = new MailAddress("calmecacfitness@gmail.com");
                     message.Subject = "Calmecac Gym - Recibo de Pago de " + MesPago + " del " + AñoPago + " ";
-                    message.Body = "Comprobante de pago: \n\nNombre: " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
+                    message.Body = "Comprobante de pago: \n\nFolio: " + strfolio + " \nNombre: " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
                     message.To.Add(EMailPago);
                     SmtpClient client = new SmtpClient();
                     client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
