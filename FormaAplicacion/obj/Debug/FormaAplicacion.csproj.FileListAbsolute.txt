@@ -12,7 +12,6 @@ C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\Form
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.pdb
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.exe
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.pdb
-C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csprojResolveAssemblyReference.cache
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Form1.resources
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Properties.Resources.resources
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.GenerateResource.Cache
@@ -36,3 +35,6 @@ C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\Form
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\FormaAplicacion.application
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.exe.manifest
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.application
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csprojAssemblyReference.cache
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.CoreCompileInputs.cache
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.CopyComplete

@@ -12,14 +12,15 @@ namespace TestPaco1
         {
             Console.WriteLine("Hola mundo");
             TestPacoDataDataContext tmp = new TestPacoDataDataContext();
+           
             Empleado[] MisEmpleados = tmp.Empleados.ToArray();
 
             for (int i = 0; i < MisEmpleados.Length; i++) {
 
                 Console.WriteLine(MisEmpleados[i].Nombre.Trim());
-
+                
             }
-
+            
             Console.ReadLine();
         }
     }

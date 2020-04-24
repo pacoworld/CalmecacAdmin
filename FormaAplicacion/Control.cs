@@ -30,7 +30,7 @@ namespace FormaAplicacion
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
-            comboBox4.SelectedIndex = 1;
+            comboBox4.SelectedIndex = 3;
 
             da.Fill(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -204,11 +204,11 @@ namespace FormaAplicacion
                     }
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
-
+                    
                     if (LoEnvioSioNO == true)
                     {
-                          EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
-                          MessageBox.Show("Correo Electronico Enviado");
+                 //   EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                    
                     }
                 }
             }
@@ -230,7 +230,6 @@ namespace FormaAplicacion
         }
 
         private void ImprimePagosMensuales(string identif, string Año) {
-
             
             label8.Text = Año;
             DataSet ds = new DataSet();
@@ -243,11 +242,10 @@ namespace FormaAplicacion
             dataGridView2.DataSource = ds.Tables[0];
             dataGridView2.Columns[2].DefaultCellStyle.Format = "C";
             dataGridView2.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
-
         }
 
         private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago) {
-            string str, strfolio, EMailPago, FolioEmail;
+            string str, strfolio, EMailPago;
             SqlCommand com;
             SqlDataReader reader;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
@@ -262,15 +260,10 @@ namespace FormaAplicacion
             }
             cs.Close();  
 
-
-
             cs.Open();
             str = "select email from empleados where id = '" + IDPago + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
-            
-
-               
                 
             try
             {
@@ -289,6 +282,7 @@ namespace FormaAplicacion
                     client.Port = 587;
                     client.EnableSsl = true;
                     client.Send(message);
+                    MessageBox.Show("Correo Electronico Enviado");
                 }
             }
             catch {

@@ -41,7 +41,7 @@ namespace FormaAplicacion
 
         private void imprime(string ElMesImprime, string ElAñoImprime)
         {           
-            da.SelectCommand = new SqlCommand("select Empleados.ID, Empleados.Nombre, Empleados.Apellido, Pagos.Abono, Pagos.Fecha from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes='" + ElMesImprime + "' and Pagos.Año='" + ElAñoImprime + "';", cs);
+            da.SelectCommand = new SqlCommand("select Empleados.ID, Empleados.Nombre, Empleados.Apellido, Pagos.Abono, Pagos.Fecha, Pagos.Folio from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes='" + ElMesImprime + "' and Pagos.Año='" + ElAñoImprime + "';", cs);
             ds.Clear();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
