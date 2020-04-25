@@ -38,12 +38,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,6 +150,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registro de Clientes";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd, MMM, yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(126, 194);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(158, 20);
+            this.dateTimePicker1.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 202);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Fecha de Nacimiento";
+            // 
             // comboBox2
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -187,22 +205,6 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Teléfono";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 202);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Fecha de Nacimiento";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(126, 194);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 16;
             // 
             // Registro
             // 

@@ -28,15 +28,17 @@ namespace FormaAplicacion
             string token;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             cs.Open();
-            token = "select nombre from empleados where id = '" + comboBox2.SelectedItem + "' ";
-            crop = new SqlCommand(token, cs);
-            reader = crop.ExecuteReader();
-            if (reader.Read()) {
-                //Verifica Nombre
-            if (reader["Nombre"].ToString() == textBox1.Text)
-            {
+
+
+                    token = "select nombre from empleados where id = '" + comboBox2.SelectedItem + "' ";
+                    crop = new SqlCommand(token, cs);
+                    reader = crop.ExecuteReader();
+                    if (reader.Read()) {
+                    //Verifica Nombre
+                    if (reader["Nombre"].ToString() == textBox1.Text)
+                    {
                
-            } else {                                   
+                    } else {                                   
                     SqlCommand crop1 = cs.CreateCommand(); 
                     SqlDataAdapter da = new SqlDataAdapter();
                     crop1.CommandType = CommandType.Text;
@@ -185,8 +187,31 @@ namespace FormaAplicacion
                     }
                 }
 
+                token = "select FechaNacimiento from empleados where id = '" + comboBox2.SelectedItem + "' ";
+                crop = new SqlCommand(token, cs);
+                string ddt = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                reader.Close();
+                reader = crop.ExecuteReader();               
+                if (reader.Read())
+                {
+                    
+                    string temp = reader["FechaNacimiento"].ToString();
+                    DateTime dt = Convert.ToDateTime(temp);
+                    if (reader["FechaNacimiento"].ToString() == ddt)
+                    {
 
-
+                    }
+                    else
+                    {
+                        SqlCommand crop1 = cs.CreateCommand();
+                        SqlDataAdapter da = new SqlDataAdapter();
+                        crop1.CommandType = CommandType.Text;
+                        crop1.CommandText = "update Empleados set FechaNacimiento =  '" + ddt + " ' where id = '" + comboBox2.SelectedItem + " '";
+                        reader.Close();
+                        crop1.ExecuteNonQuery();
+                        MessageBox.Show("Fecha de Nacimiento Actualizada", "Correcto", MessageBoxButtons.OK);
+                    }
+                }
             }            
           cs.Close();
         }
@@ -270,16 +295,16 @@ namespace FormaAplicacion
             cs.Close();
 
 
-               cs.Open();
-               str = "select Membresia from empleados where id = '" + comboBox2.SelectedItem + "'";
-               com = new SqlCommand(str, cs);
-               reader = com.ExecuteReader();
+            cs.Open();
+            str = "select Membresia from empleados where id = '" + comboBox2.SelectedItem + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
 
-               if (reader.Read())
-               {
-                 comboBox3.Text = reader["Membresia"].ToString();
-               }
-               cs.Close();
+            if (reader.Read())
+            {
+             comboBox3.Text = reader["Membresia"].ToString();
+            }
+            cs.Close();
            
 
 
@@ -293,6 +318,31 @@ namespace FormaAplicacion
                 label9.Text = reader["MiembroDesde"].ToString();          
             }
             cs.Close();
+
+
+
+            cs.Open();
+            str = "select FechaNacimiento from empleados where id = '" + comboBox2.SelectedItem + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                string adf = reader ["FechaNacimiento"].ToString();
+                DateTime dt = Convert.ToDateTime(adf);
+                dateTimePicker1.CustomFormat = "d, MMM, yyyy";
+                dateTimePicker1.Value = dt;
+                
+
+
+            }
+            cs.Close();
+
+
+
+
+
+
 
         }
 

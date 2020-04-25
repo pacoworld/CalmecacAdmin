@@ -48,6 +48,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,7 +131,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(56, 259);
+            this.button1.Location = new System.Drawing.Point(72, 286);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 73);
             this.button1.TabIndex = 11;
@@ -159,6 +161,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.comboBox4);
             this.groupBox1.Controls.Add(this.comboBox3);
             this.groupBox1.Controls.Add(this.label10);
@@ -178,7 +182,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(233, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(320, 338);
+            this.groupBox1.Size = new System.Drawing.Size(320, 365);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificación de Datos";
@@ -218,7 +222,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(94, 234);
+            this.label9.Location = new System.Drawing.Point(94, 225);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 18;
@@ -248,14 +252,33 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Teléfono";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 249);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(108, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Fecha de Nacimiento";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "d, MMM, yy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(121, 243);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(143, 20);
+            this.dateTimePicker1.TabIndex = 23;
+            // 
             // Modificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 371);
+            this.ClientSize = new System.Drawing.Size(591, 449);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label6);
+            this.MinimizeBox = false;
             this.Name = "Modificar";
             this.Text = "Modificar";
             this.Load += new System.EventHandler(this.Modificar_Load);
@@ -287,5 +310,7 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
