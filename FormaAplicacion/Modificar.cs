@@ -189,14 +189,12 @@ namespace FormaAplicacion
 
                 token = "select FechaNacimiento from empleados where id = '" + comboBox2.SelectedItem + "' ";
                 crop = new SqlCommand(token, cs);
-                string ddt = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                string ddt = dateTimePicker1.Value.ToString();
                 reader.Close();
                 reader = crop.ExecuteReader();               
                 if (reader.Read())
                 {
                     
-                    string temp = reader["FechaNacimiento"].ToString();
-                    DateTime dt = Convert.ToDateTime(temp);
                     if (reader["FechaNacimiento"].ToString() == ddt)
                     {
 
@@ -332,18 +330,8 @@ namespace FormaAplicacion
                 DateTime dt = Convert.ToDateTime(adf);
                 dateTimePicker1.CustomFormat = "d, MMM, yyyy";
                 dateTimePicker1.Value = dt;
-                
-
-
             }
             cs.Close();
-
-
-
-
-
-
-
         }
 
         private void Modificar_Load(object sender, EventArgs e)
