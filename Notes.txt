@@ -14,7 +14,4 @@ Status
 Precio Unitario
 Fecha de adquisición
 
-select * from pagos where not exists (select * from empleados where pagos.Mes = 'abril' and pagos.Año = 2018)
-
-
-	    
+select * from pagos where not exists (select * from empleados where pagos.Mes = 'abril' and pagos.Año = 2018

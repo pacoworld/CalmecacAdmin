@@ -114,7 +114,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 169);
+            this.label6.Location = new System.Drawing.Point(6, 212);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 13);
             this.label6.TabIndex = 7;
@@ -130,16 +130,16 @@
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(92, 162);
+            this.textBox2.Location = new System.Drawing.Point(92, 202);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(141, 20);
             this.textBox2.TabIndex = 9;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(23, 130);
+            this.button1.Location = new System.Drawing.Point(219, 103);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 88);
+            this.button1.Size = new System.Drawing.Size(82, 58);
             this.button1.TabIndex = 10;
             this.button1.Text = "Pagar";
             this.button1.UseVisualStyleBackColor = true;
@@ -179,7 +179,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(92, 139);
+            this.checkBox1.Location = new System.Drawing.Point(92, 179);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(73, 17);
             this.checkBox1.TabIndex = 13;
@@ -192,6 +192,7 @@
             this.groupBox1.Controls.Add(this.comboBox4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -202,7 +203,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(152, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(321, 205);
+            this.groupBox1.Size = new System.Drawing.Size(321, 228);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pagos";
@@ -303,7 +304,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Name = "Control";
