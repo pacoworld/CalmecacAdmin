@@ -4,7 +4,7 @@ select COUNT (*) from (select Empleados.ID, Empleados.Nombre, Empleados.Apellido
 
 Inmobiliario
 
-No. de Control
+No. de Control/Clave    (Default)
 Nombre
 Descripción
 Fabricante
@@ -15,3 +15,5 @@ Precio Unitario
 Fecha de adquisición
 
 select * from pagos where not exists (select * from empleados where pagos.Mes = 'abril' and pagos.Año = 2018
+
+da.InsertCommand = new SqlCommand("INSERT INTO Inventario VALUES (@Nombre, @Fabricante, @Cantidad, @Descripcion, @Area, @Precio)", cs);

@@ -94,5 +94,11 @@ namespace FormaAplicacion
             Reporte rep = new Reporte();
             rep.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Inventario inv = new Inventario();
+            inv.Show();
+        }
     }
 }

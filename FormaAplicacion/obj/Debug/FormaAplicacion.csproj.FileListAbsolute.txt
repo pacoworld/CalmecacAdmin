@@ -19,7 +19,6 @@ C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\Form
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Modificar.resources
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Control.resources
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Reporte.resources
-C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\Microsoft.ReportViewer.WinForms.dll
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\Microsoft.SqlServer.Types.dll
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
@@ -38,3 +37,4 @@ C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\Form
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csprojAssemblyReference.cache
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.CoreCompileInputs.cache
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.CopyComplete
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Inventario.resources

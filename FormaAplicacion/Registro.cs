@@ -23,11 +23,9 @@ namespace FormaAplicacion
         {
             
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-            SqlDataAdapter da = new SqlDataAdapter();
-            
+            SqlDataAdapter da = new SqlDataAdapter();            
 
-            da.InsertCommand = new SqlCommand("INSERT INTO Empleados VALUES (@Nombre, @Apellido, @EMail, @Sexo, @Estatus, @Telefono, @MiembroDesde, @Membresia, @FechaNacimiento)", cs);
-                
+            da.InsertCommand = new SqlCommand("INSERT INTO Empleados VALUES (@Nombre, @Apellido, @EMail, @Sexo, @Estatus, @Telefono, @MiembroDesde, @Membresia, @FechaNacimiento)", cs);               
             da.InsertCommand.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = textBox1.Text;            
             da.InsertCommand.Parameters.Add("@Apellido", SqlDbType.VarChar).Value = textBox2.Text;            
             da.InsertCommand.Parameters.Add("@EMail", SqlDbType.VarChar).Value = textBox3.Text;         

@@ -108,6 +108,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventario.Designer.cs">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modificar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </Compile>
     <EmbeddedResource Include="Control.resx">
       <DependentUpon>Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventario.resx">
+      <DependentUpon>Inventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modificar.resx">
       <DependentUpon>Modificar.cs</DependentUpon>

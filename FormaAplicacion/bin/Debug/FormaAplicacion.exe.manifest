@@ -42,26 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FormaAplicacion.exe" size="105472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FormaAplicacion.exe" size="109568">
       <assemblyIdentity name="FormaAplicacion" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PIpVj1lEr3vAzf4ZkBVA4x+P7fcSltjOFQLOTNpwj6c=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.ReportViewer.WinForms.dll" size="563392">
-      <assemblyIdentity name="Microsoft.ReportViewer.WinForms" version="12.0.0.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sQraLWiB7q2Q3DGfeRq9DV1vAo41MrfXZBrd0AGvuTw=</dsig:DigestValue>
+        <dsig:DigestValue>D/wF0kK4m2qkw3l98Ta1yxjZxZUX6AlCSeU88cFHe+k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -22,7 +22,7 @@ namespace FormaAplicacion
         public Control()
         {
             InitializeComponent();
-            this.Text = "Control de Pagos";
+            this.Text = "Control de los Pagos";
         }
 
         private void Control_Load(object sender, EventArgs e)
