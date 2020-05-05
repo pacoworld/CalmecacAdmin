@@ -20,10 +20,14 @@ namespace FormaAplicacion
 
         DateTime hoy = DateTime.Today;
 
-        private void button1_Click(object sender, EventArgs e)
-        {
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            SqlDataReader reader;
+            SqlCommand com;
+
+        private void button1_Click(object sender, EventArgs e)
+        {            
 
            
             da.InsertCommand = new SqlCommand("INSERT INTO Inventario VALUES (@Nombre, @Fabricante, @CantidadTotal, @Descripcion, @Area, @Precio, @Fecha)", cs);
@@ -50,6 +54,28 @@ namespace FormaAplicacion
             textBox5.Clear();
             numericUpDown1.Value = 0;
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            da.SelectCommand = new SqlCommand("SELECT * FROM Inventario where Area = '" + comboBox1.SelectedItem + "'", cs);
+            ds.Clear();
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cs.Open();
+            string str = "select Descripcion from Inventario where clave = '" + dataGridView1.Rows[e.RowIndex].Cells[0].Value + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                textBox6.Text = reader["Descripcion"].ToString();
+            }
+            cs.Close();
         }
     }
 }

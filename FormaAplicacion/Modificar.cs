@@ -13,7 +13,6 @@ namespace FormaAplicacion
 {
     public partial class Modificar : Form
     {
-       // string MiembroDesde;
         public Modificar()
         {
 
@@ -26,6 +25,7 @@ namespace FormaAplicacion
             SqlCommand crop;
             SqlDataReader reader;
             string token;
+            string[] campos = { };
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             cs.Open();
 
@@ -34,7 +34,7 @@ namespace FormaAplicacion
                     crop = new SqlCommand(token, cs);
                     reader = crop.ExecuteReader();
                     if (reader.Read()) {
-                    //Verifica Nombre
+                   
                     if (reader["Nombre"].ToString() == textBox1.Text)
                     {
                
@@ -219,7 +219,6 @@ namespace FormaAplicacion
             string str;
             SqlCommand com;
             SqlDataReader reader; 
-
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
 
             cs.Open();
