@@ -34,12 +34,22 @@ namespace FormaAplicacion
             da.InsertCommand.Parameters.Add("@Area", SqlDbType.VarChar).Value = textBox4.Text;
             da.InsertCommand.Parameters.Add("@Precio", SqlDbType.VarChar).Value = textBox5.Text;
             da.InsertCommand.Parameters.Add("@Fecha", SqlDbType.VarChar).Value = hoy.ToString();
-
             cs.Open();
-
             da.InsertCommand.ExecuteNonQuery();
             MessageBox.Show("Articulo dado de alta");
+            ClearForm();            
             cs.Close();
+        }
+
+        private void ClearForm() 
+        { 
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+            numericUpDown1.Value = 0;
+
         }
     }
 }
