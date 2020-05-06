@@ -66,16 +66,27 @@ namespace FormaAplicacion
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            cs.Open();
-            string str = "select Descripcion from Inventario where clave = '" + dataGridView1.Rows[e.RowIndex].Cells[0].Value + "'";
-            com = new SqlCommand(str, cs);
-            reader = com.ExecuteReader();
+            TextBox[] tb;
+            tb = new TextBox[10];
+            tb[6] = textBox6;
+            tb[7] = textBox7;
+            tb[8] = textBox8;
+            string clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string[] columna = { "Nombre", "Fabricante", "CantidadTotal" };
 
-            if (reader.Read())
+            for (int i = 6; i <= 8; i++)
             {
-                textBox6.Text = reader["Descripcion"].ToString();
+                cs.Open();
+                string str = "select " + columna[i - 6] + " from Inventario where clave = '" + clave + "'";
+                com = new SqlCommand(str, cs);
+                reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    tb[i].Text = reader[columna[i - 6]].ToString();
+                }
+                cs.Close();
             }
-            cs.Close();
         }
     }
 }
