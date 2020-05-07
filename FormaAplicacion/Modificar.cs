@@ -27,13 +27,13 @@ namespace FormaAplicacion
             string token;
             string[] campos = { };
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-            cs.Open();
+            cs.Open();        
 
 
                     token = "select nombre from empleados where id = '" + comboBox2.SelectedItem + "' ";
                     crop = new SqlCommand(token, cs);
                     reader = crop.ExecuteReader();
-                    if (reader.Read()) {
+                    if (reader.Read())// {
                    
                     if (reader["Nombre"].ToString() == textBox1.Text)
                     {
@@ -95,6 +95,30 @@ namespace FormaAplicacion
                 }
 
 
+                token = "select telefono from empleados where id = '" + comboBox2.SelectedItem + "' ";
+                crop = new SqlCommand(token, cs);
+                reader.Close();
+                reader = crop.ExecuteReader();
+                if (reader.Read())
+                {
+                    if (reader["telefono"].ToString() == textBox4.Text)
+                    {
+
+                    }
+                    else
+                    {
+                        SqlCommand crop1 = cs.CreateCommand();
+                        SqlDataAdapter da = new SqlDataAdapter();
+                        crop1.CommandType = CommandType.Text;
+                        crop1.CommandText = "update Empleados set Telefono =  '" + textBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                        reader.Close();
+                        crop1.ExecuteNonQuery();
+                        MessageBox.Show("Telefono Actualizado" , "Correcto", MessageBoxButtons.OK);
+                    }
+                }    
+                
+                
+
                 token = "select Sexo from empleados where id = '" + comboBox2.SelectedItem + "' ";
                 crop = new SqlCommand(token, cs);
                 reader.Close();
@@ -116,30 +140,7 @@ namespace FormaAplicacion
                         MessageBox.Show("Sexo Actualizado" , "Correcto", MessageBoxButtons.OK);
                     }
                 }
-
-
-                token = "select telefono from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                reader.Close();
-                reader = crop.ExecuteReader();
-                if (reader.Read())
-                {
-                    if (reader["telefono"].ToString() == textBox5.Text)
-                    {
-
-                    }
-                    else
-                    {
-                        SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Telefono =  '" + textBox5.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close();
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Telefono Actualizado" , "Correcto", MessageBoxButtons.OK);
-                    }
-                }
-
+                         
 
 
                 token = "select Estatus from empleados where id = '" + comboBox2.SelectedItem + "' ";
@@ -210,7 +211,7 @@ namespace FormaAplicacion
                         MessageBox.Show("Fecha de Nacimiento Actualizada", "Correcto", MessageBoxButtons.OK);
                     }
                 }
-            }            
+      //      }            
           cs.Close();
         }
 
@@ -220,42 +221,29 @@ namespace FormaAplicacion
             SqlCommand com;
             SqlDataReader reader; 
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+              TextBox[] tb;
+              tb = new TextBox[4];
+              tb[0] = textBox1;
+              tb[1] = textBox2;
+              tb[2] = textBox3;
+              tb[3] = textBox4;
+              string[] columna = { "Nombre", "Apellido", "EMail", "Telefono"};
 
+            for (int i = 0; i <= 3; i++)
+            {
             cs.Open();
-            str = "select nombre from empleados where id = '" + comboBox2.SelectedItem + "'";
+            str = "select " + columna[i] + " from empleados where id = '" + comboBox2.SelectedItem + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();         
 
             if (reader.Read()) {
-                textBox1.Text = reader["Nombre"].ToString();
+                tb[i].Text = reader[columna[i]].ToString();
             }
             cs.Close();
-
-
-            cs.Open();
-            str = "select apellido from empleados where id = '" + comboBox2.SelectedItem + "'";
-            com = new SqlCommand(str, cs);
-            reader = com.ExecuteReader();
-
-            if (reader.Read())
-            {
-                textBox2.Text = reader["Apellido"].ToString();
+            
             }
-            cs.Close();
-
-
-            cs.Open();
-            str = "select email from empleados where id = '" + comboBox2.SelectedItem + "'";
-            com = new SqlCommand(str, cs);
-            reader = com.ExecuteReader();
-
-            if (reader.Read())
-            {
-                textBox3.Text = reader["EMail"].ToString();
-            }
-            cs.Close();
-
-
+               
+            
             cs.Open();
             str = "select Sexo from empleados where id = '" + comboBox2.SelectedItem + "'";
             com = new SqlCommand(str, cs);
@@ -266,19 +254,7 @@ namespace FormaAplicacion
                 comboBox4.Text = reader["Sexo"].ToString();
             }
             cs.Close();
-
-
-            cs.Open();
-            str = "select telefono from empleados where id = '" + comboBox2.SelectedItem + "'";
-            com = new SqlCommand(str, cs);
-            reader = com.ExecuteReader();
-
-            if (reader.Read())
-            {
-                textBox5.Text = reader["Telefono"].ToString();
-            }
-            cs.Close();
-
+                    
 
             cs.Open();
             str = "select Estatus from empleados where id = '" + comboBox2.SelectedItem + "'";

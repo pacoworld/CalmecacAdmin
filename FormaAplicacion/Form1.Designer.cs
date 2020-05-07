@@ -136,6 +136,8 @@
             // 
             // button6
             // 
+            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button6.Location = new System.Drawing.Point(12, 454);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(106, 95);

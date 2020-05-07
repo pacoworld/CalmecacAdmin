@@ -42,8 +42,7 @@ namespace FormaAplicacion
             da.InsertCommand.Parameters.Add("@Membresia", SqlDbType.VarChar).Value = comboBox2.Text;
             
             string LaFecha = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-            da.InsertCommand.Parameters.Add("@FechaNacimiento", SqlDbType.VarChar).Value = LaFecha;
-            
+            da.InsertCommand.Parameters.Add("@FechaNacimiento", SqlDbType.VarChar).Value = LaFecha;            
             da.InsertCommand.ExecuteNonQuery();
                         
 

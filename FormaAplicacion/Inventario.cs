@@ -61,6 +61,8 @@ namespace FormaAplicacion
             ds.Clear();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[6].DefaultCellStyle.Format = "C";
+            dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -98,9 +100,11 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-                tb[11].Text = reader["Fecha"].ToString();
-                
-                
+                String TheDate = reader["Fecha"].ToString();
+                DateTime dt = Convert.ToDateTime(TheDate);
+                TheDate = dt.ToString("dd/MMM/yyyy");
+                tb[11].Text = TheDate;
+                                         
             }
             cs.Close();
 
