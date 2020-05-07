@@ -35,8 +35,8 @@ namespace FormaAplicacion
             da.InsertCommand.Parameters.Add("@Fabricante", SqlDbType.VarChar).Value = textBox3.Text;
             da.InsertCommand.Parameters.Add("@CantidadTotal", SqlDbType.VarChar).Value = numericUpDown1.Value;
             da.InsertCommand.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = textBox2.Text;
-            da.InsertCommand.Parameters.Add("@Area", SqlDbType.VarChar).Value = textBox4.Text;
-            da.InsertCommand.Parameters.Add("@Precio", SqlDbType.VarChar).Value = textBox5.Text;
+            da.InsertCommand.Parameters.Add("@Area", SqlDbType.VarChar).Value = comboBox2.Text;
+            da.InsertCommand.Parameters.Add("@Precio", SqlDbType.VarChar).Value = textBox4.Text;
             da.InsertCommand.Parameters.Add("@Fecha", SqlDbType.VarChar).Value = hoy.ToString();
             cs.Open();
             da.InsertCommand.ExecuteNonQuery();
@@ -51,7 +51,6 @@ namespace FormaAplicacion
             textBox2.Clear();
             textBox3.Clear();
             textBox4.Clear();
-            textBox5.Clear();
             numericUpDown1.Value = 0;
 
         }
@@ -67,26 +66,45 @@ namespace FormaAplicacion
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             TextBox[] tb;
-            tb = new TextBox[10];
+            tb = new TextBox[12];
+            tb[5] = textBox5;
             tb[6] = textBox6;
             tb[7] = textBox7;
             tb[8] = textBox8;
+            tb[9] = textBox9;
+            tb[10] = textBox10;
+            tb[11] = textBox11;
             string clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string[] columna = { "Nombre", "Fabricante", "CantidadTotal" };
+            string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Area", "Precio"};
 
-            for (int i = 6; i <= 8; i++)
+            for (int i = 5; i <= 10 ; i++)
             {
                 cs.Open();
-                string str = "select " + columna[i - 6] + " from Inventario where clave = '" + clave + "'";
+                string str = "select " + columna[i - 5] + " from Inventario where clave = '" + clave + "'";
                 com = new SqlCommand(str, cs);
                 reader = com.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    tb[i].Text = reader[columna[i - 6]].ToString();
+                    tb[i].Text = reader[columna[i - 5]].ToString();
                 }
                 cs.Close();
             }
+
+            cs.Open();
+            string str1 = "select fecha from Inventario where clave = '" + clave + "'";
+            com = new SqlCommand(str1, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                tb[11].Text = reader["Fecha"].ToString();
+                
+                
+            }
+            cs.Close();
+
+
         }
     }
 }

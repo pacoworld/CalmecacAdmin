@@ -344,7 +344,7 @@ namespace FormaAplicacion
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 comboBox2.Items.Add(dt.Rows[i]["ID"]);
-            }
+            }                        
         }
 
         
