@@ -74,7 +74,7 @@ namespace FormaAplicacion
             cs.Close();
 
 
-            cs.Open();
+            cs.Open();   
             string QuertyTotal2;
             QuertyTotal2 = "select COUNT (*) from (select Empleados.ID, Empleados.Nombre, Empleados.Apellido, Pagos.Abono, Pagos.Fecha from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes= '" + Mes + "' and Pagos.Año='" + año + "' ) myNewTable";
             com1 = new SqlCommand(QuertyTotal2, cs);

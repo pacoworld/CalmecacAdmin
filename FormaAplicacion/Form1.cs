@@ -26,21 +26,7 @@ namespace FormaAplicacion
         private void Form1_Load(object sender, EventArgs e)
         {
             imprime();
-        }
-
-        private void dataGridView1_DragOver(object sender, DragEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            CalculaNumeroDeActivos();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -87,6 +73,24 @@ namespace FormaAplicacion
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
+        }
+
+        private void CalculaNumeroDeActivos() 
+        {
+            SqlCommand com1;
+            SqlDataReader reader1;
+            cs.Open();
+            string QuertyTotal2;
+            QuertyTotal2 = "select COUNT (*) from (select * from empleados where estatus = 'activo') myNewTable";
+            com1 = new SqlCommand(QuertyTotal2, cs);
+            reader1 = com1.ExecuteReader();
+
+            if (reader1.Read())
+            {
+                object temp1 = reader1[0];
+                label2.Text = temp1.ToString();
+            }
+            cs.Close();
         }
 
         private void button5_Click(object sender, EventArgs e)
