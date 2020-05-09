@@ -15,18 +15,20 @@ namespace FormaAplicacion
     {
         public Modificar()
         {
-
             InitializeComponent();
-
         }
 
-          private void button1_Click(object sender, EventArgs e)
+        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        SqlCommand com;  // is the same name
+        SqlDataReader reader;  // is the same name
+
+        private void button1_Click(object sender, EventArgs e)
         {
             SqlCommand crop;
             SqlDataReader reader;
             string token;
             string[] campos = { };
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+       //     SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             cs.Open();        
 
 
@@ -220,7 +222,7 @@ namespace FormaAplicacion
             string str;
             SqlCommand com;
             SqlDataReader reader; 
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+       //     SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
               TextBox[] tb;
               tb = new TextBox[4];
               tb[0] = textBox1;
@@ -311,7 +313,7 @@ namespace FormaAplicacion
 
         private void Modificar_Load(object sender, EventArgs e)
         {
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+          //  SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS", cs);
             DataTable dt = new DataTable();
 
@@ -323,6 +325,19 @@ namespace FormaAplicacion
             }                        
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string CriterioDeBusqueda = comboBox5.Text;
+            string ElementoABuscar = textBox5.Text;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+
+            da.SelectCommand = new SqlCommand("select ID, Nombre, Apellido from empleados where " + CriterioDeBusqueda + " = '" + ElementoABuscar + "'", cs);
+            ds.Clear();
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+
+            
+        } 
     }
 }
