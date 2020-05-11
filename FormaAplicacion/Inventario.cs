@@ -25,10 +25,10 @@ namespace FormaAplicacion
             DataSet ds = new DataSet();
             SqlDataReader reader;
             SqlCommand com;
-
+            string clave = "";
+ 
         private void button1_Click(object sender, EventArgs e)
         {            
-
            
             da.InsertCommand = new SqlCommand("INSERT INTO Inventario VALUES (@Nombre, @Fabricante, @CantidadTotal, @Descripcion, @Area, @Precio, @Fecha)", cs);
             da.InsertCommand.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = textBox1.Text;
@@ -76,7 +76,7 @@ namespace FormaAplicacion
             tb[9] = textBox9;
             tb[10] = textBox10;
             tb[11] = textBox11;
-            string clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Area", "Precio"};
 
             for (int i = 5; i <= 10 ; i++)
@@ -103,12 +103,37 @@ namespace FormaAplicacion
                 String TheDate = reader["Fecha"].ToString();
                 DateTime dt = Convert.ToDateTime(TheDate);
                 TheDate = dt.ToString("dd/MMM/yyyy");
-                tb[11].Text = TheDate;
-                                         
+                tb[11].Text = TheDate;                                         
             }
             cs.Close();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string token;
+            SqlCommand crop;
+            cs.Open();
+         //   string clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            token = "select nombre from Inventario where clave = " + clave + " ";
+            crop = new SqlCommand(token, cs);
+            reader = crop.ExecuteReader();
+            if (reader.Read())
 
+                if (reader["Nombre"].ToString() == textBox5.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Inventario set Nombre =  '" + textBox5.Text + " ' where clave = '" + clave + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Nombre Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+            cs.Close();
         }
     }
 }

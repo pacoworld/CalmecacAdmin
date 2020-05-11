@@ -28,7 +28,6 @@ namespace FormaAplicacion
             SqlDataReader reader;
             string token;
             string[] campos = { };
-       //     SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             cs.Open();        
 
 
@@ -221,31 +220,31 @@ namespace FormaAplicacion
         {
             string str;
             SqlCommand com;
-            SqlDataReader reader; 
-       //     SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-              TextBox[] tb;
-              tb = new TextBox[4];
-              tb[0] = textBox1;
-              tb[1] = textBox2;
-              tb[2] = textBox3;
-              tb[3] = textBox4;
-              string[] columna = { "Nombre", "Apellido", "EMail", "Telefono"};
+            SqlDataReader reader;
+            TextBox[] tb;
+            tb = new TextBox[4];
+            tb[0] = textBox1;
+            tb[1] = textBox2;
+            tb[2] = textBox3;
+            tb[3] = textBox4;
+            string[] columna = { "Nombre", "Apellido", "EMail", "Telefono" };
 
             for (int i = 0; i <= 3; i++)
             {
-            cs.Open();
-            str = "select " + columna[i] + " from empleados where id = '" + comboBox2.SelectedItem + "'";
-            com = new SqlCommand(str, cs);
-            reader = com.ExecuteReader();         
+                cs.Open();
+                str = "select " + columna[i] + " from empleados where id = '" + comboBox2.SelectedItem + "'";
+                com = new SqlCommand(str, cs);
+                reader = com.ExecuteReader();
 
-            if (reader.Read()) {
-                tb[i].Text = reader[columna[i]].ToString();
+                if (reader.Read())
+                {
+                    tb[i].Text = reader[columna[i]].ToString();
+                }
+                cs.Close();
+
             }
-            cs.Close();
-            
-            }
-               
-            
+
+
             cs.Open();
             str = "select Sexo from empleados where id = '" + comboBox2.SelectedItem + "'";
             com = new SqlCommand(str, cs);
@@ -256,13 +255,13 @@ namespace FormaAplicacion
                 comboBox4.Text = reader["Sexo"].ToString();
             }
             cs.Close();
-                    
+
 
             cs.Open();
             str = "select Estatus from empleados where id = '" + comboBox2.SelectedItem + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
-            
+
             if (reader.Read())
             {
                 comboBox1.Text = reader["Estatus"].ToString();
@@ -277,10 +276,10 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-             comboBox3.Text = reader["Membresia"].ToString();
+                comboBox3.Text = reader["Membresia"].ToString();
             }
             cs.Close();
-           
+
 
 
             cs.Open();
@@ -290,7 +289,7 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-                label9.Text = reader["MiembroDesde"].ToString();          
+                label9.Text = reader["MiembroDesde"].ToString();
             }
             cs.Close();
 
@@ -303,17 +302,17 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-                string adf = reader ["FechaNacimiento"].ToString();
+                string adf = reader["FechaNacimiento"].ToString();
                 DateTime dt = Convert.ToDateTime(adf);
                 dateTimePicker1.CustomFormat = "d, MMM, yyyy";
                 dateTimePicker1.Value = dt;
             }
             cs.Close();
+
         }
 
         private void Modificar_Load(object sender, EventArgs e)
-        {
-          //  SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        {          
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS", cs);
             DataTable dt = new DataTable();
 
@@ -338,6 +337,12 @@ namespace FormaAplicacion
             dataGridView1.DataSource = ds.Tables[0];
 
             
-        } 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            comboBox2.SelectedIndex = comboBox2.FindStringExact(clave);     
+        }
     }
 }
