@@ -16,7 +16,7 @@ namespace FormaAplicacion
         public Form1()
         {
             InitializeComponent();
-            this.Text = "Control Gym CALMECAC ver 1.3";
+            this.Text = "Control Gym CALMECAC ver 1.4";
         }
 
         DataSet ds = new DataSet();

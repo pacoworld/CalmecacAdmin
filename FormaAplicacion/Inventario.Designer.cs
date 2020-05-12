@@ -45,8 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -62,7 +62,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -73,8 +73,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -232,9 +232,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox11);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.textBox10);
@@ -254,6 +254,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(79, 145);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 37);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Actualizar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(79, 19);
@@ -261,17 +271,10 @@
             this.textBox5.Size = new System.Drawing.Size(169, 20);
             this.textBox5.TabIndex = 11;
             // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(459, 64);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(80, 20);
-            this.textBox11.TabIndex = 15;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(406, 64);
+            this.label14.Location = new System.Drawing.Point(437, 54);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(37, 13);
             this.label14.TabIndex = 14;
@@ -280,15 +283,15 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(254, 64);
+            this.label13.Location = new System.Drawing.Point(254, 54);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 13);
+            this.label13.Size = new System.Drawing.Size(76, 13);
             this.label13.TabIndex = 13;
-            this.label13.Text = "Precio";
+            this.label13.Text = "Precio Unitario";
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(317, 61);
+            this.textBox10.Location = new System.Drawing.Point(336, 54);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(83, 20);
             this.textBox10.TabIndex = 12;
@@ -296,7 +299,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(591, 26);
+            this.label12.Location = new System.Drawing.Point(591, 19);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(29, 13);
             this.label12.TabIndex = 11;
@@ -304,7 +307,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(626, 19);
+            this.textBox9.Location = new System.Drawing.Point(626, 16);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(115, 20);
             this.textBox9.TabIndex = 10;
@@ -312,7 +315,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 61);
+            this.label11.Location = new System.Drawing.Point(6, 54);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(63, 13);
             this.label11.TabIndex = 9;
@@ -329,7 +332,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 26);
+            this.label8.Location = new System.Drawing.Point(6, 19);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 13);
             this.label8.TabIndex = 3;
@@ -338,7 +341,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(403, 26);
+            this.label10.Location = new System.Drawing.Point(437, 19);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 13);
             this.label10.TabIndex = 7;
@@ -346,7 +349,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(485, 19);
+            this.textBox7.Location = new System.Drawing.Point(519, 16);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(54, 20);
             this.textBox7.TabIndex = 6;
@@ -354,7 +357,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(254, 26);
+            this.label9.Location = new System.Drawing.Point(254, 19);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 5;
@@ -362,9 +365,9 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(317, 19);
+            this.textBox6.Location = new System.Drawing.Point(336, 19);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(80, 20);
+            this.textBox6.Size = new System.Drawing.Size(83, 20);
             this.textBox6.TabIndex = 4;
             // 
             // label7
@@ -398,15 +401,12 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // button2
+            // dateTimePicker1
             // 
-            this.button2.Location = new System.Drawing.Point(79, 145);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 37);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Actualizar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.dateTimePicker1.Location = new System.Drawing.Point(480, 54);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(188, 20);
+            this.dateTimePicker1.TabIndex = 17;
             // 
             // Inventario
             // 
@@ -461,10 +461,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

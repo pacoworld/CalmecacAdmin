@@ -26,7 +26,8 @@ namespace FormaAplicacion
             SqlDataReader reader;
             SqlCommand com;
             string clave = "";
- 
+            string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Area", "Precio" };          
+
         private void button1_Click(object sender, EventArgs e)
         {            
            
@@ -52,7 +53,6 @@ namespace FormaAplicacion
             textBox3.Clear();
             textBox4.Clear();
             numericUpDown1.Value = 0;
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -75,9 +75,9 @@ namespace FormaAplicacion
             tb[8] = textBox8;
             tb[9] = textBox9;
             tb[10] = textBox10;
-            tb[11] = textBox11;
+            tb[11] = textBox11; //Vacante
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Area", "Precio"};
+           
 
             for (int i = 5; i <= 10 ; i++)
             {
@@ -103,7 +103,10 @@ namespace FormaAplicacion
                 String TheDate = reader["Fecha"].ToString();
                 DateTime dt = Convert.ToDateTime(TheDate);
                 TheDate = dt.ToString("dd/MMM/yyyy");
-                tb[11].Text = TheDate;                                         
+                //     tb[11].Text = TheDate;
+                
+                dateTimePicker1.CustomFormat = "d, MMM, yyyy";
+                dateTimePicker1.Value = dt;
             }
             cs.Close();
         }
@@ -113,26 +116,63 @@ namespace FormaAplicacion
             string token;
             SqlCommand crop;
             cs.Open();
-         //   string clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            token = "select nombre from Inventario where clave = " + clave + " ";
-            crop = new SqlCommand(token, cs);
-            reader = crop.ExecuteReader();
-            if (reader.Read())
+            TextBox[] tb;
+            tb = new TextBox[12];
+            tb[5] = textBox5;
+            tb[6] = textBox6;
+            tb[7] = textBox7;
+            tb[8] = textBox8;
+            tb[9] = textBox9;
+            tb[10] = textBox10;
+            tb[11] = textBox11;
 
-                if (reader["Nombre"].ToString() == textBox5.Text)
-                {
+            for (int i = 5; i <= 10; i++)
+            {
 
-                }
-                else
-                {
-                    SqlCommand crop1 = cs.CreateCommand();
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    crop1.CommandType = CommandType.Text;
-                    crop1.CommandText = "update Inventario set Nombre =  '" + textBox5.Text + " ' where clave = '" + clave + " '";
-                    reader.Close();
-                    crop1.ExecuteNonQuery();
-                    MessageBox.Show("Nombre Actualizado", "Correcto", MessageBoxButtons.OK);
-                }
+                token = "select " + columna[i - 5] + " from Inventario where clave = " + clave + " ";
+                crop = new SqlCommand(token, cs);
+                reader.Close();
+                reader = crop.ExecuteReader();
+                if (reader.Read())
+
+                    if (reader[columna[i - 5]].ToString() == tb[i].Text)
+                    {
+
+                    }
+                    else
+                    {
+                        SqlCommand crop1 = cs.CreateCommand();
+                        SqlDataAdapter da = new SqlDataAdapter();
+                        crop1.CommandType = CommandType.Text;
+                        crop1.CommandText = "update Inventario set " + columna[i - 5] + " =  '" + tb[i].Text + " ' where clave = '" + clave + " '";
+                        reader.Close();
+                        crop1.ExecuteNonQuery();
+                        MessageBox.Show(" " + columna[i - 5] + " Actualizado", "Correcto", MessageBoxButtons.OK);
+                    }
+
+
+                token = "select fecha from Inventario where clave = " + clave + " ";
+                crop = new SqlCommand(token, cs);
+                string ddt = dateTimePicker1.Value.ToString();
+                reader.Close();
+                reader = crop.ExecuteReader();
+                if (reader.Read())
+
+                    if (reader["Fecha"].ToString() == ddt)
+                    {
+
+                    }
+                    else
+                    {
+                        SqlCommand crop1 = cs.CreateCommand();
+                        SqlDataAdapter da = new SqlDataAdapter();
+                        crop1.CommandType = CommandType.Text;
+                        crop1.CommandText = "update Inventario set fecha = '" + ddt + "' where clave = '" + clave + " '";
+                        reader.Close();
+                        crop1.ExecuteNonQuery();
+                        MessageBox.Show("Fecha de compra actualizada", "Correcto", MessageBoxButtons.OK);
+                    }
+            }
             cs.Close();
         }
     }
