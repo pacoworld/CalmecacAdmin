@@ -19,6 +19,13 @@ namespace FormaAplicacion
         string currentYear = DateTime.Now.Year.ToString();
         string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
+
+        DataSet ds = new DataSet();
+        SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        SqlDataAdapter da = new SqlDataAdapter();
+       
+
         public Control()
         {
             InitializeComponent();
@@ -27,7 +34,7 @@ namespace FormaAplicacion
 
         private void Control_Load(object sender, EventArgs e)
         {
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            //SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
             comboBox4.SelectedIndex = 3;
@@ -97,7 +104,7 @@ namespace FormaAplicacion
                         SqlDataReader reader, reader2;
                         string token, token2, token3, saldo;
                         float saldoInt, SaldoSumado, SaldoAnterior;
-                        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+               //         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                         cs.Open();
                         token = "select Abono from pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
                         crop = new SqlCommand(token, cs);
@@ -128,7 +135,7 @@ namespace FormaAplicacion
                 else
                 {
 
-                    SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+              //      SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                     SqlDataAdapter da = new SqlDataAdapter();
                     SqlDataAdapter da2 = new SqlDataAdapter();
                     DateTime hoy = DateTime.Today;
@@ -233,7 +240,7 @@ namespace FormaAplicacion
             
             label8.Text = Año;
             DataSet ds = new DataSet();
-            SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+     //       SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();
 
             da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs1);
@@ -305,6 +312,21 @@ namespace FormaAplicacion
             ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabPage2)
+            {
+                //DataSet ds = new DataSet();
+                //SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+                //SqlDataAdapter da = new SqlDataAdapter();
+
+                da.SelectCommand = new SqlCommand("select Pagos.ID, MAX(pagos.Fecha) AS UltimpoPago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.ID", cs1);
+                ds.Clear();
+                da.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+            }
+        }
+
         private bool VerificaSiYaPago(string ElID, string ElMes, string Elaño) {
             bool tiene;
             string str;
@@ -332,6 +354,27 @@ namespace FormaAplicacion
             cs.Close();
             return tiene;
         }
+
+        //private void CalculaMorosos(string mes, string año)
+        //{
+        //    SqlDataAdapter da = new SqlDataAdapter("select Empleados.ID from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes='" + mes + "' and Pagos.Año= '" + año + "'", cs);
+        //    DataTable dt = new DataTable();
+        //    DateTime UltimoPago;
+
+        //    int[] SiPagaron = new int[NumPgad];
+        //    int otro;
+        //    string idstring;
+
+        //    da.Fill(dt);
+
+        //    for (int i = 0; i < NumPgad; i++)
+        //    {
+        //        idstring = dt.Rows[i]["ID"].ToString();
+        //        Int32.TryParse(idstring, out otro);
+        //        SiPagaron[i] = otro;
+        //    }
+        //}
+
     }
 }
 

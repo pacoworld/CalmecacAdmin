@@ -75,7 +75,6 @@ namespace FormaAplicacion
             tb[8] = textBox8;
             tb[9] = textBox9;
             tb[10] = textBox10;
-            tb[11] = textBox11; //Vacante
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
            
 
@@ -102,9 +101,7 @@ namespace FormaAplicacion
             {
                 String TheDate = reader["Fecha"].ToString();
                 DateTime dt = Convert.ToDateTime(TheDate);
-                TheDate = dt.ToString("dd/MMM/yyyy");
-                //     tb[11].Text = TheDate;
-                
+                TheDate = dt.ToString("dd/MMM/yyyy");                
                 dateTimePicker1.CustomFormat = "d, MMM, yyyy";
                 dateTimePicker1.Value = dt;
             }
@@ -124,7 +121,6 @@ namespace FormaAplicacion
             tb[8] = textBox8;
             tb[9] = textBox9;
             tb[10] = textBox10;
-            tb[11] = textBox11;
 
             for (int i = 5; i <= 10; i++)
             {

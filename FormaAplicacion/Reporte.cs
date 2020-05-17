@@ -22,7 +22,7 @@ namespace FormaAplicacion
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
-
+        int NumPgad = 0;
 
         private void Reporte_Load(object sender, EventArgs e)
         {
@@ -32,11 +32,13 @@ namespace FormaAplicacion
             var result = dt.ToString(f, new CultureInfo("es-ES"));
             string ElMes = result.ToString();
             string ElAño = DateTime.Now.ToString("yyyy");
+            
 
             label2.Text = ElMes;
             label4.Text = ElAño;            
             imprime(ElMes, ElAño);
             CalculaTotalMes(ElMes, ElAño);
+            
         }
 
         private void imprime(string ElMesImprime, string ElAñoImprime)
@@ -84,7 +86,9 @@ namespace FormaAplicacion
             {
                 object temp1 = reader1[0];                
                 label8.Text = temp1.ToString();
-                
+                Int32.TryParse(temp1.ToString(), out NumPgad);               
+
+
             }
             cs.Close();
         }
@@ -96,7 +100,6 @@ namespace FormaAplicacion
             label2.Text = comboBox1.Text;
             label4.Text = comboBox2.Text;
         }
-
         
     }
 }
