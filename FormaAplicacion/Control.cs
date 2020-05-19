@@ -34,7 +34,6 @@ namespace FormaAplicacion
 
         private void Control_Load(object sender, EventArgs e)
         {
-            //SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
             comboBox4.SelectedIndex = 3;
@@ -44,6 +43,12 @@ namespace FormaAplicacion
             {
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
+
+            da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs1);
+            ds.Clear();
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -312,20 +317,36 @@ namespace FormaAplicacion
             ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void HighlightMorosos()
         {
-            if (tabControl1.SelectedTab == tabPage2)
-            {
-                //DataSet ds = new DataSet();
-                //SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-                //SqlDataAdapter da = new SqlDataAdapter();
+            DateTime fecha = new DateTime();
+            DateTime fechahoy = DateTime.Today;
+            double dias = 0;
+            //    string fechastring = ""; ;
 
-                da.SelectCommand = new SqlCommand("select Pagos.ID, MAX(pagos.Fecha) AS UltimpoPago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.ID", cs1);
-                ds.Clear();
-                da.Fill(ds);
-                dataGridView1.DataSource = ds.Tables[0];
-            }
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                //        fechastring = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                fecha = Convert.ToDateTime(dataGridView1.Rows[i].Cells[3].Value.ToString());
+                dias = (fechahoy - fecha).TotalDays;
+                MessageBox.Show(dias.ToString());
+                 }        
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            HighlightMorosos();
+        }
+
+        //private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+
+        //}
 
         private bool VerificaSiYaPago(string ElID, string ElMes, string Elaño) {
             bool tiene;
@@ -353,27 +374,7 @@ namespace FormaAplicacion
             }
             cs.Close();
             return tiene;
-        }
-
-        //private void CalculaMorosos(string mes, string año)
-        //{
-        //    SqlDataAdapter da = new SqlDataAdapter("select Empleados.ID from Empleados Inner join Pagos on Empleados.ID = pagos.ID where Pagos.Mes='" + mes + "' and Pagos.Año= '" + año + "'", cs);
-        //    DataTable dt = new DataTable();
-        //    DateTime UltimoPago;
-
-        //    int[] SiPagaron = new int[NumPgad];
-        //    int otro;
-        //    string idstring;
-
-        //    da.Fill(dt);
-
-        //    for (int i = 0; i < NumPgad; i++)
-        //    {
-        //        idstring = dt.Rows[i]["ID"].ToString();
-        //        Int32.TryParse(idstring, out otro);
-        //        SiPagaron[i] = otro;
-        //    }
-        //}
+        }             
 
     }
 }

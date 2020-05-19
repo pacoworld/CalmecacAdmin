@@ -64,6 +64,7 @@ namespace FormaAplicacion
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
+            dataGridView1.Columns[9].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void ImprimeTodos()
