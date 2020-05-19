@@ -43,7 +43,7 @@ namespace FormaAplicacion
             {
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
-
+                        
             da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs1);
             ds.Clear();
             da.Fill(ds);
@@ -317,20 +317,21 @@ namespace FormaAplicacion
             ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
         }
 
-        private void HighlightMorosos()
+        public void HighlightMorosos()
         {
             DateTime fecha = new DateTime();
-            DateTime fechahoy = DateTime.Today;
             double dias = 0;
-            //    string fechastring = ""; ;
-
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            
+            for (int i = 0; i < dataGridView1.Rows.Count -1 ; i++)
             {
-                //        fechastring = dataGridView1.Rows[i].Cells[3].Value.ToString();
                 fecha = Convert.ToDateTime(dataGridView1.Rows[i].Cells[3].Value.ToString());
-                dias = (fechahoy - fecha).TotalDays;
-                MessageBox.Show(dias.ToString());
-                 }        
+                dias = (hoy - fecha).TotalDays;
+                
+                if (dias > 30)
+                { 
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }        
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -338,10 +339,10 @@ namespace FormaAplicacion
             HighlightMorosos();
         }
 
-        //private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            HighlightMorosos();
+        }
 
         //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         //{
