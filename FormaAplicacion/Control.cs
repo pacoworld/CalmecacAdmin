@@ -19,12 +19,15 @@ namespace FormaAplicacion
         string currentYear = DateTime.Now.Year.ToString();
         string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
+        string clave = "", NombreCorreo = "", ApellidoCorreo = "";
 
         DataSet ds = new DataSet();
         SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
-       
+        SqlCommand com;
+        SqlDataReader reader;
+
 
         public Control()
         {
@@ -54,8 +57,8 @@ namespace FormaAplicacion
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string str;
-            SqlCommand com;
-            SqlDataReader reader;
+            //SqlCommand com;
+            //SqlDataReader reader;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             string ElAño = DateTime.Now.ToString("yyyy");
 
@@ -310,8 +313,8 @@ namespace FormaAplicacion
                 MessageBox.Show("Selecciona a un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                if (comboBox3.SelectedItem == null) {
-                MessageBox.Show("Selecciona el año a consultar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (comboBox3.SelectedItem == null) {
+            MessageBox.Show("Selecciona el año a consultar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
@@ -331,17 +334,85 @@ namespace FormaAplicacion
                 { 
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                 }
+
+                if (dias > 90)
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
+                }
             }        
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            HighlightMorosos();
+            string str, EMailPago;
+            cs.Open();
+            str = "select email from empleados where id = '" + clave + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            try
+            {
+                if (reader.Read())
+                {
+                    EMailPago = reader["EMail"].ToString();
+
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("calmecacfitness@gmail.com");
+                    message.Subject = "Calmecac Gym - Recordatorio de Pago";
+                    message.Body = "Estimado " + NombreCorreo + " " + ApellidoCorreo + " \n \n Le recordamos que tiene un adeudo de su mensualidad, agradecemos se ponga al corriente. \n \n \n  Camecac Gym agradece tu preferencia\n ";
+                    message.To.Add(EMailPago);
+                    SmtpClient client = new SmtpClient();
+                    client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
+                    client.Host = "smtp.gmail.com";
+                    client.Port = 587;
+                    client.EnableSsl = true;
+                    client.Send(message);
+                    MessageBox.Show("Correo Electronico Enviado");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            cs.Close();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             HighlightMorosos();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string dato;
+            clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            cs.Open();
+            dato = "select nombre from Empleados where ID = '" + clave + "'";
+            com = new SqlCommand(dato, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+
+                NombreCorreo = textBox3.Text = reader["nombre"].ToString();
+                textBox3.Text = NombreCorreo;
+
+
+            }
+            cs.Close();
+
+            cs.Open();
+            dato = "select Apellido from Empleados where ID = '" + clave + "'";
+            com = new SqlCommand(dato, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                ApellidoCorreo = reader["Apellido"].ToString();
+                textBox4.Text = ApellidoCorreo;
+            }
+            cs.Close();
         }
 
         //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
