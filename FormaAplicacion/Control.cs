@@ -345,6 +345,22 @@ namespace FormaAplicacion
         private void button3_Click(object sender, EventArgs e)
         {
             string str, EMailPago;
+            DateTime FechaRecordatorio;
+
+            cs.Open();
+            str = "select FechaRecordat from empleados where id = '" + clave + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                FechaRecordatorio = Convert.ToDateTime(reader["Nombre"].ToString());
+            }
+            Nombrex = label3.Text;
+            cs.Close();
+
+
+
             cs.Open();
             str = "select email from empleados where id = '" + clave + "'";
             com = new SqlCommand(str, cs);
