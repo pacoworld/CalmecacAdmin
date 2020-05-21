@@ -345,7 +345,8 @@ namespace FormaAplicacion
         private void button3_Click(object sender, EventArgs e)
         {
             string str, EMailPago;
-            DateTime FechaRecordatorio;
+            double dias = 0;
+            DateTime FechaRecordatorio = DateTime.MinValue;
 
             cs.Open();
             str = "select FechaRecordat from empleados where id = '" + clave + "'";
@@ -354,43 +355,57 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-                FechaRecordatorio = Convert.ToDateTime(reader["Nombre"].ToString());
-            }
-            Nombrex = label3.Text;
-            cs.Close();
-
-
-
-            cs.Open();
-            str = "select email from empleados where id = '" + clave + "'";
-            com = new SqlCommand(str, cs);
-            reader = com.ExecuteReader();
-
-            try
-            {
-                if (reader.Read())
+                try
                 {
-                    EMailPago = reader["EMail"].ToString();
-
-                    MailMessage message = new MailMessage();
-                    message.From = new MailAddress("calmecacfitness@gmail.com");
-                    message.Subject = "Calmecac Gym - Recordatorio de Pago";
-                    message.Body = "Estimado " + NombreCorreo + " " + ApellidoCorreo + " \n \n Le recordamos que tiene un adeudo de su mensualidad, agradecemos se ponga al corriente. \n \n \n  Camecac Gym agradece tu preferencia\n ";
-                    message.To.Add(EMailPago);
-                    SmtpClient client = new SmtpClient();
-                    client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
-                    client.Host = "smtp.gmail.com";
-                    client.Port = 587;
-                    client.EnableSsl = true;
-                    client.Send(message);
-                    MessageBox.Show("Correo Electronico Enviado");
+                    FechaRecordatorio = Convert.ToDateTime(reader["FechaRecordat"].ToString());
+                }
+                catch
+                { 
+                
                 }
             }
-            catch
-            {
-                MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
             cs.Close();
+
+            dias = (hoy - FechaRecordatorio).TotalDays;
+
+            if (dias < 31)
+            {
+                MessageBox.Show("Ya se le envió un correo electrónico, No se permite enviar otro correo hasta los 30 dias");
+            }
+            else
+            {
+
+                cs.Open();
+                str = "select email from empleados where id = '" + clave + "'";
+                com = new SqlCommand(str, cs);
+                reader = com.ExecuteReader();
+
+                try
+                {
+                    if (reader.Read())
+                    {
+                        EMailPago = reader["EMail"].ToString();
+
+                        MailMessage message = new MailMessage();
+                        message.From = new MailAddress("calmecacfitness@gmail.com");
+                        message.Subject = "Calmecac Gym - Recordatorio de Pago";
+                        message.Body = "Estimado " + NombreCorreo + " " + ApellidoCorreo + " \n \n Le recordamos que tiene un adeudo de su mensualidad, agradecemos se ponga al corriente. \n \n \n  Camecac Gym agradece tu preferencia\n ";
+                        message.To.Add(EMailPago);
+                        SmtpClient client = new SmtpClient();
+                        client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
+                        client.Host = "smtp.gmail.com";
+                        client.Port = 587;
+                        client.EnableSsl = true;
+                        client.Send(message);
+                        MessageBox.Show("Correo Electronico Enviado");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                cs.Close();
+            }
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
