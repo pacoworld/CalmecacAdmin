@@ -241,7 +241,6 @@ namespace FormaAplicacion
                     tb[i].Text = reader[columna[i]].ToString();
                 }
                 cs.Close();
-
             }
 
 

@@ -16,10 +16,12 @@ namespace FormaAplicacion
     public partial class Control : Form
     {
         DateTime hoy = DateTime.Today;
+        DateTime FechaRecordatorio = DateTime.MinValue;
         string currentYear = DateTime.Now.Year.ToString();
         string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
-        string clave = "", NombreCorreo = "", ApellidoCorreo = "";
+        string clave = "", NombreCorreo = "", ApellidoCorreo = "", FechaDeRecordatorio = "";
+        double dias = 0;
 
         DataSet ds = new DataSet();
         SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
@@ -344,9 +346,7 @@ namespace FormaAplicacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string str, EMailPago;
-            double dias = 0;
-            DateTime FechaRecordatorio = DateTime.MinValue;
+            string str, EMailPago;                        
 
             cs.Open();
             str = "select FechaRecordat from empleados where id = '" + clave + "'";
@@ -385,7 +385,6 @@ namespace FormaAplicacion
                     if (reader.Read())
                     {
                         EMailPago = reader["EMail"].ToString();
-
                         MailMessage message = new MailMessage();
                         message.From = new MailAddress("calmecacfitness@gmail.com");
                         message.Subject = "Calmecac Gym - Recordatorio de Pago";
@@ -399,11 +398,19 @@ namespace FormaAplicacion
                         client.Send(message);
                         MessageBox.Show("Correo Electronico Enviado");
                     }
+
+                    cs.Close();
                 }
                 catch
                 {
                     MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                cs.Open();
+
+                str = "update Empleados set FechaRecordat = '" + hoy.ToString() + "' where ID = '" + clave + "'";
+                    com = new SqlCommand(str, cs);
+                    reader = com.ExecuteReader();
+
                 cs.Close();
             }
         }
@@ -411,12 +418,14 @@ namespace FormaAplicacion
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             HighlightMorosos();
+            
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string dato;
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            button3.Enabled = true;
 
             cs.Open();
             dato = "select nombre from Empleados where ID = '" + clave + "'";
@@ -428,8 +437,6 @@ namespace FormaAplicacion
 
                 NombreCorreo = textBox3.Text = reader["nombre"].ToString();
                 textBox3.Text = NombreCorreo;
-
-
             }
             cs.Close();
 
@@ -444,6 +451,33 @@ namespace FormaAplicacion
                 textBox4.Text = ApellidoCorreo;
             }
             cs.Close();
+
+            cs.Open();
+            dato = "select FechaRecordat from Empleados where ID = '" + clave + "'";
+            com = new SqlCommand(dato, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                FechaDeRecordatorio = reader["FechaRecordat"].ToString();
+                label14.Text = FechaDeRecordatorio;
+            }
+            cs.Close();
+
+                try
+                {
+                    FechaRecordatorio = Convert.ToDateTime(FechaDeRecordatorio);
+                    dias = (hoy - FechaRecordatorio).TotalDays;
+                }
+                catch
+                {
+                    dias = 100;
+                }
+
+            if (dias < 31)
+            {
+                button3.Enabled = false;
+            }
         }
 
         //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -478,7 +512,6 @@ namespace FormaAplicacion
             cs.Close();
             return tiene;
         }             
-
     }
 }
 
