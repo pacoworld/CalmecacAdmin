@@ -25,7 +25,7 @@ namespace FormaAplicacion
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();            
 
-            da.InsertCommand = new SqlCommand("INSERT INTO Empleados VALUES (@Nombre, @Apellido, @EMail, @Sexo, @Estatus, @Telefono, @MiembroDesde, @Membresia, @FechaNacimiento)", cs);               
+            da.InsertCommand = new SqlCommand("INSERT INTO Empleados VALUES (@Nombre, @Apellido, @EMail, @Sexo, @Estatus, @Telefono, @MiembroDesde, @Membresia, @FechaNacimiento, @FechaRecordat)", cs);               
             da.InsertCommand.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = textBox1.Text;            
             da.InsertCommand.Parameters.Add("@Apellido", SqlDbType.VarChar).Value = textBox2.Text;            
             da.InsertCommand.Parameters.Add("@EMail", SqlDbType.VarChar).Value = textBox3.Text;         
@@ -42,7 +42,8 @@ namespace FormaAplicacion
             da.InsertCommand.Parameters.Add("@Membresia", SqlDbType.VarChar).Value = comboBox2.Text;
             
             string LaFecha = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-            da.InsertCommand.Parameters.Add("@FechaNacimiento", SqlDbType.VarChar).Value = LaFecha;            
+            da.InsertCommand.Parameters.Add("@FechaNacimiento", SqlDbType.VarChar).Value = LaFecha;
+            da.InsertCommand.Parameters.Add("@FechaRecordat", SqlDbType.VarChar).Value = "2017-01-01";
             da.InsertCommand.ExecuteNonQuery();
                         
 

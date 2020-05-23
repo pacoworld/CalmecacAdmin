@@ -86,9 +86,7 @@ namespace FormaAplicacion
             {
                 object temp1 = reader1[0];                
                 label8.Text = temp1.ToString();
-                Int32.TryParse(temp1.ToString(), out NumPgad);               
-
-
+                Int32.TryParse(temp1.ToString(), out NumPgad);
             }
             cs.Close();
         }

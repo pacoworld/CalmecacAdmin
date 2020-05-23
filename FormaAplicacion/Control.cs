@@ -145,7 +145,7 @@ namespace FormaAplicacion
                 else
                 {
 
-              //      SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+                    SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                     SqlDataAdapter da = new SqlDataAdapter();
                     SqlDataAdapter da2 = new SqlDataAdapter();
                     DateTime hoy = DateTime.Today;
@@ -335,12 +335,7 @@ namespace FormaAplicacion
                 if (dias > 30)
                 { 
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                }
-
-                if (dias > 90)
-                {
-                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
-                }
+                }                
             }        
         }
 
@@ -365,15 +360,6 @@ namespace FormaAplicacion
                 }
             }
             cs.Close();
-
-            dias = (hoy - FechaRecordatorio).TotalDays;
-
-            if (dias < 31)
-            {
-                MessageBox.Show("Ya se le envió un correo electrónico, No se permite enviar otro correo hasta los 30 dias");
-            }
-            else
-            {
 
                 cs.Open();
                 str = "select email from empleados where id = '" + clave + "'";
@@ -412,7 +398,7 @@ namespace FormaAplicacion
                     reader = com.ExecuteReader();
 
                 cs.Close();
-            }
+            
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -424,7 +410,13 @@ namespace FormaAplicacion
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string dato;
+            
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string fecha = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            DateTime FechaDeEnvioCorreo = Convert.ToDateTime(fecha);
+            double DiasDesdeUltimoPago = (hoy - FechaDeEnvioCorreo).TotalDays;
+            
+
             button3.Enabled = true;
 
             cs.Open();
@@ -460,7 +452,10 @@ namespace FormaAplicacion
             if (reader.Read())
             {
                 FechaDeRecordatorio = reader["FechaRecordat"].ToString();
+                DateTime FechaDeRecordatorioFormatoDT = Convert.ToDateTime(FechaDeRecordatorio);
+                FechaDeRecordatorio = FechaDeRecordatorioFormatoDT.ToString("dddd, dd MMMM yyyy");
                 label14.Text = FechaDeRecordatorio;
+                
             }
             cs.Close();
 
@@ -474,7 +469,7 @@ namespace FormaAplicacion
                     dias = 100;
                 }
 
-            if (dias < 31)
+            if (dias < 31 || DiasDesdeUltimoPago < 31)
             {
                 button3.Enabled = false;
             }
