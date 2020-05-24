@@ -147,7 +147,7 @@ namespace FormaAplicacion
 
                     SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                     SqlDataAdapter da = new SqlDataAdapter();
-                    SqlDataAdapter da2 = new SqlDataAdapter();
+              //      SqlDataAdapter da2 = new SqlDataAdapter();
                     DateTime hoy = DateTime.Today;
                     string tempMonto;
                     da.InsertCommand = new SqlCommand("INSERT INTO Pagos VALUES (@ID, @Fecha, @Abono, @Concepto, @Mes, @Año)", cs);
@@ -337,6 +337,13 @@ namespace FormaAplicacion
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                 }                
             }        
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((!char.IsNumber(e.KeyChar)) && (!char.IsControl(e.KeyChar))){
+                e.Handled = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
