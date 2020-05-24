@@ -22,6 +22,7 @@ namespace FormaAplicacion
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
+        //Password ps = new Password();
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -59,7 +60,7 @@ namespace FormaAplicacion
         }
 
         private void imprime() {
-            da.SelectCommand = new SqlCommand("SELECT * FROM Empleados where Estatus = 'Activo'", cs);
+            da.SelectCommand = new SqlCommand("select ID, Nombre, Apellido, EMail, Sexo, Estatus, Telefono, MiembroDesde, Membresia, FechaNacimiento from empleados where Estatus = 'Activo'", cs);
             ds.Clear();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
@@ -96,8 +97,17 @@ namespace FormaAplicacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Reporte rep = new Reporte();
-            rep.Show();
+            //ps.Show();
+            //bool acces = ps.yesorno;
+            //if (acces == true)
+            //{
+                Reporte rep = new Reporte();
+                rep.Show();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Clave Incorrecta");
+            //}
         }
 
         private void button6_Click(object sender, EventArgs e)

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace FormaAplicacion
 {
@@ -218,7 +219,7 @@ namespace FormaAplicacion
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string str;
+            string str, FechaEnEspañol;
             SqlCommand com;
             SqlDataReader reader;
             TextBox[] tb;
@@ -288,7 +289,10 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-                label9.Text = reader["MiembroDesde"].ToString();
+
+            FechaEnEspañol = reader["MiembroDesde"].ToString();
+            DateTime FechaEnEspañolFormatoDT = Convert.ToDateTime(FechaEnEspañol);
+            label9.Text = FechaEnEspañolFormatoDT.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));          
             }
             cs.Close();
 

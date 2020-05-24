@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using Microsoft.SqlServer.Server;
+using System.Windows.Forms;
 
 namespace FormaAplicacion
 {
@@ -27,7 +20,7 @@ namespace FormaAplicacion
             SqlDataReader reader;
             SqlCommand com;
             string clave = "";
-            string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Area", "Precio" };          
+            string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Precio" };
 
         private void button1_Click(object sender, EventArgs e)
         {            
@@ -75,14 +68,15 @@ namespace FormaAplicacion
             tb[7] = textBox7;
             tb[8] = textBox8;
             tb[9] = textBox9;
-            tb[10] = textBox10;
+          //  tb[10] = textBox10;
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string str;
            
 
-            for (int i = 5; i <= 10 ; i++)
+            for (int i = 5; i <= 9 ; i++)
             {
                 cs.Open();
-                string str = "select " + columna[i - 5] + " from Inventario where clave = '" + clave + "'";
+                str = "select " + columna[i - 5] + " from Inventario where clave = '" + clave + "'";
                 com = new SqlCommand(str, cs);
                 reader = com.ExecuteReader();
 
@@ -93,9 +87,22 @@ namespace FormaAplicacion
                 cs.Close();
             }
 
+                        
+                cs.Open();
+                str = "select area from Inventario where clave = '" + clave + "'";
+                com = new SqlCommand(str, cs);
+                reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    comboBox3.Text = reader["area"].ToString();
+                }
+                cs.Close();
+            
+
             cs.Open();
-            string str1 = "select fecha from Inventario where clave = '" + clave + "'";
-            com = new SqlCommand(str1, cs);
+            str = "select fecha from Inventario where clave = '" + clave + "'";
+            com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
 
             if (reader.Read())
@@ -121,9 +128,9 @@ namespace FormaAplicacion
             tb[7] = textBox7;
             tb[8] = textBox8;
             tb[9] = textBox9;
-            tb[10] = textBox10;
+            //    tb[10] = textBox10;
 
-            for (int i = 5; i <= 10; i++)
+            for (int i = 5; i <= 9; i++)
             {
 
                 token = "select " + columna[i - 5] + " from Inventario where clave = " + clave + " ";
@@ -146,9 +153,33 @@ namespace FormaAplicacion
                         crop1.ExecuteNonQuery();
                         MessageBox.Show(" " + columna[i - 5] + " Actualizado", "Correcto", MessageBoxButtons.OK);
                     }
+            }
+
+            token = "select area from Inventario where clave = " + clave + " ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+
+                if (reader["area"].ToString() == comboBox3.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Inventario set area = '" + comboBox3.Text + " ' where clave = '" + clave + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show(" Area Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
 
 
-                token = "select fecha from Inventario where clave = " + clave + " ";
+
+
+            token = "select fecha from Inventario where clave = " + clave + " ";
                 crop = new SqlCommand(token, cs);
                 string ddt = dateTimePicker1.Value.ToString();
                 reader.Close();
@@ -169,7 +200,7 @@ namespace FormaAplicacion
                         crop1.ExecuteNonQuery();
                         MessageBox.Show("Fecha de compra actualizada", "Correcto", MessageBoxButtons.OK);
                     }
-            }
+   //         }
             cs.Close();
         }
 
@@ -181,7 +212,15 @@ namespace FormaAplicacion
             }
         }
 
-        private void textBox10_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((!char.IsNumber(e.KeyChar)) && (!char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox9_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((!char.IsNumber(e.KeyChar)) && (!char.IsControl(e.KeyChar)))
             {

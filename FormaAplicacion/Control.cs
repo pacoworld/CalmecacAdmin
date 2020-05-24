@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Net;
+using System.Globalization;
 
 namespace FormaAplicacion
 {
@@ -460,7 +461,7 @@ namespace FormaAplicacion
             {
                 FechaDeRecordatorio = reader["FechaRecordat"].ToString();
                 DateTime FechaDeRecordatorioFormatoDT = Convert.ToDateTime(FechaDeRecordatorio);
-                FechaDeRecordatorio = FechaDeRecordatorioFormatoDT.ToString("dddd, dd MMMM yyyy");
+                FechaDeRecordatorio = FechaDeRecordatorioFormatoDT.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
                 label14.Text = FechaDeRecordatorio;
                 
             }

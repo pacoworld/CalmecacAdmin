@@ -36,7 +36,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -97,12 +97,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox3);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.textBox10);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.textBox9);
             this.groupBox1.Controls.Add(this.label11);
@@ -161,14 +161,6 @@
             this.label13.TabIndex = 13;
             this.label13.Text = "Precio Unitario";
             // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(336, 54);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(83, 20);
-            this.textBox10.TabIndex = 12;
-            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox10_KeyPress);
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -180,10 +172,11 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(626, 16);
+            this.textBox9.Location = new System.Drawing.Point(336, 54);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(115, 20);
+            this.textBox9.Size = new System.Drawing.Size(83, 20);
             this.textBox9.TabIndex = 10;
+            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox9_KeyPress);
             // 
             // label11
             // 
@@ -222,10 +215,11 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(519, 16);
+            this.textBox7.Location = new System.Drawing.Point(519, 19);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(54, 20);
+            this.textBox7.Size = new System.Drawing.Size(66, 20);
             this.textBox7.TabIndex = 6;
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox7_KeyPress);
             // 
             // label9
             // 
@@ -410,6 +404,18 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Gimnasio",
+            "Pesas",
+            "Boxeo"});
+            this.comboBox3.Location = new System.Drawing.Point(626, 18);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.TabIndex = 18;
+            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,12 +467,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }
