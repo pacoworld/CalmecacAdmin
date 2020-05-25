@@ -22,7 +22,7 @@ namespace FormaAplicacion
         string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
         string clave = "", NombreCorreo = "", ApellidoCorreo = "", FechaDeRecordatorio = "";
-        double dias = 0;
+       // double dias = 0;
 
         DataSet ds = new DataSet();
         SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
@@ -421,9 +421,10 @@ namespace FormaAplicacion
             
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             string fecha = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            string FechaDeRecordatorioString = "";
             DateTime FechaDeEnvioCorreo = Convert.ToDateTime(fecha);
             double DiasDesdeUltimoPago = (hoy - FechaDeEnvioCorreo).TotalDays;
-            
+            double DiasDesdeUltimoCorreoEnviado;
 
             button3.Enabled = true;
 
@@ -460,24 +461,32 @@ namespace FormaAplicacion
             if (reader.Read())
             {
                 FechaDeRecordatorio = reader["FechaRecordat"].ToString();
+                FechaDeRecordatorioString = FechaDeRecordatorio;
                 DateTime FechaDeRecordatorioFormatoDT = Convert.ToDateTime(FechaDeRecordatorio);
                 FechaDeRecordatorio = FechaDeRecordatorioFormatoDT.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
-                label14.Text = FechaDeRecordatorio;
-                
+
+                if (FechaDeRecordatorio == "01 enero 2017")
+                {
+                    label14.Text = "";
+                }
+                else
+                {
+                    label14.Text = FechaDeRecordatorio;
+                }
             }
             cs.Close();
 
-                try
-                {
-                    FechaRecordatorio = Convert.ToDateTime(FechaDeRecordatorio);
-                    dias = (hoy - FechaRecordatorio).TotalDays;
-                }
-                catch
-                {
-                    dias = 100;
-                }
+                //try
+                //{
+                    FechaRecordatorio = Convert.ToDateTime(FechaDeRecordatorioString);
+                    DiasDesdeUltimoCorreoEnviado = (hoy - FechaRecordatorio).TotalDays;
+                //}
+                //catch
+                //{
+                //DiasDesdeUltimoCorreoEnviado = 100;
+                //}
 
-            if (dias < 31 || DiasDesdeUltimoPago < 31)
+            if (DiasDesdeUltimoCorreoEnviado < 31 || DiasDesdeUltimoPago < 31)
             {
                 button3.Enabled = false;
             }
