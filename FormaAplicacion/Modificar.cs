@@ -318,6 +318,7 @@ namespace FormaAplicacion
         {          
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS", cs);
             DataTable dt = new DataTable();
+            comboBox5.SelectedIndex = 0;
 
             da.Fill(dt);
 
@@ -334,12 +335,10 @@ namespace FormaAplicacion
             SqlDataAdapter da = new SqlDataAdapter();
             DataSet ds = new DataSet();
 
-            da.SelectCommand = new SqlCommand("select ID, Nombre, Apellido from empleados where " + CriterioDeBusqueda + " = '" + ElementoABuscar + "'", cs);
+            da.SelectCommand = new SqlCommand("select ID, Nombre, Apellido from empleados where " + CriterioDeBusqueda + " like '" + ElementoABuscar + "%'", cs);
             ds.Clear();
             da.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
-
-            
+            dataGridView1.DataSource = ds.Tables[0];            
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -476,15 +476,8 @@ namespace FormaAplicacion
             }
             cs.Close();
 
-                //try
-                //{
                     FechaRecordatorio = Convert.ToDateTime(FechaDeRecordatorioString);
                     DiasDesdeUltimoCorreoEnviado = (hoy - FechaRecordatorio).TotalDays;
-                //}
-                //catch
-                //{
-                //DiasDesdeUltimoCorreoEnviado = 100;
-                //}
 
             if (DiasDesdeUltimoCorreoEnviado < 31 || DiasDesdeUltimoPago < 31)
             {

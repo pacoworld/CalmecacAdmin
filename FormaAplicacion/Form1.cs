@@ -97,17 +97,14 @@ namespace FormaAplicacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //ps.Show();
-            //bool acces = ps.yesorno;
+            //ps.Show();           
+            //bool acces = ps.authorization;
             //if (acces == true)
             //{
                 Reporte rep = new Reporte();
                 rep.Show();
             //}
-            //else
-            //{
-            //    MessageBox.Show("Clave Incorrecta");
-            //}
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
