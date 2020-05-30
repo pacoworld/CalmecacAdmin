@@ -22,7 +22,7 @@ namespace FormaAplicacion
         string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
         string clave = "", NombreCorreo = "", ApellidoCorreo = "", FechaDeRecordatorio = "";
-       // double dias = 0;
+        // double dias = 0;
 
         DataSet ds = new DataSet();
         SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
@@ -40,7 +40,8 @@ namespace FormaAplicacion
 
         private void Control_Load(object sender, EventArgs e)
         {
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
+            /*SqlDataAdapter*/
+            da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
             comboBox4.SelectedIndex = 3;
 
@@ -49,7 +50,7 @@ namespace FormaAplicacion
             {
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
-                        
+
             da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs1);
             ds.Clear();
             da.Fill(ds);
@@ -62,7 +63,7 @@ namespace FormaAplicacion
             string str;
             //SqlCommand com;
             //SqlDataReader reader;
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            //SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             string ElAño = DateTime.Now.ToString("yyyy");
 
             cs.Open();
@@ -115,7 +116,7 @@ namespace FormaAplicacion
                         SqlDataReader reader, reader2;
                         string token, token2, token3, saldo;
                         float saldoInt, SaldoSumado, SaldoAnterior;
-               //         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+                        //         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                         cs.Open();
                         token = "select Abono from pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
                         crop = new SqlCommand(token, cs);
@@ -146,9 +147,9 @@ namespace FormaAplicacion
                 else
                 {
 
-                    SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+                   // SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                     SqlDataAdapter da = new SqlDataAdapter();
-              //      SqlDataAdapter da2 = new SqlDataAdapter();
+                    //      SqlDataAdapter da2 = new SqlDataAdapter();
                     DateTime hoy = DateTime.Today;
                     string tempMonto;
                     da.InsertCommand = new SqlCommand("INSERT INTO Pagos VALUES (@ID, @Fecha, @Abono, @Concepto, @Mes, @Año)", cs);
@@ -222,11 +223,11 @@ namespace FormaAplicacion
                     }
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
-                    
+
                     if (LoEnvioSioNO == true)
                     {
-                 //   EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
-                    
+                        //   EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+
                     }
                 }
             }
@@ -247,11 +248,12 @@ namespace FormaAplicacion
             }
         }
 
-        private void ImprimePagosMensuales(string identif, string Año) {
-            
+        private void ImprimePagosMensuales(string identif, string Año)
+        {
+
             label8.Text = Año;
             DataSet ds = new DataSet();
-     //       SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            //       SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();
 
             da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs1);
@@ -262,7 +264,8 @@ namespace FormaAplicacion
             dataGridView2.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
-        private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago) {
+        private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago)
+        {
             string str, strfolio, EMailPago;
             SqlCommand com;
             SqlDataReader reader;
@@ -276,13 +279,13 @@ namespace FormaAplicacion
             {
                 strfolio = reader["Folio"].ToString();
             }
-            cs.Close();  
+            cs.Close();
 
             cs.Open();
             str = "select email from empleados where id = '" + IDPago + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
-                
+
             try
             {
                 if (reader.Read())
@@ -303,7 +306,8 @@ namespace FormaAplicacion
                     MessageBox.Show("Correo Electronico Enviado");
                 }
             }
-            catch {
+            catch
+            {
                 MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             cs.Close();
@@ -316,40 +320,42 @@ namespace FormaAplicacion
                 MessageBox.Show("Selecciona a un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            if (comboBox3.SelectedItem == null) {
-            MessageBox.Show("Selecciona el año a consultar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (comboBox3.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona el año a consultar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
+                ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), comboBox3.SelectedItem.ToString());
         }
 
         public void HighlightMorosos()
         {
             DateTime fecha = new DateTime();
             double dias = 0;
-            
-            for (int i = 0; i < dataGridView1.Rows.Count -1 ; i++)
+
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
                 fecha = Convert.ToDateTime(dataGridView1.Rows[i].Cells[3].Value.ToString());
                 dias = (hoy - fecha).TotalDays;
-                
+
                 if (dias > 30)
-                { 
+                {
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                }                
-            }        
+                }
+            }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((!char.IsNumber(e.KeyChar)) && (!char.IsControl(e.KeyChar))){
+            if ((!char.IsNumber(e.KeyChar)) && (!char.IsControl(e.KeyChar)))
+            {
                 e.Handled = true;
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string str, EMailPago;                        
+            string str, EMailPago;
 
             cs.Open();
             str = "select FechaRecordat from empleados where id = '" + clave + "'";
@@ -363,68 +369,71 @@ namespace FormaAplicacion
                     FechaRecordatorio = Convert.ToDateTime(reader["FechaRecordat"].ToString());
                 }
                 catch
-                { 
-                
+                {
+
                 }
             }
             cs.Close();
 
-                cs.Open();
-                str = "select email from empleados where id = '" + clave + "'";
-                com = new SqlCommand(str, cs);
-                reader = com.ExecuteReader();
+            cs.Open();
+            str = "select email from empleados where id = '" + clave + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
 
-                try
+            try
+            {
+                if (reader.Read())
                 {
-                    if (reader.Read())
-                    {
-                        EMailPago = reader["EMail"].ToString();
-                        MailMessage message = new MailMessage();
-                        message.From = new MailAddress("calmecacfitness@gmail.com");
-                        message.Subject = "Calmecac Gym - Recordatorio de Pago";
-                        message.Body = "Estimado " + NombreCorreo + " " + ApellidoCorreo + " \n \n Le recordamos que tiene un adeudo de su mensualidad, agradecemos se ponga al corriente. \n \n \n  Camecac Gym agradece tu preferencia\n ";
-                        message.To.Add(EMailPago);
-                        SmtpClient client = new SmtpClient();
-                        client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
-                        client.Host = "smtp.gmail.com";
-                        client.Port = 587;
-                        client.EnableSsl = true;
-                        client.Send(message);
-                        MessageBox.Show("Correo Electronico Enviado");
-                    }
-
-                    cs.Close();
+                    EMailPago = reader["EMail"].ToString();
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("calmecacfitness@gmail.com");
+                    message.Subject = "Calmecac Gym - Recordatorio de Pago";
+                    message.Body = "Estimado " + NombreCorreo + " " + ApellidoCorreo + " \n \n Le recordamos que tiene un adeudo de su mensualidad, agradecemos se ponga al corriente. \n \n \n  Camecac Gym agradece tu preferencia\n ";
+                    message.To.Add(EMailPago);
+                    SmtpClient client = new SmtpClient();
+                    client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
+                    client.Host = "smtp.gmail.com";
+                    client.Port = 587;
+                    client.EnableSsl = true;
+                    client.Send(message);
+                    MessageBox.Show("Correo Electronico Enviado");
                 }
-                catch
-                {
-                    MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                cs.Open();
-
-                str = "update Empleados set FechaRecordat = '" + hoy.ToString() + "' where ID = '" + clave + "'";
-                    com = new SqlCommand(str, cs);
-                    reader = com.ExecuteReader();
 
                 cs.Close();
-            
+            }
+            catch
+            {
+                MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            cs.Open();
+
+            str = "update Empleados set FechaRecordat = '" + hoy.ToString() + "' where ID = '" + clave + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            cs.Close();
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             HighlightMorosos();
-            
+
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string dato;
-            
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             string fecha = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             string FechaDeRecordatorioString = "";
             DateTime FechaDeEnvioCorreo = Convert.ToDateTime(fecha);
             double DiasDesdeUltimoPago = (hoy - FechaDeEnvioCorreo).TotalDays;
             double DiasDesdeUltimoCorreoEnviado;
+
+            FechaRecordatorio = Convert.ToDateTime(fecha);
+            DiasDesdeUltimoCorreoEnviado = (hoy - FechaRecordatorio).TotalDays;
+
 
             button3.Enabled = true;
 
@@ -465,6 +474,8 @@ namespace FormaAplicacion
                 DateTime FechaDeRecordatorioFormatoDT = Convert.ToDateTime(FechaDeRecordatorio);
                 FechaDeRecordatorio = FechaDeRecordatorioFormatoDT.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
 
+
+
                 if (FechaDeRecordatorio == "01 enero 2017")
                 {
                     label14.Text = "";
@@ -476,8 +487,10 @@ namespace FormaAplicacion
             }
             cs.Close();
 
-                    FechaRecordatorio = Convert.ToDateTime(FechaDeRecordatorioString);
-                    DiasDesdeUltimoCorreoEnviado = (hoy - FechaRecordatorio).TotalDays;
+            label15.Text = DiasDesdeUltimoCorreoEnviado.ToString();
+
+            //FechaRecordatorio = Convert.ToDateTime(FechaDeRecordatorioString);
+            //DiasDesdeUltimoCorreoEnviado = (hoy - FechaRecordatorio).TotalDays;
 
             if (DiasDesdeUltimoCorreoEnviado < 31 || DiasDesdeUltimoPago < 31)
             {
@@ -490,12 +503,13 @@ namespace FormaAplicacion
 
         //}
 
-        private bool VerificaSiYaPago(string ElID, string ElMes, string Elaño) {
+        private bool VerificaSiYaPago(string ElID, string ElMes, string Elaño)
+        {
             bool tiene;
             string str;
-            SqlCommand com;
-            SqlDataReader reader;
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            //     SqlCommand com;
+            //     SqlDataReader reader;
+            //      SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             cs.Open();
             str = "Select Abono from Pagos where id = '" + ElID + "' and Mes = '" + ElMes + "' and Año = '" + Elaño + "' ";
             com = new SqlCommand(str, cs);
@@ -504,19 +518,22 @@ namespace FormaAplicacion
             if (string.IsNullOrEmpty(ElMes))
             {
                 tiene = false;
-            }else{ 
+            }
+            else
+            {
 
                 if (reader.Read())
                 {
                     tiene = true;
                 }
-                else {
+                else
+                {
                     tiene = false;
                 }
             }
             cs.Close();
             return tiene;
-        }             
+        }
     }
 }
 
