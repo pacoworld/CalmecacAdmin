@@ -21,8 +21,7 @@ namespace FormaAplicacion
         string currentYear = DateTime.Now.Year.ToString();
         string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
-        string clave = "", NombreCorreo = "", ApellidoCorreo = "", FechaDeRecordatorio = "";
-        // double dias = 0;
+        string clave = "", NombreCorreo = "", ApellidoCorreo = "";
 
         DataSet ds = new DataSet();
         SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
@@ -226,7 +225,7 @@ namespace FormaAplicacion
 
                     if (LoEnvioSioNO == true)
                     {
-                        //   EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                           EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
 
                     }
                 }
@@ -253,9 +252,7 @@ namespace FormaAplicacion
 
             label8.Text = Año;
             DataSet ds = new DataSet();
-            //       SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();
-
             da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs1);
             ds.Clear();
             da.Fill(ds);
@@ -267,9 +264,6 @@ namespace FormaAplicacion
         private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago)
         {
             string str, strfolio, EMailPago;
-            SqlCommand com;
-            SqlDataReader reader;
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
 
             cs.Open();
             strfolio = "select folio from pagos where id = '" + IDPago + "' and fecha = '" + hoy.ToString() + "'";
@@ -292,18 +286,26 @@ namespace FormaAplicacion
                 {
                     EMailPago = reader["EMail"].ToString();
 
-                    MailMessage message = new MailMessage();
-                    message.From = new MailAddress("calmecacfitness@gmail.com");
-                    message.Subject = "Calmecac Gym - Recibo de Pago de " + MesPago + " del " + AñoPago + " ";
-                    message.Body = "Comprobante de pago: \n\nFolio: " + strfolio + " \nNombre: " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
-                    message.To.Add(EMailPago);
-                    SmtpClient client = new SmtpClient();
-                    client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
-                    client.Host = "smtp.gmail.com";
-                    client.Port = 587;
-                    client.EnableSsl = true;
-                    client.Send(message);
-                    MessageBox.Show("Correo Electronico Enviado");
+                    if (EMailPago == "")
+                    {
+                        MessageBox.Show("El usuario no tiene un correo electronico válido");
+                    }
+                    else
+                    {
+
+                        MailMessage message = new MailMessage();
+                        message.From = new MailAddress("calmecacfitness@gmail.com");
+                        message.Subject = "Calmecac Gym - Recibo de Pago de " + MesPago + " del " + AñoPago + " ";
+                        message.Body = "Comprobante de pago: \n\nFolio: " + strfolio + " \nNombre: " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
+                        message.To.Add(EMailPago);
+                        SmtpClient client = new SmtpClient();
+                        client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
+                        client.Host = "smtp.gmail.com";
+                        client.Port = 587;
+                        client.EnableSsl = true;
+                        client.Send(message);
+                        MessageBox.Show("Correo Electronico Enviado");
+                    }
                 }
             }
             catch
@@ -424,16 +426,12 @@ namespace FormaAplicacion
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string dato;
+            DateTime FechaDeRecordatorioFormatoDT = DateTime.MinValue; ;
             clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string fecha = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string FechaDeRecordatorioString = "";
-            DateTime FechaDeEnvioCorreo = Convert.ToDateTime(fecha);
-            double DiasDesdeUltimoPago = (hoy - FechaDeEnvioCorreo).TotalDays;
-            double DiasDesdeUltimoCorreoEnviado;
-
-            FechaRecordatorio = Convert.ToDateTime(fecha);
-            DiasDesdeUltimoCorreoEnviado = (hoy - FechaRecordatorio).TotalDays;
-
+            string FechaDelUltimoPago = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            DateTime FechaDelUltimoPagoDate = Convert.ToDateTime(FechaDelUltimoPago);
+            double DiasDesdeUltimoPago = (hoy - FechaDelUltimoPagoDate).TotalDays;
+            string FechaDeRecordatorioString, FechaDeRecordatorioStringEspanol;                       
 
             button3.Enabled = true;
 
@@ -469,28 +467,24 @@ namespace FormaAplicacion
 
             if (reader.Read())
             {
-                FechaDeRecordatorio = reader["FechaRecordat"].ToString();
-                FechaDeRecordatorioString = FechaDeRecordatorio;
-                DateTime FechaDeRecordatorioFormatoDT = Convert.ToDateTime(FechaDeRecordatorio);
-                FechaDeRecordatorio = FechaDeRecordatorioFormatoDT.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
+                FechaDeRecordatorioString = reader["FechaRecordat"].ToString();
+                FechaDeRecordatorioFormatoDT = Convert.ToDateTime(FechaDeRecordatorioString);
+                FechaDeRecordatorioStringEspanol = FechaDeRecordatorioFormatoDT.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("es-MX"));
 
-
-
-                if (FechaDeRecordatorio == "01 enero 2017")
+                if (FechaDeRecordatorioStringEspanol == "01 enero 2017")
                 {
                     label14.Text = "";
                 }
                 else
                 {
-                    label14.Text = FechaDeRecordatorio;
+                    label14.Text = FechaDeRecordatorioStringEspanol;
                 }
             }
             cs.Close();
 
-            label15.Text = DiasDesdeUltimoCorreoEnviado.ToString();
+            double DiasDesdeUltimoCorreoEnviado = (hoy - FechaDeRecordatorioFormatoDT).TotalDays;
 
-            //FechaRecordatorio = Convert.ToDateTime(FechaDeRecordatorioString);
-            //DiasDesdeUltimoCorreoEnviado = (hoy - FechaRecordatorio).TotalDays;
+            label15.Text = DiasDesdeUltimoCorreoEnviado.ToString();
 
             if (DiasDesdeUltimoCorreoEnviado < 31 || DiasDesdeUltimoPago < 31)
             {
@@ -507,9 +501,7 @@ namespace FormaAplicacion
         {
             bool tiene;
             string str;
-            //     SqlCommand com;
-            //     SqlDataReader reader;
-            //      SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+
             cs.Open();
             str = "Select Abono from Pagos where id = '" + ElID + "' and Mes = '" + ElMes + "' and Año = '" + Elaño + "' ";
             com = new SqlCommand(str, cs);
