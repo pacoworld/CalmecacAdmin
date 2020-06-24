@@ -24,7 +24,7 @@ namespace FormaAplicacion
         string clave = "", NombreCorreo = "", ApellidoCorreo = "";
 
         DataSet ds = new DataSet();
-        SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+//        SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
         SqlCommand com;
@@ -50,7 +50,7 @@ namespace FormaAplicacion
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
 
-            da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs1);
+            da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs);
             ds.Clear();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
@@ -60,9 +60,6 @@ namespace FormaAplicacion
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string str;
-            //SqlCommand com;
-            //SqlDataReader reader;
-            //SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             string ElAño = DateTime.Now.ToString("yyyy");
 
             cs.Open();
@@ -112,10 +109,9 @@ namespace FormaAplicacion
                     if (dr == DialogResult.Yes)
                     {
                         SqlCommand crop;
-                        SqlDataReader reader, reader2;
-                        string token, token2, token3, saldo;
+                        SqlDataReader reader;
+                        string token, saldo;
                         float saldoInt, SaldoSumado, SaldoAnterior;
-                        //         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                         cs.Open();
                         token = "select Abono from pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
                         crop = new SqlCommand(token, cs);
@@ -129,15 +125,15 @@ namespace FormaAplicacion
                             cs.Close();
 
                             cs.Open();
-                            token2 = "Delete from Pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
-                            crop = new SqlCommand(token2, cs);
+                            token = "Delete from Pagos where id = '" + comboBox1.SelectedItem + "' and mes = '" + comboBox2.Text + "' ";
+                            crop = new SqlCommand(token, cs);
                             reader = crop.ExecuteReader();
                             cs.Close();
 
                             cs.Open();
-                            token3 = "Insert Into Pagos (ID, Fecha, Abono, Concepto, Mes, Año) VALUES ('" + comboBox1.SelectedItem + "' , '" + hoy.ToString() + "' , '" + SaldoSumado.ToString() + "' , '" + ' ' + "', '" + comboBox2.Text + "', '" + currentYear + "' )";
-                            crop = new SqlCommand(token3, cs);
-                            reader2 = crop.ExecuteReader();
+                            token = "Insert Into Pagos (ID, Fecha, Abono, Concepto, Mes, Año) VALUES ('" + comboBox1.SelectedItem + "' , '" + hoy.ToString() + "' , '" + SaldoSumado.ToString() + "' , '" + ' ' + "', '" + comboBox2.Text + "', '" + currentYear + "' )";
+                            crop = new SqlCommand(token, cs);
+                            reader = crop.ExecuteReader();
                             cs.Close();
                         }
                         ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
@@ -146,9 +142,7 @@ namespace FormaAplicacion
                 else
                 {
 
-                   // SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
                     SqlDataAdapter da = new SqlDataAdapter();
-                    //      SqlDataAdapter da2 = new SqlDataAdapter();
                     DateTime hoy = DateTime.Today;
                     string tempMonto;
                     da.InsertCommand = new SqlCommand("INSERT INTO Pagos VALUES (@ID, @Fecha, @Abono, @Concepto, @Mes, @Año)", cs);
@@ -223,11 +217,11 @@ namespace FormaAplicacion
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
 
-                    if (LoEnvioSioNO == true)
-                    {
-                           EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                    //if (LoEnvioSioNO == true)
+                    //{
+                    //       EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
 
-                    }
+                    //}
                 }
             }
         }
@@ -253,7 +247,7 @@ namespace FormaAplicacion
             label8.Text = Año;
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs1);
+            da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs);
             ds.Clear();
             da.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
@@ -286,7 +280,7 @@ namespace FormaAplicacion
                 {
                     EMailPago = reader["EMail"].ToString();
 
-                    if (EMailPago == "")
+                    if (EMailPago == "" || EMailPago == null)
                     {
                         MessageBox.Show("El usuario no tiene un correo electronico válido");
                     }

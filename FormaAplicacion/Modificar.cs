@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-// using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,7 +65,7 @@ namespace FormaAplicacion
                         SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set Apellido =  '" + textBox2.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close(); //this one
+                        reader.Close();
                         crop1.ExecuteNonQuery();
                         MessageBox.Show("Apellido Actualizado" , "Correcto", MessageBoxButtons.OK);
                     }

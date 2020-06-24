@@ -109,7 +109,8 @@ namespace FormaAplicacion
             {
                 String TheDate = reader["Fecha"].ToString();
                 DateTime dt = Convert.ToDateTime(TheDate);
-                TheDate = dt.ToString("dd/MMM/yyyy");                
+                TheDate = dt.ToString("dd/MMM/yyyy");       
+                
                 dateTimePicker1.CustomFormat = "d, MMM, yyyy";
                 dateTimePicker1.Value = dt;
             }
@@ -128,7 +129,6 @@ namespace FormaAplicacion
             tb[7] = textBox7;
             tb[8] = textBox8;
             tb[9] = textBox9;
-            //    tb[10] = textBox10;
 
             for (int i = 5; i <= 9; i++)
             {
@@ -200,7 +200,6 @@ namespace FormaAplicacion
                         crop1.ExecuteNonQuery();
                         MessageBox.Show("Fecha de compra actualizada", "Correcto", MessageBoxButtons.OK);
                     }
-   //         }
             cs.Close();
         }
 
@@ -226,6 +225,19 @@ namespace FormaAplicacion
             {
                 e.Handled = true;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string CriterioDeBusqueda = comboBox4.Text;
+            string ElementoABuscar = textBox10.Text;
+          //  SqlDataAdapter da = new SqlDataAdapter();
+          //  DataSet ds = new DataSet();
+
+            da.SelectCommand = new SqlCommand("select Clave, Nombre from inventario where " + CriterioDeBusqueda + " like '" + ElementoABuscar + "%'", cs);
+            ds.Clear();
+            da.Fill(ds);
+            dataGridView2.DataSource = ds.Tables[0];
         }
     }
 }

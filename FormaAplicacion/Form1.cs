@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-//using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +15,14 @@ namespace FormaAplicacion
         public Form1()
         {
             InitializeComponent();
-            this.Text = "Control Gym CALMECAC ver 1.4";
+            this.Text = "Control Gym CALMECAC ver 1.4";      
         }
 
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
-        //Password ps = new Password();
+        bool estatus = false;
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -97,14 +97,8 @@ namespace FormaAplicacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //ps.Show();           
-            //bool acces = ps.authorization;
-            //if (acces == true)
-            //{
                 Reporte rep = new Reporte();
-                rep.Show();
-            //}
-            
+                rep.Show();           
         }
 
         private void button6_Click(object sender, EventArgs e)

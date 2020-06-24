@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FormaAplicacion.exe" size="128000">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FormaAplicacion.exe" size="129536">
       <assemblyIdentity name="FormaAplicacion" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Q7lDqJEq7PHCYowFC1lGzqvsFnHO8ewj3fPxMMBVFh4=</dsig:DigestValue>
+        <dsig:DigestValue>vF6QWQ1Jn4by2sfD7ye2vHlCcX8oabHhRDJuPZfh4OQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
