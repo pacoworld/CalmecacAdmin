@@ -12,13 +12,13 @@ namespace FormaAplicacion
             InitializeComponent();
         }
 
-        DateTime hoy = DateTime.Today;
-
+            DateTime hoy = DateTime.Today;
             SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();
             DataSet ds = new DataSet();
             SqlDataReader reader;
             SqlCommand com;
+            DataTable dt;
             string clave = "", claveBusqueda;
             string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Precio" };
             bool flag = false;
@@ -52,8 +52,7 @@ namespace FormaAplicacion
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            flag = false;
-            ImprimeTabla1(comboBox1.SelectedItem.ToString());
+            ImprimeTabla(comboBox1.SelectedItem.ToString());
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -67,16 +66,16 @@ namespace FormaAplicacion
             tb[8] = textBox8;
             tb[9] = textBox9;
 
-            if (flag == false)
-            {
+            //if (flag == false)
+            //{
                 clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                
-            }
-            else
-            {
-                clave = claveBusqueda;
-            }
-           
+
+            //}
+            //else
+            //{
+            //    clave = claveBusqueda;
+            //}
+
 
             for (int i = 5; i <= 9 ; i++)
             {
@@ -229,6 +228,25 @@ namespace FormaAplicacion
             }
         }
 
+        private void ImprimeTabla(String tabla)
+        {
+            da = new SqlDataAdapter("SELECT * FROM Inventario where Area = '" + tabla + "'", cs);
+            dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            dataGridView1.Columns[6].DefaultCellStyle.Format = "C";
+            dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
+
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            claveBusqueda = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string AreaABuscar = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
+            flag = true;
+            ImprimeTabla(AreaABuscar);
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             string CriterioDeBusqueda = comboBox4.Text;
@@ -238,28 +256,6 @@ namespace FormaAplicacion
             ds.Clear();
             da.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
-        }
-
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            claveBusqueda = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string AreaABuscar = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
-            flag = true;
-            ImprimeTabla1(AreaABuscar);
-  //          dataGridView1_CellClick(sender, e);
-        }
-
-        private void ImprimeTabla1(String tabla)
-        {
-            da.SelectCommand = new SqlCommand("SELECT * FROM Inventario where Area = '" + tabla + "'", cs);
-            //ds.Clear();
-            dataGridView1.DataSource = null;
-            dataGridView1.Refresh();
-            da.Fill(ds); 
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[6].DefaultCellStyle.Format = "C";
-            dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
     }
 }
