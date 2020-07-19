@@ -21,7 +21,7 @@ namespace FormaAplicacion
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
-        bool estatus = false;
+        Password ps = new Password();
         
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,8 +55,19 @@ namespace FormaAplicacion
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Control con = new Control();
-            con.Show();
+            //ps.Show();
+            //bool access = ps.Permiso();
+            //ps.Close();
+            
+            //if (access == true)
+            //{
+                Control con = new Control();
+                con.Show();
+            //}
+            //else
+            //{                
+            //    MessageBox.Show("Clave Incorrecta");
+            //}
         }
 
         private void imprime() {

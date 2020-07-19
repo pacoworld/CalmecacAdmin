@@ -21,7 +21,6 @@ namespace FormaAplicacion
             DataTable dt;
             string clave = "", claveBusqueda;
             string[] columna = { "Nombre", "Fabricante", "CantidadTotal", "Descripcion", "Precio" };
-            bool flag = false;
 
         private void button1_Click(object sender, EventArgs e)
         {            
@@ -66,16 +65,7 @@ namespace FormaAplicacion
             tb[8] = textBox8;
             tb[9] = textBox9;
 
-            //if (flag == false)
-            //{
                 clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-
-            //}
-            //else
-            //{
-            //    clave = claveBusqueda;
-            //}
-
 
             for (int i = 5; i <= 9 ; i++)
             {
@@ -236,14 +226,12 @@ namespace FormaAplicacion
             dataGridView1.DataSource = dt;
             dataGridView1.Columns[6].DefaultCellStyle.Format = "C";
             dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
-
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             claveBusqueda = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString();
             string AreaABuscar = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
-            flag = true;
             ImprimeTabla(AreaABuscar);
         }
 

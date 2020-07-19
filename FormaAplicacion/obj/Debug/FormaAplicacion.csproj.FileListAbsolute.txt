@@ -38,3 +38,4 @@ C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\Form
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.CoreCompileInputs.cache
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.csproj.CopyComplete
 C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Inventario.resources
+C:\Users\Francisco\Program\VisualStudio\TestPaco1\FormaAplicacion\obj\Debug\FormaAplicacion.Password.resources
