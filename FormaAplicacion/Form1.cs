@@ -55,19 +55,8 @@ namespace FormaAplicacion
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //ps.Show();
-            //bool access = ps.Permiso();
-            //ps.Close();
-            
-            //if (access == true)
-            //{
                 Control con = new Control();
                 con.Show();
-            //}
-            //else
-            //{                
-            //    MessageBox.Show("Clave Incorrecta");
-            //}
         }
 
         private void imprime() {
