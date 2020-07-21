@@ -106,5 +106,10 @@ namespace FormaAplicacion
             Inventario inv = new Inventario();
             inv.Show();
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

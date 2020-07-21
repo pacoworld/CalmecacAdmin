@@ -24,7 +24,6 @@ namespace FormaAplicacion
         string clave = "", NombreCorreo = "", ApellidoCorreo = "";
 
         DataSet ds = new DataSet();
-//        SqlConnection cs1 = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
         SqlCommand com;
@@ -39,7 +38,6 @@ namespace FormaAplicacion
 
         private void Control_Load(object sender, EventArgs e)
         {
-            /*SqlDataAdapter*/
             da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
             comboBox4.SelectedIndex = 3;

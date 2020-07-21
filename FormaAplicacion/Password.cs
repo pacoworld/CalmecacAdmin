@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FormaAplicacion
 {
     public partial class Password : Form
     {
-        string clave = "1234";
+        SqlDataAdapter da = new SqlDataAdapter();
+        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        string clave = "123";
         bool SioNo = false;
 
         public Password()
@@ -35,11 +38,17 @@ namespace FormaAplicacion
             }
         }
 
-        public bool Permiso() 
-        {            
-            return SioNo;
-        }
+        private void Password_Load(object sender, EventArgs e)
+        {
+            da = new SqlDataAdapter("SELECT * FROM USUARIOS", cs);
+            DataTable dt = new DataTable();
+            //comboBox1.SelectedIndex = 0;
 
-        
+            da.Fill(dt);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                comboBox1.Items.Add(dt.Rows[i]["LOGIN"]);
+            }
+        }
     }
 }
