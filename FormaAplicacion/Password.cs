@@ -15,22 +15,34 @@ namespace FormaAplicacion
     {
         SqlDataAdapter da = new SqlDataAdapter();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-        string clave = "123";
-        bool SioNo = false;
+        SqlCommand com;
+        SqlDataReader reader;
+        string clavefromDB = "";
+        public string ElUsuario;
 
         public Password()
         {
             InitializeComponent();
         }
-                
+
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == clave)
+            cs.Open();
+            string querty = "select clave from usuarios where Login = '" + comboBox1.SelectedItem + "'";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                clavefromDB = reader["clave"].ToString();
+            }
+            cs.Close();
+
+            if (textBox1.Text == clavefromDB)
             {
                 Form1 inicio = new Form1();
                 this.Hide();
                 inicio.Show();
-                SioNo = true;
             }
             else
             {
@@ -41,14 +53,14 @@ namespace FormaAplicacion
         private void Password_Load(object sender, EventArgs e)
         {
             da = new SqlDataAdapter("SELECT * FROM USUARIOS", cs);
-            DataTable dt = new DataTable();
-            //comboBox1.SelectedIndex = 0;
-
+            DataTable dt = new DataTable();            
             da.Fill(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 comboBox1.Items.Add(dt.Rows[i]["LOGIN"]);
             }
         }
+
+        
     }
 }

@@ -21,7 +21,7 @@ namespace FormaAplicacion
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
-        Password ps = new Password();
+        string admin;
         
 
         private void Form1_Load(object sender, EventArgs e)
