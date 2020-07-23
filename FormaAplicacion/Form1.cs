@@ -28,6 +28,7 @@ namespace FormaAplicacion
         {
             imprime();
             CalculaNumeroDeActivos();
+            MessageBox.Show(admin.ToString());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -110,6 +111,11 @@ namespace FormaAplicacion
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        public void Jalar_Usuario(string Quien) {
+
+            admin = Quien.ToString();
         }
     }
 }
