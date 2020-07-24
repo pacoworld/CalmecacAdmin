@@ -20,15 +20,12 @@ namespace FormaAplicacion
 
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-        SqlDataAdapter da = new SqlDataAdapter();
-        string admin;
-        
+        SqlDataAdapter da = new SqlDataAdapter();             
 
         private void Form1_Load(object sender, EventArgs e)
         {
             imprime();
             CalculaNumeroDeActivos();
-            MessageBox.Show(admin.ToString());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,8 +47,8 @@ namespace FormaAplicacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Modificar mod = new Modificar();
-            mod.Show();
+                Modificar mod = new Modificar();
+                mod.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -112,10 +109,6 @@ namespace FormaAplicacion
         {
             Application.Exit();
         }
-
-        public void Jalar_Usuario(string Quien) {
-
-            admin = Quien.ToString();
-        }
+                
     }
 }

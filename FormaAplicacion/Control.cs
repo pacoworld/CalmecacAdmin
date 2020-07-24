@@ -22,6 +22,7 @@ namespace FormaAplicacion
         string LastYear = (DateTime.Now.Year - 1).ToString();
         string Nombrex, Apellidox;
         string clave = "", NombreCorreo = "", ApellidoCorreo = "";
+        string admin;
 
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
@@ -143,13 +144,14 @@ namespace FormaAplicacion
                     SqlDataAdapter da = new SqlDataAdapter();
                     DateTime hoy = DateTime.Today;
                     string tempMonto;
-                    da.InsertCommand = new SqlCommand("INSERT INTO Pagos VALUES (@ID, @Fecha, @Abono, @Concepto, @Mes, @Año)", cs);
+                    da.InsertCommand = new SqlCommand("INSERT INTO Pagos VALUES (@ID, @Fecha, @Abono, @Concepto, @Mes, @Año, @Recibio)", cs);
                     da.InsertCommand.Parameters.Add("@ID", SqlDbType.VarChar).Value = comboBox1.SelectedItem;
                     da.InsertCommand.Parameters.Add("@Fecha", SqlDbType.VarChar).Value = hoy.ToString();
                     da.InsertCommand.Parameters.Add("@Abono", SqlDbType.VarChar).Value = textBox1.Text;
                     da.InsertCommand.Parameters.Add("@Mes", SqlDbType.VarChar).Value = comboBox2.Text;
                     da.InsertCommand.Parameters.Add("@Año", SqlDbType.VarChar).Value = comboBox4.Text;
                     da.InsertCommand.Parameters.Add("@Concepto", SqlDbType.VarChar).Value = textBox2.Text;
+                    da.InsertCommand.Parameters.Add("@Recibio", SqlDbType.VarChar).Value = Usuario.ElUsuario;
                     tempMonto = textBox1.Text;
                     cs.Open();
 
@@ -245,7 +247,7 @@ namespace FormaAplicacion
             label8.Text = Año;
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs);
+            da.SelectCommand = new SqlCommand("SELECT folio, mes, abono, fecha, recibio FROM pagos Empleados where ID = '" + identif + "' and Año = '" + Año + "'", cs);
             ds.Clear();
             da.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
@@ -484,11 +486,6 @@ namespace FormaAplicacion
             }
         }
 
-        //private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        //{
-
-        //}
-
         private bool VerificaSiYaPago(string ElID, string ElMes, string Elaño)
         {
             bool tiene;
@@ -518,6 +515,8 @@ namespace FormaAplicacion
             cs.Close();
             return tiene;
         }
+
+        
     }
 }
 

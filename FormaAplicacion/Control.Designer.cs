@@ -297,7 +297,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(465, 6);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(457, 320);
+            this.dataGridView2.Size = new System.Drawing.Size(542, 320);
             this.dataGridView2.TabIndex = 21;
             // 
             // groupBox2
@@ -307,7 +307,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(928, 206);
+            this.groupBox2.Location = new System.Drawing.Point(1013, 208);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
             this.groupBox2.TabIndex = 22;
@@ -321,7 +321,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1146, 399);
+            this.tabControl1.Size = new System.Drawing.Size(1227, 399);
             this.tabControl1.TabIndex = 23;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -335,7 +335,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1138, 373);
+            this.tabPage1.Size = new System.Drawing.Size(1219, 373);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Pagos";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -450,7 +450,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1164, 524);
+            this.ClientSize = new System.Drawing.Size(1265, 524);
             this.Controls.Add(this.tabControl1);
             this.Name = "Control";
             this.Text = "Control";

@@ -36,13 +36,13 @@ namespace FormaAplicacion
                 clavefromDB = reader["clave"].ToString();
             }
             cs.Close();
-                       
+
 
             if (textBox1.Text == clavefromDB)
             {
-              //  ElUsuario = comboBox1.Text;
-                Form1 inicio = new Form1();
-                inicio.Jalar_Usuario(comboBox1.Text);
+
+                Usuario.ElUsuario = comboBox1.Text;
+                Form1 inicio = new Form1();                
                 this.Hide();
                 inicio.Show();
             }
@@ -55,8 +55,8 @@ namespace FormaAplicacion
         private void Password_Load(object sender, EventArgs e)
         {
             da = new SqlDataAdapter("SELECT * FROM USUARIOS", cs);
-            DataTable dt = new DataTable();            
-            
+            DataTable dt = new DataTable();
+
             da.Fill(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -64,6 +64,6 @@ namespace FormaAplicacion
             }
         }
 
-        
+       
     }
 }
