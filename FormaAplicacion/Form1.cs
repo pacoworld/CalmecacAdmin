@@ -109,6 +109,12 @@ namespace FormaAplicacion
         {
             Application.Exit();
         }
-                
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Configuracion cf = new Configuracion();
+            cf.Show();
+
+        }
     }
 }

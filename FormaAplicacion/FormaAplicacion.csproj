@@ -83,6 +83,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDPaco.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Configuracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracion.Designer.cs">
+      <DependentUpon>Configuracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
       <DependentUpon>Reporte.cs</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs" />
+    <EmbeddedResource Include="Configuracion.resx">
+      <DependentUpon>Configuracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control.resx">
       <DependentUpon>Control.cs</DependentUpon>
     </EmbeddedResource>

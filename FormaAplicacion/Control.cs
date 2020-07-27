@@ -217,11 +217,10 @@ namespace FormaAplicacion
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
 
-                    //if (LoEnvioSioNO == true)
-                    //{
-                    //       EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
-
-                    //}
+                    if (LoEnvioSioNO == true)
+                    {
+                        EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                    }
                 }
             }
         }
@@ -401,12 +400,12 @@ namespace FormaAplicacion
             {
                 MessageBox.Show("Error al mandar comprobante de pago \nNo hay direccion de correo electrónico de este usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            cs.Close();
             cs.Open();
 
             str = "update Empleados set FechaRecordat = '" + hoy.ToString() + "' where ID = '" + clave + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
-
             cs.Close();
 
         }
@@ -414,7 +413,6 @@ namespace FormaAplicacion
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             HighlightMorosos();
-
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
