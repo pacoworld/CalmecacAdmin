@@ -15,6 +15,8 @@ namespace FormaAplicacion
     {
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
+        SqlCommand com;
+        SqlDataReader reader;
         public Configuracion()
         {
             InitializeComponent();
@@ -22,13 +24,47 @@ namespace FormaAplicacion
 
         private void Configuracion_Load(object sender, EventArgs e)
         {
-            da = new SqlDataAdapter("SELECT * FROM USUARIOS", cs);
-            DataTable dt = new DataTable();
+            textBox1.Text = Usuario.ElUsuario;
+            textBox1.Enabled = false;
+        }
 
-            da.Fill(dt);
-            for (int i = 0; i < dt.Rows.Count; i++)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string ClaveActual = "";
+            string querty;
+
+            cs.Open();
+            querty = "select clave from usuarios where Login = '" + Usuario.ElUsuario + "'";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
             {
-                comboBox1.Items.Add(dt.Rows[i]["LOGIN"]);
+                ClaveActual = reader["clave"].ToString();
+            }
+            cs.Close();
+
+            if (ClaveActual == textBox2.Text)
+            {
+                if (textBox3.Text == textBox4.Text)
+                {
+                    cs.Open();
+                    querty = "update Usuarios set Clave = '" + textBox3.Text + "' where Login = '" + Usuario.ElUsuario + "'";
+                    com = new SqlCommand(querty, cs);
+                    reader = com.ExecuteReader();
+                    cs.Close();
+                    MessageBox.Show("La clave ha sido actualizada");
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                }
+                else {
+                    MessageBox.Show("La Nueva clave no concuerda");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Clave Actual incorrecta");
             }
         }
     }
