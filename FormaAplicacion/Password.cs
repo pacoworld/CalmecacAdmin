@@ -26,29 +26,35 @@ namespace FormaAplicacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cs.Open();
-            string querty = "select clave from usuarios where Login = '" + comboBox1.SelectedItem + "'";
-            com = new SqlCommand(querty, cs);
-            reader = com.ExecuteReader();
-
-            if (reader.Read())
+            if (comboBox1.SelectedItem == null)
             {
-                clavefromDB = reader["clave"].ToString();
-            }
-            cs.Close();
-
-
-            if (textBox1.Text == clavefromDB)
-            {
-
-                Usuario.ElUsuario = comboBox1.Text;
-                Form1 inicio = new Form1();                
-                this.Hide();
-                inicio.Show();
+                MessageBox.Show("Seleccione un usuario");
             }
             else
             {
-                MessageBox.Show("Clave incorrecta");
+                cs.Open();
+                string querty = "select clave from usuarios where Login = '" + comboBox1.SelectedItem + "'";
+                com = new SqlCommand(querty, cs);
+                reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    clavefromDB = reader["clave"].ToString();
+                }
+                cs.Close();
+
+
+                if (textBox1.Text == clavefromDB)
+                {
+                    Usuario.ElUsuario = comboBox1.Text;
+                    Form1 inicio = new Form1();
+                    this.Hide();
+                    inicio.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Clave incorrecta");
+                }
             }
         }
 

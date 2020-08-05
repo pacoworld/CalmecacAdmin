@@ -19,29 +19,26 @@ namespace FormaAplicacion
         }
 
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-        SqlCommand com;  // is the same name
+        SqlCommand crop;
         SqlDataReader reader;  // is the same name
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlCommand crop;
             SqlDataReader reader;
             string token;
             string[] campos = { };
             cs.Open();        
 
-
                     token = "select nombre from empleados where id = '" + comboBox2.SelectedItem + "' ";
                     crop = new SqlCommand(token, cs);
                     reader = crop.ExecuteReader();
-                    if (reader.Read())// {
+                    if (reader.Read())
                    
                     if (reader["Nombre"].ToString() == textBox1.Text)
                     {
                
                     } else {                                   
                     SqlCommand crop1 = cs.CreateCommand(); 
-                    SqlDataAdapter da = new SqlDataAdapter();
                     crop1.CommandType = CommandType.Text;
                     crop1.CommandText = "update Empleados set Nombre =  '"+textBox1.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
                     reader.Close(); 
@@ -62,7 +59,6 @@ namespace FormaAplicacion
                     else
                     {                       
                         SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set Apellido =  '" + textBox2.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
@@ -70,7 +66,6 @@ namespace FormaAplicacion
                         MessageBox.Show("Apellido Actualizado" , "Correcto", MessageBoxButtons.OK);
                     }
                 }
-
 
 
                 token = "select EMail from empleados where id = '" + comboBox2.SelectedItem + "' ";
@@ -86,7 +81,6 @@ namespace FormaAplicacion
                     else
                     {
                         SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set EMail =  '" + textBox3.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close(); 
@@ -109,7 +103,6 @@ namespace FormaAplicacion
                     else
                     {
                         SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set Telefono =  '" + textBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
@@ -133,7 +126,6 @@ namespace FormaAplicacion
                     else
                     {
                         SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set Sexo =  '" + comboBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
@@ -157,7 +149,6 @@ namespace FormaAplicacion
                     else
                     {
                         SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set Estatus =  '"+ comboBox1.Text +"' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
@@ -180,7 +171,6 @@ namespace FormaAplicacion
                     else
                     {
                         SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set Membresia =  '" + comboBox3.Text + "' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
@@ -204,15 +194,13 @@ namespace FormaAplicacion
                     else
                     {
                         SqlCommand crop1 = cs.CreateCommand();
-                        SqlDataAdapter da = new SqlDataAdapter();
                         crop1.CommandType = CommandType.Text;
                         crop1.CommandText = "update Empleados set FechaNacimiento =  '" + ddt + " ' where id = '" + comboBox2.SelectedItem + " '";
                         reader.Close();
                         crop1.ExecuteNonQuery();
                         MessageBox.Show("Fecha de Nacimiento Actualizada", "Correcto", MessageBoxButtons.OK);
                     }
-                }
-      //      }            
+                }         
           cs.Close();
         }
 
