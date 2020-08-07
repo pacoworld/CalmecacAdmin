@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 
 namespace FormaAplicacion
 {
@@ -66,6 +67,46 @@ namespace FormaAplicacion
             {
                 MessageBox.Show("Clave Actual incorrecta");
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string names;
+            bool falg = false;
+            da = new SqlDataAdapter("SELECT * FROM USUARIOS", cs);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                names = dt.Rows[i]["LOGIN"].ToString();
+                if (names != textBox5.Text)
+                {
+                    falg = true;
+                }
+                else
+                {   MessageBox.Show("El nombre de usuario " + textBox5.Text + " ya se encuetra ocupado");
+                    falg = false;
+                    break;                    
+                }
+            }
+
+            MessageBox.Show(falg.ToString());
+
+            //if (textBox8.Text == textBox9.Text)
+            //{
+            //    MessageBox.Show("La clave no coincide con la confirmación");
+            //}
+            //else
+            //{
+            //    da.InsertCommand = new SqlCommand("INSERT INTO USUARIOS VALUES (@LOGIN, @NOMBRE, @APELLIDO, @CLAVE)", cs);
+            //    da.InsertCommand.Parameters.Add("@LOGIN", SqlDbType.VarChar).Value = textBox5.Text;
+            //    da.InsertCommand.Parameters.Add("@NOMBRE", SqlDbType.VarChar).Value = textBox6.Text;
+            //    da.InsertCommand.Parameters.Add("@APELLIDO", SqlDbType.VarChar).Value = textBox7.Text;
+            //    da.InsertCommand.Parameters.Add("@CLAVE", SqlDbType.VarChar).Value = textBox8.Text;
+            //    da.InsertCommand.ExecuteNonQuery();
+            //}
+
+
         }
     }
     

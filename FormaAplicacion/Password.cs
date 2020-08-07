@@ -62,7 +62,6 @@ namespace FormaAplicacion
         {
             da = new SqlDataAdapter("SELECT * FROM USUARIOS", cs);
             DataTable dt = new DataTable();
-
             da.Fill(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
