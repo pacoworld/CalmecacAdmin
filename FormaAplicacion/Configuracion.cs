@@ -90,22 +90,34 @@ namespace FormaAplicacion
                 }
             }
 
-            MessageBox.Show(falg.ToString());
-
-            //if (textBox8.Text == textBox9.Text)
-            //{
-            //    MessageBox.Show("La clave no coincide con la confirmación");
-            //}
-            //else
-            //{
-            //    da.InsertCommand = new SqlCommand("INSERT INTO USUARIOS VALUES (@LOGIN, @NOMBRE, @APELLIDO, @CLAVE)", cs);
-            //    da.InsertCommand.Parameters.Add("@LOGIN", SqlDbType.VarChar).Value = textBox5.Text;
-            //    da.InsertCommand.Parameters.Add("@NOMBRE", SqlDbType.VarChar).Value = textBox6.Text;
-            //    da.InsertCommand.Parameters.Add("@APELLIDO", SqlDbType.VarChar).Value = textBox7.Text;
-            //    da.InsertCommand.Parameters.Add("@CLAVE", SqlDbType.VarChar).Value = textBox8.Text;
-            //    da.InsertCommand.ExecuteNonQuery();
-            //}
-
+            if (falg == false)
+            {
+                // Do nothing
+            }
+            else
+            {                               
+                if (textBox8.Text != textBox9.Text)
+                {
+                    MessageBox.Show("La clave no coincide con la confirmación");
+                }
+                else
+                {
+                    da.InsertCommand = new SqlCommand("INSERT INTO USUARIOS VALUES (@LOGIN, @NOMBRE, @APELLIDO, @CLAVE)", cs);
+                    da.InsertCommand.Parameters.Add("@LOGIN", SqlDbType.VarChar).Value = textBox5.Text;
+                    da.InsertCommand.Parameters.Add("@NOMBRE", SqlDbType.VarChar).Value = textBox6.Text;
+                    da.InsertCommand.Parameters.Add("@APELLIDO", SqlDbType.VarChar).Value = textBox7.Text;
+                    da.InsertCommand.Parameters.Add("@CLAVE", SqlDbType.VarChar).Value = textBox8.Text;
+                    cs.Open();
+                    da.InsertCommand.ExecuteNonQuery();
+                    cs.Close();
+                    MessageBox.Show("El Usuario " + textBox5.Text + "ha sido agregado");
+                    textBox5.Clear();
+                    textBox6.Clear();
+                    textBox7.Clear();
+                    textBox8.Clear();
+                    textBox9.Clear();
+                }
+            }
 
         }
     }
