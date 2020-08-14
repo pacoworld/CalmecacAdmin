@@ -49,11 +49,13 @@ namespace FormaAplicacion
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
 
-            da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs);
-            ds.Clear();
-            da.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
+            ImprimeMorosos();
+
+            //da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs);
+            //ds.Clear();
+            //da.Fill(ds);
+            //dataGridView1.DataSource = ds.Tables[0];
+            //dataGridView1.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -223,6 +225,8 @@ namespace FormaAplicacion
                     }
                 }
             }
+            ImprimeMorosos();
+            HighlightMorosos();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -252,6 +256,16 @@ namespace FormaAplicacion
             dataGridView2.DataSource = ds.Tables[0];
             dataGridView2.Columns[2].DefaultCellStyle.Format = "C";
             dataGridView2.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
+        }
+
+
+        private void ImprimeMorosos() 
+        {
+            da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs);
+            ds.Clear();
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void EnviaEMailTicket(string IDPago, string MesPago, string AñoPago, string MontoPago)
@@ -406,7 +420,7 @@ namespace FormaAplicacion
             str = "update Empleados set FechaRecordat = '" + hoy.ToString() + "' where ID = '" + clave + "'";
             com = new SqlCommand(str, cs);
             reader = com.ExecuteReader();
-            cs.Close();
+            cs.Close();            
 
         }
 
