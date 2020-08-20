@@ -50,12 +50,6 @@ namespace FormaAplicacion
             }
 
             ImprimeMorosos();
-
-            //da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs);
-            //ds.Clear();
-            //da.Fill(ds);
-            //dataGridView1.DataSource = ds.Tables[0];
-            //dataGridView1.Columns[3].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -219,10 +213,10 @@ namespace FormaAplicacion
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
 
-                    if (LoEnvioSioNO == true)
-                    {
-                        EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
-                    }
+                    //if (LoEnvioSioNO == true)
+                    //{
+                    //    EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                    //}
                 }
             }
             ImprimeMorosos();
@@ -526,9 +520,7 @@ namespace FormaAplicacion
             }
             cs.Close();
             return tiene;
-        }
-
-        
+        }        
     }
 }
 
