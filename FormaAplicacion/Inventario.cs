@@ -59,6 +59,7 @@ namespace FormaAplicacion
             string str;
             TextBox[] tb;
             tb = new TextBox[12];
+            float cantidad = 0, precio = 0;
             tb[5] = textBox5;
             tb[6] = textBox6;
             tb[7] = textBox7;
@@ -109,6 +110,34 @@ namespace FormaAplicacion
                 dateTimePicker1.Value = dt;
             }
             cs.Close();
+
+
+            cs.Open();
+            str = "select CantidadTotal from Inventario where clave = '" + clave + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {                
+                String CantidadString = reader["CantidadTotal"].ToString();    
+                cantidad = Convert.ToSingle(CantidadString);
+            }
+            cs.Close();
+
+            cs.Open();
+            str = "select Precio from Inventario where clave = '" + clave + "'";
+            com = new SqlCommand(str, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                String PrecioString = reader["Precio"].ToString();
+                precio = Convert.ToSingle(PrecioString);
+            }
+            cs.Close();
+
+            textBox11.Text = (cantidad * precio).ToString();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
