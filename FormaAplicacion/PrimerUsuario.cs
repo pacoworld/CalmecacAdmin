@@ -37,7 +37,7 @@ namespace FormaAplicacion
                 cs.Open();
                 da.InsertCommand.ExecuteNonQuery();
                 cs.Close();
-                MessageBox.Show("El Usuario " + textBox1.Text + "ha sido agregado");
+                MessageBox.Show("El Usuario " + textBox1.Text + " ha sido agregado");
                 this.Hide();
                 Password pas = new Password();
                 pas.Show();

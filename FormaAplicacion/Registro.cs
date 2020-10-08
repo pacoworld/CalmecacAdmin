@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Net.Mail;
+using System.Net;
+
 
 namespace FormaAplicacion
 {
@@ -45,12 +47,34 @@ namespace FormaAplicacion
             da.InsertCommand.Parameters.Add("@FechaNacimiento", SqlDbType.VarChar).Value = LaFecha;
             da.InsertCommand.Parameters.Add("@FechaRecordat", SqlDbType.VarChar).Value = "2017-01-01";
             da.InsertCommand.ExecuteNonQuery();
-                        
 
+            EnviaEmail(textBox1.Text, textBox2.Text);
             MessageBox.Show("Nuevo usuario dado de alta");
             cs.Close();
         }
 
+        private void EnviaEmail(String nombre, String apellido) {
+
+            try
+            {
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("calmecacfitness@gmail.com");
+                message.Subject = "Bienvenido a Calmecac Gym";
+                message.Body = "Felicidades " + nombre + " " + apellido + " por tu inscripción a Calmecac ";
+                message.To.Add(textBox3.Text);
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.Send(message);
+                MessageBox.Show("Correo Electronico Enviado");
+            }
+            catch {
+                MessageBox.Show("Error al enviar correo de bienvenida");
+            }
+
+        }
         
     }
 }
