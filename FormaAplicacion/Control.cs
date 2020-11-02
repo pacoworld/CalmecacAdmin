@@ -213,10 +213,10 @@ namespace FormaAplicacion
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
 
-                    if (LoEnvioSioNO == true)
-                    {
-                        EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
-                    }
+                    //if (LoEnvioSioNO == true)
+                    //{
+                    //    EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                    //}
                 }
             }
             ImprimeMorosos();
@@ -254,7 +254,7 @@ namespace FormaAplicacion
 
 
         private void ImprimeMorosos() 
-        {
+        {            
             da.SelectCommand = new SqlCommand("select Pagos.ID, Empleados.Nombre, Empleados.Apellido, MAX(pagos.Fecha) AS Ultimo_Pago from Empleados Inner join Pagos on pagos.ID = Empleados.ID where Empleados.Estatus = 'Activo' group by Pagos.id, Empleados.Nombre, Empleados.Apellido Order by Pagos.id", cs);
             ds.Clear();
             da.Fill(ds);
@@ -418,10 +418,33 @@ namespace FormaAplicacion
 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string FolioABuscar = textBox5.Text ;
+            da.SelectCommand = new SqlCommand("select Empleados.ID, Empleados.Nombre, Empleados.Apellido, Pagos.Fecha, Pagos.Abono, Pagos.Mes, " +
+                "Pagos.Año, Pagos.Folio from Empleados inner join Pagos on Empleados.ID = Pagos.ID where Pagos.Folio = '" + FolioABuscar + "'", cs);
+            ds.Clear();        
+            da.Fill(ds);
+            dataGridView3.DataSource = ds.Tables[0];
+        }
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            HighlightMorosos();
+            
+            if (tabControl1.SelectedIndex == 1)
+            {
+                ImprimeMorosos();   
+                HighlightMorosos();
+            }
+
+            if (tabControl1.SelectedIndex == 2)
+            {
+                ds.Clear();
+            }
+
         }
+
+
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
