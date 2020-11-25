@@ -50,6 +50,7 @@ namespace FormaAplicacion
             }
 
             ImprimeMorosos();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -213,10 +214,10 @@ namespace FormaAplicacion
 
                     ImprimePagosMensuales(comboBox1.SelectedItem.ToString(), currentYear);
 
-                    //if (LoEnvioSioNO == true)
-                    //{
-                    //    EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
-                    //}
+                    if (LoEnvioSioNO == true)
+                    {
+                        EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                    }
                 }
             }
             ImprimeMorosos();
@@ -300,7 +301,7 @@ namespace FormaAplicacion
                         message.Body = "Comprobante de pago: \n\nFolio: " + strfolio + " \nNombre: " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
                         message.To.Add(EMailPago);
                         SmtpClient client = new SmtpClient();
-                        client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
+                        client.Credentials = new NetworkCredential(Usuario.CorreoLogin, Usuario.ClaveLogin);
                         client.Host = "smtp.gmail.com";
                         client.Port = 587;
                         client.EnableSsl = true;

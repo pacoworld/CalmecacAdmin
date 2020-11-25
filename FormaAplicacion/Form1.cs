@@ -20,12 +20,43 @@ namespace FormaAplicacion
 
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
-        SqlDataAdapter da = new SqlDataAdapter();             
+        SqlDataAdapter da = new SqlDataAdapter();
+        SqlCommand com;
+        SqlDataReader reader;
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string querty;
             imprime();
             CalculaNumeroDeActivos();
+
+            // Jala el login y password del servidor de correo
+
+            cs.Open();
+            querty = "select login from correo";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Usuario.CorreoLogin = reader["login"].ToString();
+            }
+            cs.Close();
+
+            cs.Open();
+            querty = "select password from correo";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Usuario.ClaveLogin = reader["password"].ToString();
+            }
+            cs.Close();
+
+
+            //MessageBox.Show(Usuario.CorreoLogin);
+            //MessageBox.Show(Usuario.ClaveLogin);
         }
 
         private void button1_Click(object sender, EventArgs e)
