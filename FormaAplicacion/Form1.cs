@@ -30,7 +30,7 @@ namespace FormaAplicacion
             imprime();
             CalculaNumeroDeActivos();
 
-            // Jala el login y password del servidor de correo
+            // Obteniendo el login y password del servidor de correo de la base de datos
 
             cs.Open();
             querty = "select login from correo";
@@ -53,7 +53,6 @@ namespace FormaAplicacion
                 Usuario.ClaveLogin = reader["password"].ToString();
             }
             cs.Close();
-
 
             //MessageBox.Show(Usuario.CorreoLogin);
             //MessageBox.Show(Usuario.ClaveLogin);

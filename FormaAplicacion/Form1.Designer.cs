@@ -171,11 +171,14 @@
             // 
             // button7
             // 
+            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button7.Location = new System.Drawing.Point(12, 555);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(106, 95);
             this.button7.TabIndex = 13;
             this.button7.Text = "Configuracion";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 

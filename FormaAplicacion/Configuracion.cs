@@ -27,6 +27,9 @@ namespace FormaAplicacion
         {
             textBox1.Text = Usuario.ElUsuario;
             textBox1.Enabled = false;
+            textBox10.Text = Usuario.CorreoLogin;
+            textBox11.Text = Usuario.ClaveLogin;
+
         }
 
         private void button1_Click(object sender, EventArgs e)

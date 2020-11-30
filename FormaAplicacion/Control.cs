@@ -390,12 +390,12 @@ namespace FormaAplicacion
                 {
                     EMailPago = reader["EMail"].ToString();
                     MailMessage message = new MailMessage();
-                    message.From = new MailAddress("calmecacfitness@gmail.com");
+                    message.From = new MailAddress(Usuario.CorreoLogin);
                     message.Subject = "Calmecac Gym - Recordatorio de Pago";
                     message.Body = "Estimado " + NombreCorreo + " " + ApellidoCorreo + " \n \n Le recordamos que tiene un adeudo de su mensualidad, agradecemos se ponga al corriente. \n \n \n  Camecac Gym agradece tu preferencia\n ";
                     message.To.Add(EMailPago);
                     SmtpClient client = new SmtpClient();
-                    client.Credentials = new NetworkCredential("calmecacfitness@gmail.com", "calmecacfitness1");
+                    client.Credentials = new NetworkCredential(Usuario.CorreoLogin, Usuario.ClaveLogin);
                     client.Host = "smtp.gmail.com";
                     client.Port = 587;
                     client.EnableSsl = true;
