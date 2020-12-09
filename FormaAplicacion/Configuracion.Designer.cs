@@ -52,11 +52,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -298,14 +298,30 @@
             this.tabPage3.Text = "Correo";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // button3
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(26, 17);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Correo:";
+            this.button3.Location = new System.Drawing.Point(73, 77);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(91, 34);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Cambiar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(73, 50);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(163, 20);
+            this.textBox11.TabIndex = 3;
+            this.textBox11.UseSystemPasswordChar = true;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(73, 17);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(163, 20);
+            this.textBox10.TabIndex = 2;
             // 
             // label11
             // 
@@ -316,28 +332,14 @@
             this.label11.TabIndex = 1;
             this.label11.Text = "Clave:";
             // 
-            // textBox10
+            // label10
             // 
-            this.textBox10.Location = new System.Drawing.Point(73, 17);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(163, 20);
-            this.textBox10.TabIndex = 2;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(73, 50);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(163, 20);
-            this.textBox11.TabIndex = 3;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(73, 77);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 34);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Cambiar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(26, 17);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Correo:";
             // 
             // Configuracion
             // 

@@ -29,7 +29,6 @@ namespace FormaAplicacion
             textBox1.Enabled = false;
             textBox10.Text = Usuario.CorreoLogin;
             textBox11.Text = Usuario.ClaveLogin;
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -122,6 +121,54 @@ namespace FormaAplicacion
                 }
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string querty;
+            cs.Open();
+
+            querty = "select login from Correo";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+            if (reader.Read())
+
+                if (Usuario.CorreoLogin == textBox10.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Correo set login = '" + textBox10.Text + "' where cuenta = 'google'";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    Usuario.CorreoLogin = textBox10.Text;
+                    MessageBox.Show("Login Actualizado", "Correcto", MessageBoxButtons.OK);                    
+                }
+
+            querty = "select password from Correo";
+            com = new SqlCommand(querty, cs);
+            reader.Close();
+            reader = com.ExecuteReader();
+            if (reader.Read())
+
+                if (Usuario.ClaveLogin == textBox11.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Correo set password = '" + textBox11.Text + "' where cuenta = 'google'";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    Usuario.ClaveLogin = textBox11.Text;
+                    MessageBox.Show("Clave Actualizada", "Correcto", MessageBoxButtons.OK);
+                }
+            cs.Close();
         }
     }
     
