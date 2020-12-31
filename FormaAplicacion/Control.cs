@@ -216,7 +216,10 @@ namespace FormaAplicacion
 
                     if (LoEnvioSioNO == true)
                     {
-                        EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                        if (checkBox2.Checked)
+                        {
+                            EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
+                        }
                     }
                 }
             }
