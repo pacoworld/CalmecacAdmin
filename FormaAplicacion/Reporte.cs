@@ -37,8 +37,7 @@ namespace FormaAplicacion
             label2.Text = ElMes;
             label4.Text = ElAño;            
             imprime(ElMes, ElAño);
-            CalculaTotalMes(ElMes, ElAño);
-            
+            CalculaTotalMes(ElMes, ElAño);            
         }
 
         private void imprime(string ElMesImprime, string ElAñoImprime)
@@ -98,6 +97,19 @@ namespace FormaAplicacion
             label2.Text = comboBox1.Text;
             label4.Text = comboBox2.Text;
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Pen pen = new Pen(Color.Brown);
+            Graphics g = panel1.CreateGraphics();
+            int aa = 20;
+            
+            for (int i = 0; i < 12; i++)
+            {
+                g.DrawRectangle(pen, aa, 350, 50, 50);
+                aa = aa + 80;
+            }
+          //  g.DrawRectangle(pen, 100, 350, 50, 50);
+        }
     }
 }

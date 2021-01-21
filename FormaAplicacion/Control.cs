@@ -220,6 +220,7 @@ namespace FormaAplicacion
                         {
                             EnviaEMailTicket(comboBox1.SelectedItem.ToString(), comboBox2.Text, currentYear, tempMonto);
                         }
+
                     }
                 }
             }
