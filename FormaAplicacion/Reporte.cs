@@ -85,7 +85,7 @@ namespace FormaAplicacion
             {
                 object temp1 = reader1[0];                
                 label8.Text = temp1.ToString();
-                Int32.TryParse(temp1.ToString(), out NumPgad);
+              //  Int32.TryParse(temp1.ToString(), out NumPgad);
             }
             cs.Close();
         }
@@ -100,16 +100,43 @@ namespace FormaAplicacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Pen pen = new Pen(Color.Brown);
+            SqlCommand com1;
+            SqlDataReader reader1;
+            string[] LosMeses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+            string Mes = "Enero", año = "2020";
+            object temp1;
+
+            SolidBrush sb = new SolidBrush(Color.Brown);
             Graphics g = panel1.CreateGraphics();
-            int aa = 20;
+            int a = 10, temp2 = 0;
+            float b;
             
             for (int i = 0; i < 12; i++)
             {
-                g.DrawRectangle(pen, aa, 350, 50, 50);
-                aa = aa + 80;
+                    cs.Open();
+                    string QuertyTotal2;
+                    QuertyTotal2 = "select sum (Abono) from pagos where Mes='" + LosMeses[i] + "' and Año='" + comboBox3.Text + "'";
+                    com1 = new SqlCommand(QuertyTotal2, cs);
+                    reader1 = com1.ExecuteReader();
+
+                        if (reader1.Read())
+                        {
+                            temp1 = reader1[0];
+
+                                if (temp1 == DBNull.Value) 
+                                {
+                                     temp1 = 0;
+                                }
+                                    else 
+                                    { 
+                                     temp2 = Convert.ToInt32(temp1);                        
+                                    }
+                    cs.Close();
+
+                g.FillRectangle(sb, a, 500 - (temp2/100) , 50, temp2/100);
+                a = a + 90;
             }
-          //  g.DrawRectangle(pen, 100, 350, 50, 50);
+          
         }
     }
 }
