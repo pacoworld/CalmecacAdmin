@@ -103,13 +103,14 @@ namespace FormaAplicacion
             SqlCommand com1;
             SqlDataReader reader1;
             string[] LosMeses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-            string Mes = "Enero", año = "2020";
             object temp1;
-
+            
             SolidBrush sb = new SolidBrush(Color.Brown);
             Graphics g = panel1.CreateGraphics();
             int a = 10, temp2 = 0;
             float b;
+
+       //      panel1.Invalidate();  
             
             for (int i = 0; i < 12; i++)
             {
@@ -126,17 +127,22 @@ namespace FormaAplicacion
                                 if (temp1 == DBNull.Value) 
                                 {
                                      temp1 = 0;
+                                     temp2 = 0;
                                 }
-                                    else 
-                                    { 
+                                else                                 
                                      temp2 = Convert.ToInt32(temp1);                        
-                                    }
+                        }
                     cs.Close();
 
                 g.FillRectangle(sb, a, 500 - (temp2/100) , 50, temp2/100);
                 a = a + 90;
             }
           
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel1.Invalidate();
         }
     }
 }
