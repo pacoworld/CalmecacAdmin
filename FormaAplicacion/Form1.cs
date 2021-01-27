@@ -53,9 +53,6 @@ namespace FormaAplicacion
                 Usuario.ClaveLogin = reader["password"].ToString();
             }
             cs.Close();
-
-            //MessageBox.Show(Usuario.CorreoLogin);
-            //MessageBox.Show(Usuario.ClaveLogin);
         }
 
         private void button1_Click(object sender, EventArgs e)

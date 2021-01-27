@@ -27,181 +27,226 @@ namespace FormaAplicacion
             SqlDataReader reader;
             string token;
             string[] campos = { };
-            cs.Open();        
+            cs.Open();
 
-                    token = "select nombre from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                    crop = new SqlCommand(token, cs);
-                    reader = crop.ExecuteReader();
-                    if (reader.Read())
-                   
-                    if (reader["Nombre"].ToString() == textBox1.Text)
-                    {
-               
-                    } else {                                   
-                    SqlCommand crop1 = cs.CreateCommand(); 
+            token = "select nombre from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+
+                if (reader["Nombre"].ToString() == textBox1.Text)
+                {
+
+                } else {
+                    SqlCommand crop1 = cs.CreateCommand();
                     crop1.CommandType = CommandType.Text;
-                    crop1.CommandText = "update Empleados set Nombre =  '"+textBox1.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
-                    reader.Close(); 
+                    crop1.CommandText = "update Empleados set Nombre =  '" + textBox1.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
                     crop1.ExecuteNonQuery();
                     MessageBox.Show("Nombre Actualizado", "Correcto", MessageBoxButtons.OK);
-                    }
+                }
 
-                token = "select Apellido from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                reader.Close();
-                reader = crop.ExecuteReader();
-                if (reader.Read())
+            token = "select Apellido from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+                if (reader["Apellido"].ToString() == textBox2.Text)
                 {
-                    if (reader["Apellido"].ToString() == textBox2.Text)
-                    {
-                        
-                    }
-                    else
-                    {                       
-                        SqlCommand crop1 = cs.CreateCommand();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Apellido =  '" + textBox2.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close();
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Apellido Actualizado" , "Correcto", MessageBoxButtons.OK);
-                    }
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set Apellido =  '" + textBox2.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Apellido Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+            }
+
+
+            token = "select EMail from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+                if (reader["Email"].ToString() == textBox3.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set EMail =  '" + textBox3.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Correo Electrónico Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+            }
+
+
+            token = "select telefono from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+                if (reader["telefono"].ToString() == textBox4.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set Telefono =  '" + textBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Telefono Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+            }
+
+
+
+            token = "select Sexo from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+                if (reader["Sexo"].ToString() == comboBox4.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set Sexo =  '" + comboBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Sexo Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+            }
+
+
+
+            token = "select Estatus from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+                if (reader["Estatus"].ToString() == comboBox1.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set Estatus =  '" + comboBox1.Text + "' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Estatus Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+            }
+
+
+            token = "select Membresia from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+                if (reader["Membresia"].ToString() == comboBox3.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set Membresia =  '" + comboBox3.Text + "' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Membresia Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+            }
+
+            token = "select FechaNacimiento from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            string ddt = dateTimePicker1.Value.ToString();
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+
+                if (reader["FechaNacimiento"].ToString() == ddt)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set FechaNacimiento =  '" + ddt + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Fecha de Nacimiento Actualizada", "Correcto", MessageBoxButtons.OK);
+                }
+            }
+
+
+            token = "select NombreEmergencia from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+
+                if (reader["NombreEmergencia"].ToString() == textBox6.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set NombreEmergencia =  '" + textBox6.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Contacto de Emergencia Actualizado", "Correcto", MessageBoxButtons.OK);
                 }
 
 
-                token = "select EMail from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                reader.Close();
-                reader = crop.ExecuteReader();
-                if (reader.Read())
-                {
-                    if (reader["Email"].ToString() == textBox3.Text)
-                    {
 
-                    }
-                    else
-                    {
-                        SqlCommand crop1 = cs.CreateCommand();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set EMail =  '" + textBox3.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close(); 
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Correo Electrónico Actualizado", "Correcto", MessageBoxButtons.OK);
-                    }
+            token = "select TelefonoEmergencia from empleados where id = '" + comboBox2.SelectedItem + "' ";
+            crop = new SqlCommand(token, cs);
+            reader.Close();
+            reader = crop.ExecuteReader();
+            if (reader.Read())
+            {
+                if (reader["TelefonoEmergencia"].ToString() == textBox7.Text)
+                {
+
                 }
-
-
-                token = "select telefono from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                reader.Close();
-                reader = crop.ExecuteReader();
-                if (reader.Read())
+                else
                 {
-                    if (reader["telefono"].ToString() == textBox4.Text)
-                    {
-
-                    }
-                    else
-                    {
-                        SqlCommand crop1 = cs.CreateCommand();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Telefono =  '" + textBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close();
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Telefono Actualizado" , "Correcto", MessageBoxButtons.OK);
-                    }
-                }    
-                
-                
-
-                token = "select Sexo from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                reader.Close();
-                reader = crop.ExecuteReader();
-                if (reader.Read())
-                {
-                    if (reader["Sexo"].ToString() == comboBox4.Text)
-                    {
-
-                    }
-                    else
-                    {
-                        SqlCommand crop1 = cs.CreateCommand();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Sexo =  '" + comboBox4.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close();
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Sexo Actualizado" , "Correcto", MessageBoxButtons.OK);
-                    }
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Empleados set TelefonoEmergencia =  '" + textBox7.Text + " ' where id = '" + comboBox2.SelectedItem + " '";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    MessageBox.Show("Telefono de Emergencia Actualizado", "Correcto", MessageBoxButtons.OK);
                 }
-                         
+            }
 
-
-                token = "select Estatus from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                reader.Close();
-                reader = crop.ExecuteReader();
-                if (reader.Read())
-                {
-                    if (reader["Estatus"].ToString() == comboBox1.Text)
-                    {
-
-                    }
-                    else
-                    {
-                        SqlCommand crop1 = cs.CreateCommand();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Estatus =  '"+ comboBox1.Text +"' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close();
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Estatus Actualizado", "Correcto", MessageBoxButtons.OK);
-                    }
-                }
-
-
-                token = "select Membresia from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                reader.Close();
-                reader = crop.ExecuteReader();
-                if (reader.Read())
-                {
-                    if (reader["Membresia"].ToString() == comboBox3.Text)
-                    {
-
-                    }
-                    else
-                    {
-                        SqlCommand crop1 = cs.CreateCommand();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set Membresia =  '" + comboBox3.Text + "' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close();
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Membresia Actualizado", "Correcto", MessageBoxButtons.OK);
-                    }
-                }
-
-                token = "select FechaNacimiento from empleados where id = '" + comboBox2.SelectedItem + "' ";
-                crop = new SqlCommand(token, cs);
-                string ddt = dateTimePicker1.Value.ToString();
-                reader.Close();
-                reader = crop.ExecuteReader();               
-                if (reader.Read())
-                {
-                    
-                    if (reader["FechaNacimiento"].ToString() == ddt)
-                    {
-
-                    }
-                    else
-                    {
-                        SqlCommand crop1 = cs.CreateCommand();
-                        crop1.CommandType = CommandType.Text;
-                        crop1.CommandText = "update Empleados set FechaNacimiento =  '" + ddt + " ' where id = '" + comboBox2.SelectedItem + " '";
-                        reader.Close();
-                        crop1.ExecuteNonQuery();
-                        MessageBox.Show("Fecha de Nacimiento Actualizada", "Correcto", MessageBoxButtons.OK);
-                    }
-                }         
-          cs.Close();
+            cs.Close();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -210,14 +255,17 @@ namespace FormaAplicacion
             SqlCommand com;
             SqlDataReader reader;
             TextBox[] tb;
-            tb = new TextBox[4];
+            tb = new TextBox[6];
             tb[0] = textBox1;
             tb[1] = textBox2;
             tb[2] = textBox3;
             tb[3] = textBox4;
-            string[] columna = { "Nombre", "Apellido", "EMail", "Telefono" };
+            tb[4] = textBox6;
+            tb[5] = textBox7;
 
-            for (int i = 0; i <= 3; i++)
+            string[] columna = { "Nombre", "Apellido", "EMail", "Telefono", "NombreEmergencia", "TelefonoEmergencia" };
+
+            for (int i = 0; i <= 5; i++)
             {
                 cs.Open();
                 str = "select " + columna[i] + " from empleados where id = '" + comboBox2.SelectedItem + "'";

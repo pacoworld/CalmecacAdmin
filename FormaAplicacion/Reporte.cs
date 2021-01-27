@@ -109,8 +109,7 @@ namespace FormaAplicacion
             Graphics g = panel1.CreateGraphics();
             int a = 10, temp2 = 0;
             float b;
-
-       //      panel1.Invalidate();  
+ 
             
             for (int i = 0; i < 12; i++)
             {
@@ -136,8 +135,7 @@ namespace FormaAplicacion
 
                 g.FillRectangle(sb, a, 500 - (temp2/100) , 50, temp2/100);
                 a = a + 90;
-            }
-          
+            }          
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)

@@ -300,7 +300,7 @@ namespace FormaAplicacion
                     {
 
                         MailMessage message = new MailMessage();
-                        message.From = new MailAddress("calmecacfitness@gmail.com");
+                        message.From = new MailAddress(Usuario.CorreoLogin);
                         message.Subject = "Calmecac Gym - Recibo de Pago de " + MesPago + " del " + AñoPago + " ";
                         message.Body = "Comprobante de pago: \n\nFolio: " + strfolio + " \nNombre: " + Nombrex + " " + Apellidox + "\nMes: " + MesPago + "\nAño: " + AñoPago + "\nMonto: $" + MontoPago + "\nCorreo: " + EMailPago + "\n\nCalmecac Gym agradece tu preferencia\n Este Pago no exime adeudos anteriores";
                         message.To.Add(EMailPago);

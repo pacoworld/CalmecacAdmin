@@ -44,6 +44,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,6 +132,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.comboBox2);
@@ -206,6 +214,38 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Teléfono";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(14, 163);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(124, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Contacto de Emergencia";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(145, 163);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(127, 20);
+            this.textBox5.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 200);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(123, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Telefono de Emergencia";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(145, 193);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(127, 20);
+            this.textBox6.TabIndex = 20;
+            // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,5 +277,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label8;
     }
 }
