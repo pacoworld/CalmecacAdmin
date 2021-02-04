@@ -85,12 +85,12 @@ namespace FormaAplicacion
         }
 
         private void imprime() {
-            da.SelectCommand = new SqlCommand("select ID, Nombre, Apellido, EMail, Sexo, Estatus, Telefono, MiembroDesde, Membresia, FechaNacimiento from empleados where Estatus = 'Activo'", cs);
+            da.SelectCommand = new SqlCommand("select ID, Nombre, Apellido, EMail, Sexo, Estatus, MiembroDesde, Membresia, FechaNacimiento from empleados where Estatus = 'Activo'", cs);
             ds.Clear();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[7].DefaultCellStyle.Format = "dd/MMM/yyyy";
-            dataGridView1.Columns[9].DefaultCellStyle.Format = "dd/MMM/yyyy";
+            dataGridView1.Columns[6].DefaultCellStyle.Format = "dd/MMM/yyyy";
+            dataGridView1.Columns[8].DefaultCellStyle.Format = "dd/MMM/yyyy";
         }
 
         private void ImprimeTodos()

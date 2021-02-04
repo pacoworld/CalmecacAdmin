@@ -255,6 +255,7 @@ namespace FormaAplicacion
             SqlCommand com;
             SqlDataReader reader;
             TextBox[] tb;
+            DateTime dt;
             tb = new TextBox[6];
             tb[0] = textBox1;
             tb[1] = textBox2;
@@ -341,11 +342,23 @@ namespace FormaAplicacion
             if (reader.Read())
             {
                 string adf = reader["FechaNacimiento"].ToString();
-                DateTime dt = Convert.ToDateTime(adf);
+                dt = Convert.ToDateTime(adf);
                 dateTimePicker1.CustomFormat = "d, MMM, yyyy";
                 dateTimePicker1.Value = dt;
             }
             cs.Close();
+
+            SqlDataAdapter da = new SqlDataAdapter("Select telefono from Telefonos where IDEmpleados = '" + comboBox2.SelectedItem + "'", cs);
+            DataTable dts = new DataTable();
+            comboBox6.Items.Clear();
+
+            da.Fill(dts);
+
+            for (int i = 0; i < dts.Rows.Count; i++)
+            {
+                comboBox6.Items.Add(dts.Rows[i]["telefono"]);
+            }
+
 
         }
 
