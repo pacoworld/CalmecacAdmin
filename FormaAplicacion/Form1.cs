@@ -53,6 +53,8 @@ namespace FormaAplicacion
                 Usuario.ClaveLogin = reader["password"].ToString();
             }
             cs.Close();
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

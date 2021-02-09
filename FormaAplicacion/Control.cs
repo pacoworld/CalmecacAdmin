@@ -41,7 +41,7 @@ namespace FormaAplicacion
         {
             da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
-            comboBox4.SelectedIndex = 3;
+            comboBox4.SelectedIndex = 4;
 
             da.Fill(dt);
             for (int i = 0; i < dt.Rows.Count; i++)

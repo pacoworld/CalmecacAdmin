@@ -8,7 +8,7 @@ namespace FormaAplicacion
 {
     class Usuario
     {
-        private static string UsuarioAdmin = "", CorreoLoginAdmin = "", ClaveLoginAdmin = "";
+        private static string UsuarioAdmin = "", CorreoLoginAdmin = "", ClaveLoginAdmin = "", MailHostAdmin = "", MailPortAdmin = "", MailSSLAdmin = "" ;
 
 
         public static string ElUsuario 
@@ -27,6 +27,24 @@ namespace FormaAplicacion
         {
             get { return ClaveLoginAdmin; }
             set { ClaveLoginAdmin = value; }
+        }
+
+        public static string MailHost
+        {
+            get { return MailHostAdmin; }
+            set { MailHostAdmin = value; }
+        }
+
+        public static string PortHost
+        {
+            get { return MailPortAdmin; }
+            set { MailPortAdmin = value; }
+        }
+
+        public static string SSLHost
+        {
+            get { return MailSSLAdmin; }
+            set { MailSSLAdmin = value; }
         }
 
     }
