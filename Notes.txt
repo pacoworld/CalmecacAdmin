@@ -14,7 +14,16 @@ Status
 Precio Unitario
 Fecha de adquisición
 
+Datos del servidor de correo
+Correo:   calmecacfitness@gmail.com
+Clave:  
+Host:     smtp.gmail.com
+Puerto:   587
+Seguridad  SSL:   Checked
 
 Tareas por hacer
 
 Clear all the texboxes
+
+GIT Token
+acce47f85d9875e1b9509a082f2034fb8c7050c1

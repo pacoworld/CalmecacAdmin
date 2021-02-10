@@ -8,7 +8,8 @@ namespace FormaAplicacion
 {
     class Usuario
     {
-        private static string UsuarioAdmin = "", CorreoLoginAdmin = "", ClaveLoginAdmin = "", MailHostAdmin = "", MailPortAdmin = "", MailSSLAdmin = "" ;
+        private static string UsuarioAdmin = "", CorreoLoginAdmin = "", ClaveLoginAdmin = "", MailHostAdmin = "", MailPortAdmin = "", MailSSLAdmin = "";
+        
 
 
         public static string ElUsuario 

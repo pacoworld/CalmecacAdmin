@@ -29,6 +29,14 @@ namespace FormaAplicacion
             textBox1.Enabled = false;
             textBox10.Text = Usuario.CorreoLogin;
             textBox11.Text = Usuario.ClaveLogin;
+            textBox12.Text = Usuario.MailHost;
+            textBox13.Text = Usuario.PortHost;
+            if (Usuario.SSLHost == "true")
+            
+                checkBox1.Checked = true;   
+           else 
+                checkBox1.Checked = false;               
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -127,7 +135,6 @@ namespace FormaAplicacion
         {
             string querty;
             cs.Open();
-
             querty = "select login from Correo";
             com = new SqlCommand(querty, cs);
             reader = com.ExecuteReader();
@@ -146,7 +153,8 @@ namespace FormaAplicacion
                     crop1.ExecuteNonQuery();
                     Usuario.CorreoLogin = textBox10.Text;
                     MessageBox.Show("Login Actualizado", "Correcto", MessageBoxButtons.OK);                    
-                }
+                }            
+
 
             querty = "select password from Correo";
             com = new SqlCommand(querty, cs);
@@ -168,7 +176,83 @@ namespace FormaAplicacion
                     Usuario.ClaveLogin = textBox11.Text;
                     MessageBox.Show("Clave Actualizada", "Correcto", MessageBoxButtons.OK);
                 }
+
+
+            querty = "select host from Correo";
+            com = new SqlCommand(querty, cs);
+            reader.Close();
+            reader = com.ExecuteReader();
+            if (reader.Read())
+
+                if (Usuario.MailHost == textBox12.Text)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Correo set host = '" + textBox12.Text + "' where cuenta = 'google'";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    Usuario.MailHost = textBox12.Text;
+                    MessageBox.Show("Host Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
+
+
+                querty = "select port from Correo";
+                com = new SqlCommand(querty, cs);
+                reader.Close();
+                reader = com.ExecuteReader();
+                if (reader.Read())
+
+                    if (Usuario.PortHost == textBox13.Text)
+                    {
+
+                    }
+                    else
+                    {
+                        SqlCommand crop1 = cs.CreateCommand();
+                        crop1.CommandType = CommandType.Text;
+                        crop1.CommandText = "update Correo set port = '" + textBox13.Text + "' where cuenta = 'google'";
+                        reader.Close();
+                        crop1.ExecuteNonQuery();
+                        Usuario.PortHost = textBox13.Text;
+                        MessageBox.Show("Puerto Actualizado", "Correcto", MessageBoxButtons.OK);
+                    }
+
+
+            querty = "select SSL from Correo";
+            com = new SqlCommand(querty, cs);
+            reader.Close();
+            reader = com.ExecuteReader();
+                    string SSLTemp;
+                    if (checkBox1.Checked == true)
+                    {
+                        SSLTemp = "true";
+                    }
+                    else
+                    {
+                        SSLTemp = "false";
+                    }
+
+            if (reader.Read())
+                if (Usuario.SSLHost == SSLTemp)
+                {
+
+                }
+                else
+                {
+                    SqlCommand crop1 = cs.CreateCommand();
+                    crop1.CommandType = CommandType.Text;
+                    crop1.CommandText = "update Correo set SSL = '" + SSLTemp + "' where cuenta = 'google'";
+                    reader.Close();
+                    crop1.ExecuteNonQuery();
+                    Usuario.SSLHost = SSLTemp;
+                    MessageBox.Show("SSL Actualizado", "Correcto", MessageBoxButtons.OK);
+                }
             cs.Close();
+
         }
     }
     

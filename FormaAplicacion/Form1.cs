@@ -54,7 +54,38 @@ namespace FormaAplicacion
             }
             cs.Close();
 
-            
+            cs.Open();
+            querty = "select host from correo";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Usuario.MailHost = reader["host"].ToString();
+            }
+            cs.Close();
+
+            cs.Open();
+            querty = "select port from correo";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Usuario.PortHost = reader["port"].ToString();
+            }
+            cs.Close();
+
+            cs.Open();
+            querty = "select SSL from correo";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Usuario.SSLHost = reader["SSL"].ToString();
+            }
+            cs.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
