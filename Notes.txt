@@ -27,3 +27,12 @@ Clear all the texboxes
 
 GIT Token
 acce47f85d9875e1b9509a082f2034fb8c7050c1
+
+To add the files to the repository
+git add .
+
+To commit them 
+git commit -m "What changes"
+
+To push it to the website
+git push -u Calmecac master

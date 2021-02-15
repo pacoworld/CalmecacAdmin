@@ -256,6 +256,7 @@ namespace FormaAplicacion
             SqlDataReader reader;
             TextBox[] tb;
             DateTime dt;
+          //  comboBox6.SelectedIndex = 0;
             tb = new TextBox[6];
             tb[0] = textBox1;
             tb[1] = textBox2;
@@ -317,7 +318,6 @@ namespace FormaAplicacion
             cs.Close();
 
 
-
             cs.Open();
             str = "select MiembroDesde from empleados where id = '" + comboBox2.SelectedItem + "'";
             com = new SqlCommand(str, cs);
@@ -351,6 +351,8 @@ namespace FormaAplicacion
             SqlDataAdapter da = new SqlDataAdapter("Select telefono from Telefonos where IDEmpleados = '" + comboBox2.SelectedItem + "'", cs);
             DataTable dts = new DataTable();
             comboBox6.Items.Clear();
+            comboBox6.ResetText();
+            
 
             da.Fill(dts);
 
@@ -359,7 +361,7 @@ namespace FormaAplicacion
                 comboBox6.Items.Add(dts.Rows[i]["telefono"]);
             }
 
-
+            
         }
 
         private void Modificar_Load(object sender, EventArgs e)
@@ -393,6 +395,22 @@ namespace FormaAplicacion
         {
             string clave = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             comboBox2.SelectedIndex = comboBox2.FindStringExact(clave);     
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string querty;
+            SqlCommand com;
+            cs.Open();
+            querty = "select Lugar from Telefonos where IDEmpleados = '" + comboBox2.SelectedItem + "' and Telefono = '" + comboBox6.SelectedItem + "'";
+            com = new SqlCommand(querty, cs);
+            reader = com.ExecuteReader();
+
+            if (reader.Read())
+            {
+                comboBox7.Text = reader["Lugar"].ToString();
+            }
+            cs.Close();
         }
     }
 }
