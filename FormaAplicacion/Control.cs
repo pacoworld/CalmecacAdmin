@@ -30,7 +30,6 @@ namespace FormaAplicacion
         SqlCommand com;
         SqlDataReader reader;
 
-
         public Control()
         {
             InitializeComponent();
@@ -41,7 +40,6 @@ namespace FormaAplicacion
         {
             da = new SqlDataAdapter("SELECT * FROM EMPLEADOS WHERE estatus = 'activo'", cs);
             DataTable dt = new DataTable();
-            comboBox4.SelectedIndex = 4;
 
             da.Fill(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -49,8 +47,8 @@ namespace FormaAplicacion
                 comboBox1.Items.Add(dt.Rows[i]["ID"]);
             }
 
-            ImprimeMorosos();
-
+            ImprimeMorosos();          
+            comboBox4.Text = currentYear;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

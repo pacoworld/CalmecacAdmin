@@ -53,7 +53,7 @@ namespace FormaAplicacion
                 }
                 else
                 {
-                    MessageBox.Show("Clave incorrecta");
+                    MessageBox.Show( "Clave incorrecta", "Error", MessageBoxButtons.OK , MessageBoxIcon.Error);
                 }
             }
         }

@@ -39,7 +39,7 @@ namespace FormaAplicacion
                 cs.Open();
             
             da.InsertCommand.Parameters.Add("@Estatus", SqlDbType.VarChar).Value = "Activo";            
-            da.InsertCommand.Parameters.Add("@Telefono", SqlDbType.VarChar).Value = textBox4.Text;            
+      //      da.InsertCommand.Parameters.Add("@Telefono", SqlDbType.VarChar).Value = textBox4.Text;            
             da.InsertCommand.Parameters.Add("@MiembroDesde", SqlDbType.VarChar).Value = hoy.ToString();            
             da.InsertCommand.Parameters.Add("@Membresia", SqlDbType.VarChar).Value = comboBox2.Text;
             

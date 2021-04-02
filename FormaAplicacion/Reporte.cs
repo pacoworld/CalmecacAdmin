@@ -22,7 +22,7 @@ namespace FormaAplicacion
         DataSet ds = new DataSet();
         SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
-        int NumPgad = 0;
+ //       int NumPgad = 0;
 
         private void Reporte_Load(object sender, EventArgs e)
         {
