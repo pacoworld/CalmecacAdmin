@@ -17,7 +17,7 @@ namespace FormaAplicacion
         [STAThread]
         static void Main()
         {
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            SqlConnection cs = new SqlConnection("Data Source = LAPTOP-G3MFU6OV; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlCommand com1;
             SqlDataReader reader1;
             object temp1;

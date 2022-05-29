@@ -25,7 +25,7 @@ namespace FormaAplicacion
         string admin;
 
         DataSet ds = new DataSet();
-        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        SqlConnection cs = new SqlConnection("Data Source = LAPTOP-G3MFU6OV; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlDataAdapter da = new SqlDataAdapter();
         SqlCommand com;
         SqlDataReader reader;

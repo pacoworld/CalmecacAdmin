@@ -4,17 +4,17 @@
   <description asmv2:publisher="FormaAplicacion" asmv2:product="FormaAplicacion" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="FormaAplicacion.exe.manifest" size="11818">
+    <dependentAssembly dependencyType="install" codebase="FormaAplicacion.exe.manifest" size="3886">
       <assemblyIdentity name="FormaAplicacion.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JLiZ9NCTf44y06nOQ3hTFjUe0PVYMCknyYfNSb4iCe0=</dsig:DigestValue>
+        <dsig:DigestValue>U4DSWGTkIywwN4W2u7g/0SNRciKRCOF1skTsSUDIgz4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace FormaAplicacion
 {
@@ -18,7 +13,7 @@ namespace FormaAplicacion
             InitializeComponent();
         }
 
-        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        SqlConnection cs = new SqlConnection("Data Source = LAPTOP-G3MFU6OV; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
         SqlCommand crop;
         SqlDataReader reader;  // is the same name
 
@@ -352,20 +347,6 @@ namespace FormaAplicacion
                 dateTimePicker1.Value = dt;
             }
             cs.Close();
-
-            SqlDataAdapter da = new SqlDataAdapter("Select telefono from Telefonos where IDEmpleados = '" + comboBox2.SelectedItem + "'", cs);
-            DataTable dts = new DataTable();
-            comboBox6.Items.Clear();
-            comboBox6.ResetText();
-            
-
-            da.Fill(dts);
-
-            for (int i = 0; i < dts.Rows.Count; i++)
-            {
-                comboBox6.Items.Add(dts.Rows[i]["telefono"]);
-            }
-
             
         }
 
@@ -402,20 +383,6 @@ namespace FormaAplicacion
             comboBox2.SelectedIndex = comboBox2.FindStringExact(clave);     
         }
 
-        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string querty;
-            SqlCommand com;
-            cs.Open();
-            querty = "select Lugar from Telefonos where IDEmpleados = '" + comboBox2.SelectedItem + "' and Telefono = '" + comboBox6.SelectedItem + "'";
-            com = new SqlCommand(querty, cs);
-            reader = com.ExecuteReader();
 
-            if (reader.Read())
-            {
-                comboBox7.Text = reader["Lugar"].ToString();
-            }
-            cs.Close();
-        }
     }
 }

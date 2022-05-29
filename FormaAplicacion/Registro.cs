@@ -24,7 +24,7 @@ namespace FormaAplicacion
         private void button1_Click(object sender, EventArgs e)
         {
             
-            SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            SqlConnection cs = new SqlConnection("Data Source = LAPTOP-G3MFU6OV; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlDataAdapter da = new SqlDataAdapter();            
 
             da.InsertCommand = new SqlCommand("INSERT INTO Empleados VALUES (@Nombre, @Apellido, @EMail, @Sexo, @Estatus, @Telefono, @MiembroDesde, @Membresia, @FechaNacimiento, @FechaRecordat, @NombreEmergencia, @TelefonoEmergencia)", cs);               
