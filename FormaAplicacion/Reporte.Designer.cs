@@ -43,6 +43,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -52,12 +58,6 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -258,6 +258,60 @@
             this.tabPage2.Text = "Gráficas";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(1004, 508);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(54, 13);
+            this.label20.TabIndex = 14;
+            this.label20.Text = "Diciembre";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(916, 508);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(58, 13);
+            this.label19.TabIndex = 13;
+            this.label19.Text = "Noviembre";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(825, 508);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(45, 13);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "Octubre";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(733, 508);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(60, 13);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "Septiembre";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(654, 509);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(40, 13);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "Agosto";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(567, 509);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(28, 13);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "Julio";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -321,7 +375,8 @@
             "2018",
             "2019",
             "2020",
-            "2021"});
+            "2021",
+            "2022"});
             this.comboBox3.Location = new System.Drawing.Point(57, 591);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
@@ -345,60 +400,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1133, 500);
             this.panel1.TabIndex = 0;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(567, 509);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(28, 13);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "Julio";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(654, 509);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(40, 13);
-            this.label16.TabIndex = 10;
-            this.label16.Text = "Agosto";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(733, 508);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(60, 13);
-            this.label17.TabIndex = 11;
-            this.label17.Text = "Septiembre";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(825, 508);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(45, 13);
-            this.label18.TabIndex = 12;
-            this.label18.Text = "Octubre";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(916, 508);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(58, 13);
-            this.label19.TabIndex = 13;
-            this.label19.Text = "Noviembre";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(1004, 508);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(54, 13);
-            this.label20.TabIndex = 14;
-            this.label20.Text = "Diciembre";
             // 
             // Reporte
             // 
