@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace FormaAplicacion
 {
@@ -17,6 +18,12 @@ namespace FormaAplicacion
         [STAThread]
         static void Main()
         {
+            StreamReader sr = new StreamReader("../../../server.txt"); 
+            Usuario.Computadora = sr.ReadLine();   
+            Usuario.BasedeDatos = sr.ReadLine();   
+            MessageBox.Show(Usuario.Computadora);
+            MessageBox.Show(Usuario.BasedeDatos);
+
             SqlConnection cs = new SqlConnection("Data Source = LAPTOP-G3MFU6OV; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
             SqlCommand com1;
             SqlDataReader reader1;
