@@ -18,13 +18,14 @@ namespace FormaAplicacion
         [STAThread]
         static void Main()
         {
-            StreamReader sr = new StreamReader("../../../server.txt"); 
-            Usuario.Computadora = sr.ReadLine();   
-            Usuario.BasedeDatos = sr.ReadLine();   
-            MessageBox.Show(Usuario.Computadora);
-            MessageBox.Show(Usuario.BasedeDatos);
+            StreamReader sr = new StreamReader("../../../server.txt");
+            string CompuServer = sr.ReadLine(); 
+            string BDServer = sr.ReadLine();
+            string Security = sr.ReadLine();
+            Usuario.CompuDBNombre = "Data Source = " + CompuServer + "; Initial Catalog = " + BDServer + "; Integrated Security = " + Security + "";
+            MessageBox.Show(Usuario.CompuDBNombre);
 
-            SqlConnection cs = new SqlConnection("Data Source = LAPTOP-G3MFU6OV; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+            SqlConnection cs = new SqlConnection(Usuario.CompuDBNombre);
             SqlCommand com1;
             SqlDataReader reader1;
             object temp1;
