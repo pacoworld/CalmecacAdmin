@@ -14,7 +14,7 @@ namespace FormaAplicacion
 {
     public partial class Configuracion : Form
     {
-        SqlConnection cs = new SqlConnection("Data Source = .\\sqlexpress; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        SqlConnection cs = new SqlConnection(Usuario.CompuDBNombre);
         SqlDataAdapter da = new SqlDataAdapter();
         SqlCommand com;
         SqlDataReader reader;

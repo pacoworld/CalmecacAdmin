@@ -23,8 +23,7 @@ namespace FormaAplicacion
             string BDServer = sr.ReadLine();
             string Security = sr.ReadLine();
             Usuario.CompuDBNombre = "Data Source = " + CompuServer + "; Initial Catalog = " + BDServer + "; Integrated Security = " + Security + "";
-            MessageBox.Show(Usuario.CompuDBNombre);
-
+            
             SqlConnection cs = new SqlConnection(Usuario.CompuDBNombre);
             SqlCommand com1;
             SqlDataReader reader1;

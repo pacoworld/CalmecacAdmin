@@ -14,7 +14,7 @@ namespace FormaAplicacion
     public partial class Password : Form
     {
         SqlDataAdapter da = new SqlDataAdapter();
-        SqlConnection cs = new SqlConnection("Data Source = LAPTOP-G3MFU6OV; Initial Catalog = DatabasePaco; Integrated Security = TRUE");
+        SqlConnection cs = new SqlConnection(Usuario.CompuDBNombre);
         SqlCommand com;
         SqlDataReader reader;
         string clavefromDB = "";
