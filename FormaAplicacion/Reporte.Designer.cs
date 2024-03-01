@@ -376,7 +376,9 @@
             "2019",
             "2020",
             "2021",
-            "2022"});
+            "2022",
+            "2023",
+            "2024"});
             this.comboBox3.Location = new System.Drawing.Point(57, 591);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
