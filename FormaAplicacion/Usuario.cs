@@ -11,7 +11,6 @@ namespace FormaAplicacion
         private static string UsuarioAdmin = "", CorreoLoginAdmin = "", ClaveLoginAdmin = "", MailHostAdmin = "", MailPortAdmin = "", MailSSLAdmin = "", ComputadoraBadeDatos = "";
         
 
-
         public static string ElUsuario 
         {
             get { return UsuarioAdmin; }
@@ -53,6 +52,5 @@ namespace FormaAplicacion
             get { return ComputadoraBadeDatos; }
             set { ComputadoraBadeDatos = value; }
         }        
-
     }
 }

@@ -13,6 +13,8 @@ Area
 Status
 Precio Unitario
 Fecha de adquisición
+ 
+
 
 Datos del servidor de correo
 Correo:   calmecacfitness@gmail.com

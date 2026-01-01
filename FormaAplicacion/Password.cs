@@ -43,7 +43,6 @@ namespace FormaAplicacion
                 }
                 cs.Close();
 
-
                 if (textBox1.Text == clavefromDB)
                 {
                     Usuario.ElUsuario = comboBox1.Text;
@@ -67,8 +66,6 @@ namespace FormaAplicacion
             {
                 comboBox1.Items.Add(dt.Rows[i]["LOGIN"]);
             }
-        }
-
-       
+        }       
     }
 }

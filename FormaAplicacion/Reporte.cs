@@ -32,7 +32,6 @@ namespace FormaAplicacion
             var result = dt.ToString(f, new CultureInfo("es-ES"));
             string ElMes = result.ToString();
             string ElAño = DateTime.Now.ToString("yyyy");
-            
 
             label2.Text = ElMes;
             label4.Text = ElAño;            

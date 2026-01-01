@@ -444,9 +444,7 @@ namespace FormaAplicacion
             {
                 ds.Clear();
             }
-
         }
-
 
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
