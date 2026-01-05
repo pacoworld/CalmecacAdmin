@@ -178,7 +178,6 @@ namespace FormaAplicacion
                                     MessageBox.Show("Verifica el monto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     LoEnvioSioNO = false;
                                 }
-
                                 textBox1.Clear();
                                 textBox2.Clear();
                                 cs.Close();
